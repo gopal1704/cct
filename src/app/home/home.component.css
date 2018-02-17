@@ -2,6 +2,21 @@
     background-color:white !important;
 }
 
+.btn-outline {
+    color: #fff;
+    border: 1px solid;
+    border-color: #fff;
+}
+.btn-xl {
+    font-size: 11px;
+    padding: 15px 45px;
+}
+.btn {
+    border-radius: 300px;
+    font-family: Lato,Helvetica,Arial,sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
 .masthead{
 
 
