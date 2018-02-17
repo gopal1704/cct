@@ -27,6 +27,14 @@ h1,h2,h3,h4,h5,h6{
   color: #eceeee;
 
 }
+.nl>a:hover {
+  background-image: linear-gradient(-180deg, #18347b 0%, #2a4bae 100%);
+
+}
+.nla{
+  background-image: linear-gradient(-180deg, #18347b 0%, #2a4bae 100%);
+
+}
 .trans{
  
     overflow-x: scroll;
