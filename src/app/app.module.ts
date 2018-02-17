@@ -11,6 +11,9 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { WalletTransferComponent } from './wallet-transfer/wallet-transfer.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { ProfileComponent } from './profile/profile.component';
     TransactionsComponent,
     WalletTransferComponent,
     WithdrawComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent,
+    DashboardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
