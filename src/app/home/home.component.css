@@ -1,0 +1,41 @@
+.wrapper{
+    background-color:white !important;
+}
+
+.masthead{
+
+
+ background:  url(../../assets/bg-pattern.png),  linear-gradient(-180deg, #18347b 0%, #2a4bae 100%);
+
+}
+
+header.masthead {
+  color: #FFFFFF;
+    height: 100vh;
+    min-height: 775px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar .navbar-brand {
+    color: #ecf0f1;
+  }
+  .navbar .navbar-brand:hover,
+  .navbar .navbar-brand:focus {
+    color: #acff9e;
+  }
+  .navbar .navbar-text {
+    color: #ecf0f1;
+  }
+  .navbar .navbar-text a {
+    color: #acff9e;
+  }
+  .navbar .navbar-text a:hover,
+  .navbar .navbar-text a:focus {
+    color: #acff9e; 
+  }
+  .navbar .navbar-nav .nav-link {
+    color: #ecf0f1;
+    border-radius: .25rem;
+    margin: 0 0.25em;
+  }
