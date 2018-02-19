@@ -6,9 +6,27 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchmap';
 
+interface User{
+  uid : string;
+  email : string;
+}
 @Injectable()
 export class AuthenticationService {
 
-  constructor() { }
+user : Observable<User>;
+
+
+  constructor(private afAuth: AngularFireAuth,private router: Router) {
+   }
+   login(email: string, password: string) {
+    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    .then(value => {
+      console.log(value);
+      
+    })
+    .catch(err => {
+      console.log('Something went wrong: ', err.message);
+    });
+  }
 
 }

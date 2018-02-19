@@ -47,7 +47,8 @@ var config = {
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(config),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
