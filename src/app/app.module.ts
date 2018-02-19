@@ -1,8 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 
+import {AuthenticationService} from './authentication.service';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 import { AppComponent } from './app.component';
 import { AccountSummaryComponent } from './account-summary/account-summary.component';
 import { InvestmentsComponent } from './investments/investments.component';
@@ -15,6 +20,14 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 
+var config = {
+  apiKey: "AIzaSyDZctYRBSTRhuIjDsPP-j7ide7LrlHjf4o",
+  authDomain: "investment-3327a.firebaseapp.com",
+  databaseURL: "https://investment-3327a.firebaseio.com",
+  projectId: "investment-3327a",
+  storageBucket: "investment-3327a.appspot.com",
+  messagingSenderId: "242794674827"
+};
 
 @NgModule({
   declarations: [
@@ -32,9 +45,11 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+  export class AppModule { }

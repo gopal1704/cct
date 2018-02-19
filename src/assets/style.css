@@ -1,4 +1,5 @@
 body,html{
+  background-color: #eceeee !important;
     font-family: 'Abel', sans-serif;
     margin-bottom: 40px;
     font-weight: 100;
@@ -7,9 +8,7 @@ body,html{
 
 }
 .side-nav{
-  background: #18347B;
-    background-image: linear-gradient(-180deg, #18347b 0%, #2a4bae 100%);
-    
+  background-color: #373737;
     padding-right: 0px;
 }
 h1,h2,h3,h4,h5,h6{
