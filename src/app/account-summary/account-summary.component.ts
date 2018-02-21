@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-account-summary',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountSummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor( private as : AuthenticationService) { }
 
   ngOnInit() {
+
+
+    this.as.user.subscribe(console.log,console.log,    () => console.log('completed'));
+setTimeout(() => {
+  console.log(this.as.currentUserId);
+
+}, 5000);
+  
   }
 
+
+  
 }

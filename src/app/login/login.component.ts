@@ -13,7 +13,7 @@ loggedin : boolean;
    UserName  : string;
    Password  : string;
   /******************/
-
+  
   constructor( private fb : FormBuilder, private as : AuthenticationService) { 
 
 
@@ -31,8 +31,8 @@ loggedin : boolean;
 
   Login(Credentials){
    console.log(Credentials);
- this.loggedin = this.as.login(Credentials.UserName,Credentials.Password);
-  this.router.navigate(['dashboard']); 
+ this.as.login(Credentials.UserName,Credentials.Password);
+
   }
 
 

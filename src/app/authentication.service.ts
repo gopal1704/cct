@@ -10,6 +10,7 @@ import 'rxjs/add/observable/throw';
 import { element } from 'protractor';
 
 interface User{
+  displayname : string;
   uid : string;
   email : string;
 }
@@ -19,7 +20,7 @@ userLoggedIn = false;
 
 
 user : Observable<User>;
-
+currentUserId :  string;
 
   constructor(private afAuth: AngularFireAuth,private router: Router,
   private afs : AngularFirestore
@@ -27,11 +28,14 @@ user : Observable<User>;
   this.user = this.afAuth.authState.switchMap(
     user => {
       if(user){
-        return this.afAuth.authState;
-
+        this.currentUserId= user.uid;
+        this.userLoggedIn = true;
+        return this.afs.doc<User>(`accountsummary/${user.uid}`).valueChanges();
+    
       }
 else{
      return Observable.of(null);
+
 }
     }
   )
@@ -46,7 +50,9 @@ else{
     
 
     console.log("user logged in");
-    })
+    this.router.navigate(['/dashboard']); 
+
+  })
     .catch(err => {
       console.log('Something went wrong: ', err.message);
     });
@@ -54,6 +60,9 @@ else{
   }
   logout(){
 this.afAuth.auth.signOut();
-  }
+this.userLoggedIn= false;
+this.router.navigate(['']); 
+  
+}
 
 }
