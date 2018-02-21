@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import {AuthenticationService} from './authentication.service';
-
+import {DataService} from './data.service'
 interface Post{
   title:string;
   content :string;
@@ -21,7 +21,7 @@ export class AppComponent {
   posts: Observable<Post[]>;
   title = 'app';
   
-  constructor(private afs:AngularFirestore, private authService: AuthenticationService){
+  constructor(private afs:AngularFirestore, private authService: AuthenticationService, private dataService : DataService) {
 
   }
 
@@ -30,9 +30,12 @@ console.log(data);
    }
 ngOnInit(){
   //this.authService.login('vgopaooty@gmail.com','gopal3358');
-  this.authService.user.subscribe(value => {
-    console.log(value.uid);
-  });
+  // this.authService.user.subscribe(value => {
+  //   console.log(value.uid);
+  // });
+
+
+this.dataService.get_accountsummary("aa");
 
 }
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import {AuthenticationService} from './authentication.service';
+import { DataService } from './data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
@@ -50,7 +51,7 @@ var config = {
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,DataService],
   bootstrap: [AppComponent]
 })
   export class AppModule { }
