@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import {AuthenticationService} from './authentication.service';
 import { DataService } from './data.service';
@@ -20,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { SignupComponent } from './signup/signup.component';
 
 var config = {
   apiKey: "AIzaSyDZctYRBSTRhuIjDsPP-j7ide7LrlHjf4o",
@@ -32,6 +34,8 @@ var config = {
 
 @NgModule({
   declarations: [
+    
+
     AppComponent,
     AccountSummaryComponent,
     InvestmentsComponent,
@@ -42,14 +46,17 @@ var config = {
     ProfileComponent,
     LoginComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    ,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthenticationService,DataService],
   bootstrap: [AppComponent]

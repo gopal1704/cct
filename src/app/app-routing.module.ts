@@ -10,13 +10,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SignupComponent } from './signup/signup.component';
 
 // path: '', redirectTo: '/heroes', pathMatch: 'full'
 const routes: Routes = [
   {path : '', redirectTo: '/home', pathMatch: 'full' },
   { path : 'home',component : HomeComponent },
   {path: 'login', component :LoginComponent },
-
+{path :'signup', component: SignupComponent}
  {path: 'dashboard', component :DashboardComponent,
 children :[
   { path : 'accountsummary' , component : AccountSummaryComponent },
