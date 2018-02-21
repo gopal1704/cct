@@ -17,9 +17,11 @@ const routes: Routes = [
   {path : '', redirectTo: '/home', pathMatch: 'full' },
   { path : 'home',component : HomeComponent },
   {path: 'login', component :LoginComponent },
-{path :'signup', component: SignupComponent}
+{path :'signup', component: SignupComponent},
  {path: 'dashboard', component :DashboardComponent,
 children :[
+  {path : '', redirectTo: '/dashboard/accountsummary', pathMatch: 'full' },
+
   { path : 'accountsummary' , component : AccountSummaryComponent },
   { path : 'investments' , component : InvestmentsComponent},
   { path: 'referrals',component :ReferralsComponent },

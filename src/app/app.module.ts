@@ -54,7 +54,7 @@ var config = {
     AppRoutingModule,
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule,
-    ,
+    AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule
   ],

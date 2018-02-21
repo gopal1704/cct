@@ -1,5 +1,5 @@
 
-<div class="row h-100 login">
+<div class="row h-100 login" app-login>
 
 
   <div class="col-4 mx-auto my-auto" style="width: 200px;">
@@ -12,21 +12,22 @@
             </div>
             <div class="card-body">
              
-                <form>
+                <form [formGroup]="LoginForm">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      <input type="email" formControlName="UserName" class="form-control" >
                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input type="password"   formControlName="Password" class="form-control"  >
                     </div>
                   
                   </form>
 
 
-              <a href="#" class="btn btn-primary">LOGIN</a>
+              <button (click)="Login(LoginForm.value)"
+              class="btn btn-primary">LOGIN</button>
             </div>
             <div class="card-footer text-muted">
               <a href="">Sign up</a>&nbsp;&nbsp;&nbsp;&nbsp;

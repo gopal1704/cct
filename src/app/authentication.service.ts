@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase/app';
-import {AngularFireAuth} from 'angularfire2/auth';
+import {AngularFireAuth,AngularFireAuthProvider} from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchmap';
@@ -28,9 +28,10 @@ user : Observable<User>;
     user => {
       if(user){
         return this.afAuth.authState;
+
       }
 else{
-return Observable.of(null);
+     return Observable.of(null);
 }
     }
   )
@@ -39,17 +40,20 @@ return Observable.of(null);
   }
     
    login(email: string, password: string) {
-    
    var loginPromise =  this.afAuth.auth.signInWithEmailAndPassword(email, password)
     .then(value => {
     this.userLoggedIn = true;
-    console.log("user logged in");
-    return value;
+    
 
+    console.log("user logged in");
     })
     .catch(err => {
       console.log('Something went wrong: ', err.message);
     });
+    
+  }
+  logout(){
+this.afAuth.auth.signOut();
   }
 
 }
