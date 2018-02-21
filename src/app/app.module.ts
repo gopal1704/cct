@@ -22,6 +22,9 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { InvestmentschemesComponent } from './investmentschemes/investmentschemes.component';
+import { PaywithbitcoinComponent } from './paywithbitcoin/paywithbitcoin.component';
 
 var config = {
   apiKey: "AIzaSyDZctYRBSTRhuIjDsPP-j7ide7LrlHjf4o",
@@ -47,7 +50,10 @@ var config = {
     LoginComponent,
     DashboardComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    UpdateprofileComponent,
+    InvestmentschemesComponent,
+    PaywithbitcoinComponent
   ],
   imports: [
     BrowserModule,
