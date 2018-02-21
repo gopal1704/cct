@@ -12,12 +12,14 @@ import 'rxjs/add/observable/throw';
 import { element } from 'protractor';
 
 interface AccountSymmary{
+    uid: string;
     referral_link : string;
     joining_date : number;
-    t_wallet_balance : number;
     name: string;
     first_investment_made : boolean;
-    
+
+    t_wallet_balance : number;
+
 }
 
 
