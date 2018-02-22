@@ -1,0 +1,42 @@
+<div class="row h-100 signup ">
+
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  
+    <div class="col-6 mx-auto  " style="margin-top: 5%">
+  <h4 class="text-center" style="margin-bottom: 5%">Please select payment method</h4>
+  
+  <!-- stepper  -->
+  
+  
+  
+  <!-- stepper end  -->
+        <div class="card">
+  
+          <div class="card-body">
+  
+            <form [formGroup]="">
+              <div class="form-group">
+                <label  class="block" for="s1">
+                  <input type="radio" id="s1" value="male" name="gender" > <h5 class="inline">Gold Scheme Minimum 1000 USD - 90 DAYS -  8 PERCENT</h5>
+                </label>
+  
+  
+                <label  class="block" for="s2">
+                    <input type="radio" id="s2" value="male" name="gender" > <h5 class="inline">Silver  Scheme Minimum 1000 USD - 90 DAYS -  8 PERCENT</h5>
+                  </label>
+    
+  
+  
+              </div>
+  
+  
+            </form>
+  
+  
+            <button routerLink="/dashboard/paymentmethod" class="btn btn-primary">Proceed to Payment</button>
+  
+          </div>
+          
+        </div>
+    </div>
+  </div>

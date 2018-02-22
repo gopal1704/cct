@@ -7,6 +7,12 @@ body,html{
 
 
 }
+.block {
+  display: block;
+}
+.inline{
+  display: inline-block;
+}
 .side-nav{
   background-color: #373737;
     padding-right: 0px;

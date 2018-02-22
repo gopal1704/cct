@@ -13,20 +13,20 @@ export class DashboardComponent implements OnInit {
   constructor( private as : AuthenticationService ,private router: Router) { }
 
   ngOnInit() {
-      if(this.as.userLoggedIn==true)
-{
-    this.as.user.subscribe((user)=>{
-      if(user){
-this.DisplayName = user.displayname;}
-    },()=>{
+//       if(this.as.userLoggedIn==true)
+// {
+//     this.as.user.subscribe((user)=>{
+//       if(user){
+// this.DisplayName = user.displayname;}
+//     },()=>{
 
 
-    });
-  }
-  else{
-    this.router.navigate(['']); 
+//     });
+//   }
+//   else{
+//     this.router.navigate(['']); 
 
-  }
+//   }
 
   }
   logout(){

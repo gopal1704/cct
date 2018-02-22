@@ -26,6 +26,7 @@ import { SignupComponent } from './signup/signup.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 import { InvestmentschemesComponent } from './investmentschemes/investmentschemes.component';
 import { PaywithbitcoinComponent } from './paywithbitcoin/paywithbitcoin.component';
+import { PaymentmethodComponent } from './paymentmethod/paymentmethod.component';
 
 var config = {
   apiKey: "AIzaSyDZctYRBSTRhuIjDsPP-j7ide7LrlHjf4o",
@@ -54,7 +55,8 @@ var config = {
     SignupComponent,
     UpdateprofileComponent,
     InvestmentschemesComponent,
-    PaywithbitcoinComponent
+    PaywithbitcoinComponent,
+    PaymentmethodComponent
   ],
   imports: [
     BrowserModule,

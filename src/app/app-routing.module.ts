@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignupComponent } from './signup/signup.component';
+import { InvestmentschemesComponent } from './investmentschemes/investmentschemes.component';
+import { PaymentmethodComponent } from './paymentmethod/paymentmethod.component';
 
 // path: '', redirectTo: '/heroes', pathMatch: 'full'
 const routes: Routes = [
@@ -28,7 +30,9 @@ children :[
   {  path: 'transactions', component : TransactionsComponent },
    {  path: 'wallettransfer', component : WalletTransferComponent },
    {  path: 'withdraw', component : WithdrawComponent },
-   {  path: 'profile', component : ProfileComponent }
+   {  path: 'profile', component : ProfileComponent },
+   {  path: 'investmentschemes', component : InvestmentschemesComponent },
+   {path : 'paymentmethod' , component : PaymentmethodComponent}
 
 ]
 
