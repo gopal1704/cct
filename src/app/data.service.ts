@@ -21,12 +21,19 @@ interface AccountSymmary{
     t_wallet_balance : number;
 
 }
+interface InvestmentProcessData {
+  payment_method : string;
+  investment_amount : number;
+  investment_scheme : string;
 
+}
 
 
 @Injectable()
 export class DataService {
-  public current_user : "gopal";
+  public current_user = "gopal";
+  public NewInvestmentProcessData : InvestmentProcessData ;
+
 
 
   
@@ -37,7 +44,6 @@ export class DataService {
   private authservice :  AuthenticationService
   ) {
     
-
   }
 
   /*********** ACCOUNT SUMMARY*************/
