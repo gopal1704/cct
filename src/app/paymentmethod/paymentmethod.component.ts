@@ -28,7 +28,7 @@ export class PaymentmethodComponent implements OnInit {
   }
 
   ngOnInit() {
-
+     
   }
 
   gotopayment(formdata){
@@ -39,10 +39,19 @@ console.log(formdata);
                  
         this.ds.NewInvestmentProcessData.investment_amount=formdata.amount;
         this.ds.NewInvestmentProcessData.payment_method=formdata.paymentmethod;
-
-        
+         console.log(this.ds.NewInvestmentProcessData);
+          this.router.navigate(['/dashboard/paywithbitcoin']);
        }
+
+      //  if(formdata.paymentmethod==='wallet'){
+                 
+      //   this.ds.NewInvestmentProcessData.investment_amount=formdata.amount;
+      //   this.ds.NewInvestmentProcessData.payment_method=formdata.paymentmethod;
+      //    console.log(this.ds.NewInvestmentProcessData);
+      //     this.router.navigate(['/dashboard/paywithbitcoin']);
+      //  }
      }
+
   }
 
 

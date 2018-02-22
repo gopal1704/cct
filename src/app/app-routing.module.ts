@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignupComponent } from './signup/signup.component';
 import { InvestmentschemesComponent } from './investmentschemes/investmentschemes.component';
 import { PaymentmethodComponent } from './paymentmethod/paymentmethod.component';
+import { PaywithbitcoinComponent } from './paywithbitcoin/paywithbitcoin.component';
 
 // path: '', redirectTo: '/heroes', pathMatch: 'full'
 const routes: Routes = [
@@ -32,7 +33,8 @@ children :[
    {  path: 'withdraw', component : WithdrawComponent },
    {  path: 'profile', component : ProfileComponent },
    {  path: 'investmentschemes', component : InvestmentschemesComponent },
-   {path : 'paymentmethod' , component : PaymentmethodComponent}
+   {path : 'paymentmethod' , component : PaymentmethodComponent},
+   {path : 'paywithbitcoin', component : PaywithbitcoinComponent}
 
 ]
 
