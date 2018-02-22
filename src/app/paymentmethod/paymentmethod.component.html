@@ -3,7 +3,6 @@
   
     <div class="col-6 mx-auto  " style="margin-top: 5%">
   <h4 class="text-center" style="margin-bottom: 5%">Please select payment method</h4>
-  
   <!-- stepper  -->
   
   
@@ -13,21 +12,22 @@
   
           <div class="card-body">
   
-            <form [formGroup]="">
+            <form [formGroup]="PaymentMethodForm">
 
                 <div class="form-group">
-                    <label for="amount"><h5 class="inline">Pay with Bitcoin </h5></label>
-                    <input id="amount" type="number"  class="form-control" >
+                    <label for="amount"><h5 class="inline">Enter amount </h5></label>
+                    <input id="amount" type="number"  formControlName="amount" class="form-control" >
                   </div>
+                <br/>
 
               <div class="form-group">
                 <label  class="block" for="s1">
-                  <input type="radio" id="s1" value="male" name="gender" > <h5 class="inline">Pay with Bitcoin </h5>
+                  <input type="radio" id="s1" value="bitcoin" name="paymentmethod"  formControlName="paymentmethod"> <h5 class="inline">Pay with Bitcoin </h5>
                 </label>
   
   
                 <label  class="block" for="s2">
-                    <input type="radio" id="s2" value="male" name="gender" > <h5 class="inline">Pay with your Wallet</h5>
+                    <input type="radio" id="s2" value="wallet" name="paymentmethod" formControlName="paymentmethod" > <h5 class="inline">Pay with your Wallet</h5>
                   </label>
     
   
@@ -38,7 +38,7 @@
             </form>
   
   
-            <button routerLink="/dashboard/paymentmethod" class="btn btn-primary">Proceed to Payment</button>
+            <button (click)="gotopayment(PaymentMethodForm.value)" class="btn btn-primary">Proceed to Payment</button>
   
           </div>
           
