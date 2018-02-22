@@ -8,11 +8,23 @@ import 'rxjs/add/operator/switchmap';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/observable/throw';
 import { element } from 'protractor';
+import { emit } from 'cluster';
+import { ProfileComponent } from './profile/profile.component';
 
 interface User{
   displayname : string;
   uid : string;
   email : string;
+}
+interface ProfileData{
+  displayname : string;
+  uid : string;
+  email : string;
+  profileupdated :boolean;
+  referralid : string;
+}
+interface AccountSymmaryData{
+
 }
 @Injectable()
 export class AuthenticationService {
@@ -48,14 +60,43 @@ else{
     
   }
 
-  signup(){
+  signup(email : string, password : string, referralid : string){
 
+ return  this.afAuth.auth.createUserWithEmailAndPassword(email,password).then(
+  user=>{
+        return this.setUserProfileandSummary(user,referralid);
   }
+).catch(error => {console.log(error)});
+         
+  }
+
+
+
   logout(){
 this.afAuth.auth.signOut();
 this.userLoggedIn= false;
 this.router.navigate(['']); 
   
 }
+private setUserProfileandSummary(user,referralid){
+
+const userref : AngularFirestoreDocument<ProfileData> = this.afs.doc(`users/${user.uid}`); //get the refrence for updating initial user data
+
+const usersummaryref :AngularFirestoreDocument<User> = this.afs.doc(`accountsummary/${user.uid}`); //get the refrence for updating initial user data
+
+const ProfileData ={
+  displayname : '',
+  uid : user.uid,
+  email : user.email,
+  profileupdated : false,
+  referralid : referralid
+
+}
+return userref.set(ProfileData);
+
+}
+
+
+
 
 }

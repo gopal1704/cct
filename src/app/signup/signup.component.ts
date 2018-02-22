@@ -8,9 +8,25 @@ declare var Messenger : any;
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
+
 export class SignupComponent implements OnInit {
 
-  constructor( private as : AuthenticationService) {
+/***FORM DECLARATIONS */
+SignUpForm : FormGroup;  // From Group Instance
+UserName  : string;
+Password  : string;
+ReferralId : string;
+/******************/
+
+  constructor(private fb : FormBuilder, private as : AuthenticationService) {
+
+    this.SignUpForm = fb.group({
+      'UserName' : '',
+      'Password' : '',
+      'ReferralId': ''
+
+   });
 
    }
 
@@ -21,6 +37,17 @@ export class SignupComponent implements OnInit {
       showCloseButton: true
     });
     
+  }
+
+
+
+  Signup(Signupdata){
+    console.log(Signupdata);
+ var a = this.as.signup(Signupdata.UserName,Signupdata.Password,Signupdata.ReferralId);
+a.then((v)=>{
+console.log(v);
+console.log('signup successful');
+}).catch((e)=>{console.log(e)});
   }
 
 }
