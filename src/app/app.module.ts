@@ -5,6 +5,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import {AuthenticationService} from './authentication.service';
 import { DataService } from './data.service';
+import { LoadingModule } from 'ngx-loading';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
@@ -62,7 +63,8 @@ var config = {
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingModule
   ],
   providers: [AuthenticationService,DataService],
   bootstrap: [AppComponent]

@@ -10,10 +10,11 @@ export class AccountSummaryComponent implements OnInit {
 
   constructor( private as : AuthenticationService) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
 
 
-    this.as.user.subscribe(console.log,console.log,    () => console.log('completed'));
+this.as.user.subscribe(console.log,console.log,    () => console.log('completed'));
 setTimeout(() => {
   console.log(this.as.currentUserId);
 

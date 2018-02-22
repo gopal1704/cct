@@ -44,19 +44,12 @@ else{
   }
     
    login(email: string, password: string) {
-   var loginPromise =  this.afAuth.auth.signInWithEmailAndPassword(email, password)
-    .then(value => {
-    this.userLoggedIn = true;
+  
     
+  }
 
-    console.log("user logged in");
-    this.router.navigate(['/dashboard']); 
+  signup(){
 
-  })
-    .catch(err => {
-      console.log('Something went wrong: ', err.message);
-    });
-    
   }
   logout(){
 this.afAuth.auth.signOut();
