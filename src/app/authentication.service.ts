@@ -17,13 +17,31 @@ interface User{
   email : string;
 }
 interface ProfileData{
+
   displayname : string;
   uid : string;
   email : string;
   profileupdated :boolean;
   referralid : string;
+  dob : number;
+  address : string;
+  city: string;
+  country : string;
+  mobile : string;
+  dateofjoining : number;
+  gender : string;
+
 }
 interface AccountSymmaryData{
+referralid : string;
+joiningdate : number;
+
+
+walletbalance : number;
+walletpendingbalance : number;
+totalspotearnings : number;
+totalreferralearnings : number;
+totalinvestment:number;
 
 }
 @Injectable()
@@ -66,7 +84,9 @@ else{
   user=>{
         return this.setUserProfileandSummary(user,referralid);
   }
-).catch(error => {console.log(error)});
+).catch(error => {console.log(error)
+return error;
+});
          
   }
 
@@ -89,10 +109,19 @@ const ProfileData ={
   uid : user.uid,
   email : user.email,
   profileupdated : false,
-  referralid : referralid
+  referralid : referralid,
+  dob : 0,
+  address : '',
+  city: '',
+  country : '',
+  mobile : '',
+  dateofjoining : 0,
+  gender : ''
+};
+const AccountSymmaryData ={
 
-}
-return userref.set(ProfileData);
+};
+return userref.set(ProfileData).then(usersummaryref.set(AccountSymmaryData));
 
 }
 
