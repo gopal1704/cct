@@ -20,9 +20,26 @@ export class PaywithbitcoinComponent implements OnInit {
 
 this.InvestmentDetails =this.ds.NewInvestmentProcessData;
 new QRCode(document.getElementById("qrcode"), "122YXXvEHjUTs67fXc3fFACx9PUkreXQfH");
-
+// https://blockchain.info/tobtc?currency=USD&value=25
 
     var MonitorTransaction = new WebSocket('wss://ws.blockchain.info/inv');
+
+     MonitorTransaction.onopen = function(){
+       console.log("websocket connection open");
+    MonitorTransaction.send(JSON.stringify({
+      "op":"addr_sub", "addr":"122YXXvEHjUTs67fXc3fFACx9PUkreXQfH"
+
+
+    }));
+     };
+
+     MonitorTransaction.onmessage= function(onmsg){
+   var response = JSON.parse(onmsg.data);
+   alert("message received");
+   console.log(response);
+
+     }
+
 
   }
 
