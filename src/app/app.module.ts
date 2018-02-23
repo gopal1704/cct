@@ -27,7 +27,7 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
 import { InvestmentschemesComponent } from './investmentschemes/investmentschemes.component';
 import { PaywithbitcoinComponent } from './paywithbitcoin/paywithbitcoin.component';
 import { PaymentmethodComponent } from './paymentmethod/paymentmethod.component';
-
+import {HttpClientModule} from '@angular/common/http';
 var config = {
   apiKey: "AIzaSyDZctYRBSTRhuIjDsPP-j7ide7LrlHjf4o",
   authDomain: "investment-3327a.firebaseapp.com",
@@ -66,7 +66,8 @@ var config = {
     AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule,
-    LoadingModule
+    LoadingModule,
+    HttpClientModule
   ],
   providers: [AuthenticationService,DataService],
   bootstrap: [AppComponent]

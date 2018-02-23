@@ -20,7 +20,8 @@
 
 
       <div class="col-7" style="margin-top: 5%">
-        <h4 class="text-center">Bitcoin Payment</h4>
+        <h4 class="text-center">Bitcoin Payment - Pay  <span class="badge badge-danger">{{btcpayment}} BTC</span>
+        </h4>
         <br/>
 
 <div class="card">
@@ -31,14 +32,16 @@
       <div  id="qrcode" class="mx-auto"></div>
     </div>
 </div>
-    <div class="col-7">
+    <div class="col-7 text-center">
 
       <br/>
       <h6>Kindly make the payment to the following address.</h6>
       <h6>122YXXvEHjUTs67fXc3fFACx9PUkreXQfH</h6>
       <br/>
 <h6></h6>
-
+<div id="loadingicon"  [hidden]="paymentstate" class="loader mx-auto"></div>
+<div id="paymenttext"  [hidden]="paymentstate"> <h4 style="color:#ff0e00">Waiting for payment!</h4> </div>
+<div [hidden]="!paymentstate"> <h4 style="color:#06b10f">Payment Successful - awaiting Confirmation!</h4> </div>
     </div>
 </div>
 </div>
