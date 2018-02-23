@@ -18,7 +18,9 @@ interface AccountSymmary {
   name: string;
   first_investment_made: boolean;
 
-  t_wallet_balance: number;
+  total_wallet_balance: number;
+  total_wallet_outstanding_balance : number;
+  
 
 }
 interface InvestmentProcessData {

@@ -7,6 +7,9 @@ body,html{
 
 
 }
+.dtxt{
+  text-decoration-style: dotted;
+}
 .block {
   display: block;
 }

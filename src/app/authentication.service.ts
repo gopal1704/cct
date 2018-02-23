@@ -35,8 +35,8 @@ interface ProfileData{
 interface AccountSymmaryData{
 referralid : string;
 joiningdate : number;
-
-
+name: string ;
+referal_link :string;
 walletbalance : number;
 walletpendingbalance : number;
 totalspotearnings : number;
