@@ -20,7 +20,7 @@ export class PaywithbitcoinComponent implements OnInit {
   public btcpayment: string = '';
   public paymentstate = false;
   public paymentaddress = "122YXXvEHjUTs67fXc3fFACx9PUkreXQfH";
-  public paymentreceived : any;
+  public paymentreceived: any;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private ds: DataService, private router: Router) { }
 
@@ -54,19 +54,37 @@ export class PaywithbitcoinComponent implements OnInit {
       }));
     };
 
-    MonitorTransaction.onmessage = function (onmsg) {
+    // MonitorTransaction.onmessage = function (onmsg) {
+    //   var response = JSON.parse(onmsg.data);
+    //   alert("message received");
+    //   console.log(response);
+    //   var transactionOutput = response.x.out;
+    //   var transactionOutputLength = transactionOutput.length;
+
+    //  for (var i=0;i<transactionOutputLength;i++){
+    //   if(response.x.out[i]==""){
+
+    //   }
+    //  } 
+
+    // }
+    MonitorTransaction.onmessage = (onmsg) => {
       var response = JSON.parse(onmsg.data);
       alert("message received");
       console.log(response);
       var transactionOutput = response.x.out;
       var transactionOutputLength = transactionOutput.length;
 
-     for (var i=0;i<transactionOutputLength;i++){
-      if(response.x.out[i]==paymentaddress){
+      for (var i = 0; i < transactionOutputLength; i++) {
+        if (response.x.out[i].addr == this.paymentaddress) {
+         this.paymentstate = true;
 
+          console.log('address match!');
+          var amount = response.x.out[i].value;
+          this.paymentreceived = amount /100000000;
+
+        }
       }
-     } 
-
     }
 
     this.convertusdtobitcoin(this.ds.NewInvestmentProcessData.investment_amount);
