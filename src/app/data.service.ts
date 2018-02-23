@@ -11,26 +11,62 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { element } from 'protractor';
 
-interface AccountSymmary {
-  uid: string;
-  referral_link: string;
-  joining_date: number;
-  name: string;
-  first_investment_made: boolean;
 
-  total_wallet_balance: number;
-  total_wallet_outstanding_balance : number;
-  
 
-}
 interface InvestmentProcessData {
   payment_method: string;
   investment_amount: number;
   investment_scheme: string;
 
 }
+//////////////////////////////////
 
+interface ProfileData{
 
+  displayname : string;
+  uid : string;
+  email : string;
+  profileupdated :boolean;
+  referralid : string;
+  dob : number;
+  address : string;
+  city: string;
+  country : string;
+  mobile : string;
+  dateofjoining : number;
+  gender : string;
+
+}
+interface AccountSymmaryData{
+referralid : string;
+joiningdate : number;
+name: string ;
+referal_link :string;
+walletbalance : number;
+walletpendingbalance : number;
+totalspotearnings : number;
+totalreferralearnings : number;
+totalinvestment:number;
+
+}
+////////////////////////////////////
+
+interface Investment{
+  timestamp : number;
+  amount : number;
+  uid : string;
+  scheme : string;
+  referralid : string;
+  
+
+}
+///////////////////////////////////
+
+interface Transaction{
+
+}
+
+///////////////////////////////////
 @Injectable()
 export class DataService {
   public current_user = "gopal";
