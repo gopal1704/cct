@@ -17,6 +17,7 @@ export class AccountSummaryComponent implements OnInit {
      }
 
     ngOnInit() {
+        this.ds.initalize();
 
 
 
@@ -27,11 +28,10 @@ export class AccountSummaryComponent implements OnInit {
                 this.summary =summary;
                 console.log("this summary");
                 console.log(this.summary);
-                this.ds.create_investment("SC01", 1000);
 
             }
         }) ;
-        
+
 
         /*****************CHART STARTS */
         var ctx = document.getElementById("myChart");

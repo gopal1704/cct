@@ -64,7 +64,7 @@ interface Investment {
 ///////////////////////////////////
 
 interface Transaction {
-timestamp : 'a'
+  timestamp: 'a'
 
 }
 
@@ -74,7 +74,7 @@ export class DataService {
   public current_user = "gopal";
   public NewInvestmentProcessData: InvestmentProcessData;
 
-
+  public currentUserSummary ;
 
 
   constructor(
@@ -153,56 +153,73 @@ export class DataService {
 
   ////////////CREATE INVESTMENT //////////////////////////////////
 
+   initalize(){
 
-  create_investment(scheme, amount) {
+    this.authservice.userAccountSummary.subscribe(
+      (summarydata) => {
 
-  this.authservice.userAccountSummary.subscribe(
-    (summary)=>{
-      
-     if(summary){
-      var investment: Investment ={
-        uid : summary.uid,
-        referralid : summary.referralid,
-        scheme : scheme,
-        amount : amount,
-        interest_rate : 9,
-        timestamp :Date.now(),
-        status : 'active'
+        if (summarydata) {
+         this.currentUserSummary =summarydata;
+          ///////////////////////
         }
-var Investment : AngularFirestoreCollection<Investment> ;
-var ref = this.afs.collection('/investments');
-var reftrans = this.afs.collection('/transactions');
-console.log(ref);
-ref.add(investment).then((v)=>{
-
-  const usersummaryref :AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${summary.uid}`); //get the refrence for updating initial user data
-  const getbal = usersummaryref.snapshotChanges();
-  usersummaryref.update({
-    totalinvestment : summary.totalinvestment+amount
-  }).then(
-(v)=>{
-
-    reftrans.add({
-
-    });
-}
-
-  );
-
- 
-
-});
-
-}
-
-
-
-
-     console.log(summary);
-    }
-  );
+      }
+    );
+   }
+  create_investment(scheme, amount) {
+    var summary;
+  
 
    
+    var investment: Investment = {
+      uid: this.currentUserSummary.uid,
+      referralid: this.currentUserSummary.referralid,
+      scheme: scheme,
+      amount: amount,
+      interest_rate: 9,
+      timestamp: Date.now(),
+      status: 'active'
+    }
+
+
+    var Investment: AngularFirestoreCollection<Investment>;
+    var ref = this.afs.collection('/investments');
+    var reftrans = this.afs.collection('/transactions');
+    console.log(ref);
+    ref.add(investment).then((v) => {
+
+      const usersummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`); //get the refrence for updating initial user data
+      const getbal = usersummaryref.snapshotChanges();
+      usersummaryref.update({
+        totalinvestment: this.currentUserSummary.totalinvestment + amount
+      }).then(
+        (v) => {
+           console.log("success");
+
+          reftrans.add({
+             timestamp : Date.now(),
+             type: "DI" ,
+             narration :"Direct Investment Gold Scheme - Payment method - Bitcoin"
+          });
+        }
+
+        );
+
+
+
+    });
+
+    //////
+
+
+
+
+
+
+
+
+
+
+
 
   }
   send_spotcomission() {

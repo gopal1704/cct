@@ -79,6 +79,8 @@ export class PaywithbitcoinComponent implements OnInit {
             type: 'success',
             showCloseButton: true
           });
+          this.ds.create_investment("SCO1",this.InvestmentDetails.investment_amount);
+
         }
       }
     }

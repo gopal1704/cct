@@ -52,6 +52,7 @@ userLoggedIn = false;
 
 user : Observable<User>;
 userAccountSummary : Observable<AccountSymmaryData>;
+
 currentUserId :  string;
 
   constructor(private afAuth: AngularFireAuth,private router: Router,
