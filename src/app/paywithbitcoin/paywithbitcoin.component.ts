@@ -26,17 +26,7 @@ export class PaywithbitcoinComponent implements OnInit {
 
   ngOnInit() {
 
-    setTimeout(() => {
-
-      Messenger().post({
-        message: 'Payment Successful!',
-        type: 'success',
-        showCloseButton: true
-      });
-
-
-      this.paymentstate = true;
-    }, 4000);
+   
 
 
     this.InvestmentDetails = this.ds.NewInvestmentProcessData;
@@ -77,12 +67,18 @@ export class PaywithbitcoinComponent implements OnInit {
 
       for (var i = 0; i < transactionOutputLength; i++) {
         if (response.x.out[i].addr == this.paymentaddress) {
-         this.paymentstate = true;
+          this.paymentstate = true;
+
+
 
           console.log('address match!');
           var amount = response.x.out[i].value;
-          this.paymentreceived = amount /100000000;
-
+          this.paymentreceived = amount / 100000000;
+          Messenger().post({
+            message: 'Payment Successful!',
+            type: 'success',
+            showCloseButton: true
+          });
         }
       }
     }
