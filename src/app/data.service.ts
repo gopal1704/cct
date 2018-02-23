@@ -64,6 +64,7 @@ interface Investment {
 ///////////////////////////////////
 
 interface Transaction {
+timestamp : 'a'
 
 }
 
@@ -155,9 +156,9 @@ export class DataService {
 
   create_investment(scheme, amount) {
 
-  var useraccountsummary = null ;
   this.authservice.userAccountSummary.subscribe(
     (summary)=>{
+      
      if(summary){
       var investment: Investment ={
         uid : summary.uid,
@@ -168,8 +169,31 @@ export class DataService {
         timestamp :Date.now(),
         status : 'active'
         }
+var Investment : AngularFirestoreCollection<Investment> ;
+var ref = this.afs.collection('/investments');
+var reftrans = this.afs.collection('/transactions');
+console.log(ref);
+ref.add(investment).then((v)=>{
 
-     }
+  const usersummaryref :AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${summary.uid}`); //get the refrence for updating initial user data
+  const getbal = usersummaryref.snapshotChanges();
+  usersummaryref.update({
+    totalinvestment : summary.totalinvestment+amount
+  }).then(
+(v)=>{
+
+    reftrans.add({
+
+    });
+}
+
+  );
+
+ 
+
+});
+
+}
 
 
 

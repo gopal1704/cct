@@ -23,19 +23,19 @@ interface ProfileData{
   email : string;
   profileupdated :boolean;
   referralid : string;
-  dob : number;
+  dob : any;
   address : string;
   city: string;
   country : string;
   mobile : string;
-  dateofjoining : number;
+  dateofjoining : any;
   gender : string;
 
 }
 interface AccountSymmaryData{
   uid: string;
   referralid: string;
-  joiningdate: number;
+  joiningdate: any;
   name: string;
   referal_link: string;
   walletbalance: number;

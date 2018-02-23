@@ -10,8 +10,11 @@ declare var Chart: any;
     styleUrls: ['./account-summary.component.css']
 })
 export class AccountSummaryComponent implements OnInit {
+    public  summary ={};
+    constructor(private as: AuthenticationService, private ds: DataService) {
 
-    constructor(private as: AuthenticationService, private ds: DataService) { }
+
+     }
 
     ngOnInit() {
 
@@ -21,6 +24,9 @@ export class AccountSummaryComponent implements OnInit {
         this.as.userAccountSummary.subscribe((summary) => {
 
             if (summary) {
+                this.summary =summary;
+                console.log("this summary");
+                console.log(this.summary);
                 this.ds.create_investment("SC01", 1000);
 
             }
