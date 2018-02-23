@@ -9,10 +9,21 @@ import {Router} from '@angular/router';
 })
 
 export class DashboardComponent implements OnInit {
-   public DisplayName;
+   public name = "";
   constructor( private as : AuthenticationService ,private router: Router) { }
 
   ngOnInit() {
+   
+    this.as.userAccountSummary.subscribe(
+     (s)=>{
+       if(s){
+     this.name= s.name;
+       }
+     }
+    );
+
+    
+
 //       if(this.as.userLoggedIn==true)
 // {
 //     this.as.user.subscribe((user)=>{

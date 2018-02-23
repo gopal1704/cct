@@ -33,15 +33,16 @@ interface ProfileData{
 
 }
 interface AccountSymmaryData{
-referralid : string;
-joiningdate : number;
-name: string ;
-referal_link :string;
-walletbalance : number;
-walletpendingbalance : number;
-totalspotearnings : number;
-totalreferralearnings : number;
-totalinvestment:number;
+  uid: string;
+  referralid: string;
+  joiningdate: number;
+  name: string;
+  referal_link: string;
+  walletbalance: number;
+  walletpendingbalance: number;
+  totalspotearnings: number;
+  totalreferralearnings: number;
+  totalinvestment: number;
 
 }
 @Injectable()
@@ -50,17 +51,18 @@ userLoggedIn = false;
 
 
 user : Observable<User>;
+userAccountSummary : Observable<AccountSymmaryData>;
 currentUserId :  string;
 
   constructor(private afAuth: AngularFireAuth,private router: Router,
   private afs : AngularFirestore
   ) {
-  this.user = this.afAuth.authState.switchMap(
+  this.userAccountSummary = this.afAuth.authState.switchMap(
     user => {
       if(user){
         this.currentUserId= user.uid;
         this.userLoggedIn = true;
-        return this.afs.doc<User>(`accountsummary/${user.uid}`).valueChanges();
+        return this.afs.doc<AccountSymmaryData>(`accountsummary/${user.uid}`).valueChanges();
     
       }
 else{

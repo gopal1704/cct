@@ -10,6 +10,7 @@ import 'rxjs/add/operator/switchmap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { element } from 'protractor';
+import { scan } from 'rxjs/operator/scan';
 
 
 
@@ -17,52 +18,52 @@ interface InvestmentProcessData {
   payment_method: string;
   investment_amount: number;
   investment_scheme: string;
-
 }
 //////////////////////////////////
 
-interface ProfileData{
+interface ProfileData {
 
-  displayname : string;
-  uid : string;
-  email : string;
-  profileupdated :boolean;
-  referralid : string;
-  dob : number;
-  address : string;
+  displayname: string;
+  uid: string;
+  email: string;
+  profileupdated: boolean;
+  referralid: string;
+  dob: any;
+  address: string;
   city: string;
-  country : string;
-  mobile : string;
-  dateofjoining : number;
-  gender : string;
+  country: string;
+  mobile: string;
+  dateofjoining: any;
+  gender: string;
 
 }
-interface AccountSymmaryData{
-referralid : string;
-joiningdate : number;
-name: string ;
-referal_link :string;
-walletbalance : number;
-walletpendingbalance : number;
-totalspotearnings : number;
-totalreferralearnings : number;
-totalinvestment:number;
-
+interface AccountSymmaryData {
+  uid: string;
+  referralid: string;
+  joiningdate: any;
+  name: string;
+  referal_link: string;
+  walletbalance: number;
+  walletpendingbalance: number;
+  totalspotearnings: number;
+  totalreferralearnings: number;
+  totalinvestment: number;
 }
 ////////////////////////////////////
 
-interface Investment{
-  timestamp : number;
-  amount : number;
-  uid : string;
-  scheme : string;
-  referralid : string;
-  
+interface Investment {
+  timestamp: number;
+  amount: number;
+  uid: string;
+  scheme: string;
+  referralid: string;
+  interest_rate: number;
+  status: string;
 
 }
 ///////////////////////////////////
 
-interface Transaction{
+interface Transaction {
 
 }
 
@@ -70,23 +71,23 @@ interface Transaction{
 @Injectable()
 export class DataService {
   public current_user = "gopal";
-  public NewInvestmentProcessData: InvestmentProcessData ;
+  public NewInvestmentProcessData: InvestmentProcessData;
 
 
 
 
   constructor(
-  
+
     private afAuth: AngularFireAuth, private router: Router,
     private afs: AngularFirestore,
     private authservice: AuthenticationService
   ) {
-this.NewInvestmentProcessData ={
-  payment_method: '',
-  investment_amount: 0,
-  investment_scheme: ''
+    this.NewInvestmentProcessData = {
+      payment_method: '',
+      investment_amount: 0,
+      investment_scheme: ''
 
-};
+    };
   }
 
   /*********** ACCOUNT SUMMARY*************/
@@ -144,6 +145,49 @@ this.NewInvestmentProcessData ={
 
   }
   /************************ */
+
+
+
+
+
+  ////////////CREATE INVESTMENT //////////////////////////////////
+
+
+  create_investment(scheme, amount) {
+
+  var useraccountsummary = null ;
+  this.authservice.userAccountSummary.subscribe(
+    (summary)=>{
+     if(summary){
+      var investment: Investment ={
+        uid : summary.uid,
+        referralid : summary.referralid,
+        scheme : scheme,
+        amount : amount,
+        interest_rate : 9,
+        timestamp :Date.now(),
+        status : 'active'
+        }
+
+     }
+
+
+
+
+     console.log(summary);
+    }
+  );
+
+   
+
+  }
+  send_spotcomission() {
+
+  }
+  ////////////////////////////////////////////
+
+
+
 }
 
 

@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
+import { DataService } from '../data.service';
+
 declare var Chart: any;
 
 @Component({
-  selector: 'app-account-summary',
-  templateUrl: './account-summary.component.html',
-  styleUrls: ['./account-summary.component.css']
+    selector: 'app-account-summary',
+    templateUrl: './account-summary.component.html',
+    styleUrls: ['./account-summary.component.css']
 })
 export class AccountSummaryComponent implements OnInit {
 
-  constructor( private as : AuthenticationService) { }
+    constructor(private as: AuthenticationService, private ds: DataService) { }
 
-  ngOnInit()
-  {
-
+    ngOnInit() {
 
 
 
-this.as.user.subscribe(console.log,console.log,    () => console.log('completed'));
-setTimeout(() => {
-  console.log(this.as.currentUserId);
 
-}, 5000);
+        this.as.userAccountSummary.subscribe((summary) => {
 
-/*****************CHART STARTS */
+            if (summary) {
+                this.ds.create_investment("SC01", 1000);
 
-var ctx = document.getElementById("myChart");
+            }
+        }) ;
+        
+
+        /*****************CHART STARTS */
+        var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -56,16 +59,16 @@ var ctx = document.getElementById("myChart");
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero: true
                         }
                     }]
                 }
             }
         });
         ////////////////////////*************chart logic ends */
-  
-  }
+
+    }
 
 
-  
+
 }
