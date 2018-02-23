@@ -121,7 +121,7 @@ const ProfileData ={
 const AccountSymmaryData ={
 
 };
-return userref.set(ProfileData).then(usersummaryref.set(AccountSymmaryData));
+//return userref.set(ProfileData).then(usersummaryref.set(AccountSymmaryData));
 
 }
 
