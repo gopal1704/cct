@@ -137,6 +137,10 @@ export class DataService {
   /************GET TRANSACTIONS***********/
   get_transactions(uid) {
 
+  var transactionscollection = this.afs.collection('transactions',ref => {
+    return ref.where('uid' ,'==', uid);
+  });
+     return transactionscollection.valueChanges();
   }
   /**************** */
 
@@ -161,7 +165,7 @@ export class DataService {
   /************************ */
 
 
-
+/********************send monthly referral comission  */
 
 
   ////////////CREATE INVESTMENT //////////////////////////////////
@@ -178,7 +182,7 @@ export class DataService {
       }
     );
   }
-  create_investment(scheme :string, amount: number) {
+  create_investment(scheme :string, amount: number, btc : number) {
     var summary;
 
 
@@ -204,7 +208,7 @@ export class DataService {
       amount: amount,
       debit: 0,
       credit: 0,
-      narration: "Investment - SCO1 - Bitcoin Payment "
+      narration: `Investment - SCO1 - Bitcoin Payment Amount : ${amount}  BTC : ${btc}`
 
 
     }

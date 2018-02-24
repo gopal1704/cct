@@ -24,12 +24,13 @@
             </tr>
           </thead>
           <tbody>
- <tr>        
-<td>01-01-2018</td>
-  <td>Referral Bonus from Ganesh - ljlkflkfnlf</td>     
-     <td></td>    
-     <td>$1000</td>
-     <td><span class="badge badge-success">success</span></td>
+ <tr *ngFor="let t of Transactions ">        
+<td>{{converttimestamp(t.timestamp)
+}}</td>
+  <td>{{t.narration}}</td>     
+     <td> <span *ngIf="t.debit > 0">{{t.debit}}</span> </td>    
+     <td><span *ngIf="t.credit > 0">{{t.credit}}</span></td>
+     <td><span class="badge badge-success">{{t.status}}</span></td>
     </tr>  
 
     </tbody>
