@@ -25,7 +25,7 @@ export class PaywithbitcoinComponent implements OnInit {
   constructor(private http: HttpClient, private fb: FormBuilder, private ds: DataService, private router: Router) { }
 
   ngOnInit() {
-
+this.ds.initalize();
    
 
 
@@ -45,7 +45,6 @@ export class PaywithbitcoinComponent implements OnInit {
 
     MonitorTransaction.onmessage = (onmsg) => {
       var response = JSON.parse(onmsg.data);
-      alert("message received");
       console.log(response);
       var transactionOutput = response.x.out;
       var transactionOutputLength = transactionOutput.length;

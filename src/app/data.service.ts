@@ -137,10 +137,10 @@ export class DataService {
   /************GET TRANSACTIONS***********/
   get_transactions(uid) {
 
-  var transactionscollection = this.afs.collection('transactions',ref => {
-    return ref.where('uid' ,'==', uid);
-  });
-     return transactionscollection.valueChanges();
+    var transactionscollection = this.afs.collection('transactions', ref => {
+      return ref.where('uid', '==', uid);
+    });
+    return transactionscollection.valueChanges();
   }
   /**************** */
 
@@ -165,8 +165,56 @@ export class DataService {
   /************************ */
 
 
-/********************send monthly referral comission  */
+  /********************send monthly referral comission  */
 
+  send_monthly_bonus() {
+    //0dSTEjOfLwNmGh8OOaIT
+
+    var transaction_referral: Transaction = {
+      timestamp: Date.now(),
+      uid: this.currentUserSummary.referralid,
+      type: 'CSC',
+      status: 'success',
+      from: this.currentUserSummary.uid,
+      to: this.currentUserSummary.referralid,
+      amount: 0,
+      debit: 0,
+      credit: 1000 * 0.03,
+      narration: "Credit 3 percent monthly returns  "
+    }
+    var reftrans = this.afs.collection('/transactions');
+    const referralsummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.referralid}`);
+
+
+    reftrans.add(transaction_referral).then((a) => {
+
+      reftrans.add(transaction_referral).then((v) => {
+
+
+        this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges().take(1).subscribe((v) => {
+          var walbal = v.walletpendingbalance + 1000 * 0.05;
+
+          referralsummaryref.update({
+            walletpendingbalance: v.walletpendingbalance + 1000 * 0.03,
+            totalreferralearnings : v.totalreferralearnings+ 1000 * 0.03
+          });
+
+        });
+
+
+      });
+
+    });
+
+
+
+  }
+
+
+  send_maturity_credit() {
+
+  }
+  /************* */
 
   ////////////CREATE INVESTMENT //////////////////////////////////
 
@@ -182,7 +230,7 @@ export class DataService {
       }
     );
   }
-  create_investment(scheme :string, amount: number, btc : number) {
+  create_investment(scheme: string, amount: number, btc: number) {
     var summary;
 
 
@@ -248,21 +296,23 @@ export class DataService {
           console.log("success");
 
           reftrans.add(transaction_user).then((a) => {
-                          reftrans.add(transaction_referral).then((v)=>{
-                            this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges().take(1).subscribe((v)=>{
-                                  var pendingwalbal = v.walletpendingbalance + amount * 0.05 ;
+            reftrans.add(transaction_referral).then((v) => {
+              this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges().take(1).subscribe((v) => {
+                var pendingwalbal = v.walletpendingbalance + amount * 0.05;
 
-                                  referralsummaryref.update({
-                                    walletpendingbalance : pendingwalbal
-                                  });
+                referralsummaryref.update({
+                  walletpendingbalance: pendingwalbal
+                });
 
-                            });
-                       
+              });
 
-                          });
+
+            });
 
           }
           );
+
+
         }
 
         );

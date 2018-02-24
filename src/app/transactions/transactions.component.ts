@@ -27,6 +27,11 @@ console.log(v);
 
 
 }
+test1(){
+  this.ds.send_monthly_bonus();
+}
+
+
 
 converttimestamp(ts){
 var d = new Date(ts);
