@@ -30,7 +30,6 @@ export class PaywithbitcoinComponent implements OnInit {
 
 
     this.InvestmentDetails = this.ds.NewInvestmentProcessData;
-    new QRCode(document.getElementById("qrcode"), "122YXXvEHjUTs67fXc3fFACx9PUkreXQfH");
     // https://blockchain.info/tobtc?currency=USD&value=25
 
     var MonitorTransaction = new WebSocket('wss://ws.blockchain.info/inv');
@@ -44,20 +43,6 @@ export class PaywithbitcoinComponent implements OnInit {
       }));
     };
 
-    // MonitorTransaction.onmessage = function (onmsg) {
-    //   var response = JSON.parse(onmsg.data);
-    //   alert("message received");
-    //   console.log(response);
-    //   var transactionOutput = response.x.out;
-    //   var transactionOutputLength = transactionOutput.length;
-
-    //  for (var i=0;i<transactionOutputLength;i++){
-    //   if(response.x.out[i]==""){
-
-    //   }
-    //  } 
-
-    // }
     MonitorTransaction.onmessage = (onmsg) => {
       var response = JSON.parse(onmsg.data);
       alert("message received");
@@ -97,6 +82,11 @@ export class PaywithbitcoinComponent implements OnInit {
       console.log(v)
 
       this.btcpayment = v.toString();
+      var qrstr = `bitcoin:122YXXvEHjUTs67fXc3fFACx9PUkreXQfH?amount=${this.btcpayment}`;
+      console.log(`122YXXvEHjUTs67fXc3fFACx9PUkreXQfH?amount=${this.btcpayment}`);
+      new QRCode(document.getElementById("qrcode"), qrstr);
+
+
       console.log(typeof (v));
     });
 

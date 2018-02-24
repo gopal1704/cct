@@ -12,7 +12,7 @@ export class InvestmentsComponent implements OnInit {
 
   ngOnInit() {
 
- this.ds.create_investment("sco1",1000)   ;
+ //this.ds.create_investment("sco1",1000)   ;
   }
 
 }
