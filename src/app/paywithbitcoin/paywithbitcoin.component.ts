@@ -66,7 +66,7 @@ export class PaywithbitcoinComponent implements OnInit {
       var transactionOutputLength = transactionOutput.length;
 
       for (var i = 0; i < transactionOutputLength; i++) {
-        if (response.x.out[i].addr == this.paymentaddress) {
+        if (response.x.out[i].addr === this.paymentaddress) {
           this.paymentstate = true;
 
 
@@ -79,7 +79,7 @@ export class PaywithbitcoinComponent implements OnInit {
             type: 'success',
             showCloseButton: true
           });
-          this.ds.create_investment("SCO1",this.InvestmentDetails.investment_amount);
+          this.ds.create_investment("SCO1",this.paymentreceived);
 
         }
       }
