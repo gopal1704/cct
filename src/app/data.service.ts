@@ -13,6 +13,7 @@ import 'rxjs/add/operator/take'
 import { element } from 'protractor';
 import { scan } from 'rxjs/operator/scan';
 import { FirebaseApp } from 'angularfire2';
+import { take } from 'rxjs/operator/take';
 
 
 
@@ -299,9 +300,10 @@ export class DataService {
             reftrans.add(transaction_referral).then((v) => {
               this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges().take(1).subscribe((v) => {
                 var pendingwalbal = v.walletpendingbalance + amount * 0.05;
-
+                var _totalstopearnings = v.totalspotearnings + amount *0.05;
                 referralsummaryref.update({
-                  walletpendingbalance: pendingwalbal
+                  walletpendingbalance: pendingwalbal,
+                  totalspotearnings : _totalstopearnings
                 });
 
               });

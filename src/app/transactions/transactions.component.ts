@@ -13,6 +13,7 @@ public Transactions;
   constructor(private as: AuthenticationService, private ds: DataService) { }
 
   ngOnInit(  ) {
+    this.ds.initalize();
 this.as.userAccountSummary.take(1).subscribe((v)=>{
 
   console.log('transactions');
