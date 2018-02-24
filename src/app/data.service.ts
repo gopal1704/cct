@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchmap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/take'
 import { element } from 'protractor';
 import { scan } from 'rxjs/operator/scan';
 import { FirebaseApp } from 'angularfire2';
@@ -177,7 +178,7 @@ export class DataService {
       }
     );
   }
-  create_investment(scheme, amount) {
+  create_investment(scheme :string, amount: number) {
     var summary;
 
 
@@ -193,7 +194,7 @@ export class DataService {
     }
     ////////////////////////////////////// Transaction Data
 
-    var transaction_user : Transaction= {
+    var transaction_user: Transaction = {
       timestamp: Date.now(),
       uid: this.currentUserSummary.uid,
       type: 'DI',
@@ -207,16 +208,16 @@ export class DataService {
 
 
     }
-    var transaction_referral : Transaction = {
+    var transaction_referral: Transaction = {
       timestamp: Date.now(),
       uid: this.currentUserSummary.referralid,
       type: 'CSC',
       status: 'success',
       from: '',
       to: '',
-      amount: amount,
+      amount: 0,
       debit: 0,
-      credit: amount*0.05,
+      credit: amount * 0.05,
       narration: "Credit referral comission 5 perc.  "
     }
 
@@ -230,20 +231,34 @@ export class DataService {
     ref.add(investment).then((v) => {
 
       const usersummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`); //get the refrence for updating initial user data
-      const referralsummaryref : AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.referralid}`);
-      
-     
-     
+      const referralsummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.referralid}`);
+
+
+
       usersummaryref.update({
-      
+
         totalinvestment: this.currentUserSummary.totalinvestment + amount
-      
+
       }).then(
         (v) => {
           console.log("success");
 
-          // reftrans.add({
-          // });
+          reftrans.add(transaction_user).then((a) => {
+                          reftrans.add(transaction_referral).then((v)=>{
+                            this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges().take(1).subscribe((v)=>{
+                                  var pendingwalbal = v.walletpendingbalance + amount * 0.05 ;
+
+                                  referralsummaryref.update({
+                                    walletpendingbalance : pendingwalbal
+                                  });
+
+                            });
+                       
+
+                          });
+
+          }
+          );
         }
 
         );
