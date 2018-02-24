@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { element } from 'protractor';
 import { scan } from 'rxjs/operator/scan';
+import { FirebaseApp } from 'angularfire2';
 
 
 
@@ -64,7 +65,17 @@ interface Investment {
 ///////////////////////////////////
 
 interface Transaction {
-  timestamp: 'a'
+  timestamp: number;
+  uid: string;
+  type: string;
+  status: string;
+  from: string;
+  to: string;
+  amount: number;
+  debit: number;
+  credit: number;
+  narration: string;
+
 
 }
 
@@ -74,14 +85,15 @@ export class DataService {
   public current_user = "gopal";
   public NewInvestmentProcessData: InvestmentProcessData;
 
-  public currentUserSummary ;
+  public currentUserSummary;
 
 
   constructor(
 
     private afAuth: AngularFireAuth, private router: Router,
     private afs: AngularFirestore,
-    private authservice: AuthenticationService
+    private authservice: AuthenticationService,
+    private f: FirebaseApp
   ) {
     this.NewInvestmentProcessData = {
       payment_method: '',
@@ -153,23 +165,23 @@ export class DataService {
 
   ////////////CREATE INVESTMENT //////////////////////////////////
 
-   initalize(){
+  initalize() {
 
     this.authservice.userAccountSummary.subscribe(
       (summarydata) => {
 
         if (summarydata) {
-         this.currentUserSummary =summarydata;
+          this.currentUserSummary = summarydata;
           ///////////////////////
         }
       }
     );
-   }
+  }
   create_investment(scheme, amount) {
     var summary;
-  
 
-   
+
+    ///////////////////// Investment Data 
     var investment: Investment = {
       uid: this.currentUserSummary.uid,
       referralid: this.currentUserSummary.referralid,
@@ -179,27 +191,59 @@ export class DataService {
       timestamp: Date.now(),
       status: 'active'
     }
+    ////////////////////////////////////// Transaction Data
+
+    var transaction_user : Transaction= {
+      timestamp: Date.now(),
+      uid: this.currentUserSummary.uid,
+      type: 'DI',
+      status: 'awaiting confirmation',
+      from: '',
+      to: '',
+      amount: amount,
+      debit: 0,
+      credit: 0,
+      narration: "Investment - SCO1 - Bitcoin Payment "
+
+
+    }
+    var transaction_referral : Transaction = {
+      timestamp: Date.now(),
+      uid: this.currentUserSummary.referralid,
+      type: 'CSC',
+      status: 'success',
+      from: '',
+      to: '',
+      amount: amount,
+      debit: 0,
+      credit: amount*0.05,
+      narration: "Credit referral comission 5 perc.  "
+    }
+
 
 
     var Investment: AngularFirestoreCollection<Investment>;
     var ref = this.afs.collection('/investments');
     var reftrans = this.afs.collection('/transactions');
+
     console.log(ref);
     ref.add(investment).then((v) => {
 
       const usersummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`); //get the refrence for updating initial user data
-      const getbal = usersummaryref.snapshotChanges();
+      const referralsummaryref : AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.referralid}`);
+      
+     
+     
       usersummaryref.update({
+      
         totalinvestment: this.currentUserSummary.totalinvestment + amount
+      
       }).then(
         (v) => {
-           console.log("success");
+          console.log("success");
 
-          reftrans.add({
-             timestamp : Date.now(),
-             type: "DI" ,
-             narration :"Direct Investment Gold Scheme - Payment method - Bitcoin"
-          });
+          // reftrans.add({
+          // });
         }
 
         );

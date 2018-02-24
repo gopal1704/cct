@@ -105,7 +105,9 @@ html {
 
 /*******************/
 .card{
-    border : 1px solid rgba(230, 251, 237, 0.72) !important;
+    
+ border: 1px solid rgba(20, 226, 88, 0.72) !important;
+
     border-radius :0px !important;
 }
 

@@ -1,3 +1,45 @@
-<p>
-  withdraw works!
-</p>
+<div class="row h-100 signup ">
+
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  
+    <div class="col-6 mx-auto  " style="margin-top: 5%">
+  <h2 class="text-center" style="margin-bottom: 5%">Withdrawal</h2>
+  
+  <!-- stepper  -->
+  
+  
+  
+  <!-- stepper end  -->
+        <div class="card">
+  
+          <div class="card-body">
+  
+              <form [formGroup]="SignUpForm">
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">
+                          Amount </label>
+                      <input type="email"  formControlName="ReferralId" class="form-control"  >
+                      <small id="emailHelp" class="form-text text-muted">Enter amount to transfer. </small>
+                    </div>
+                  <div class="form-group">
+                    <label >Account Id</label>
+                    <input type="email"  formControlName="UserName" class="form-control"  >
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                  <div class="form-group">
+                    <label >Otp</label>
+                    <input type="password" formControlName="Password" class="form-control">
+                  </div>
+                
+                </form>
+  
+  <div class="text-center">
+      <button (click)="setInvestmentScheme(InvestmentSchemesForm.value)" class="btn btn-primary">Transfer now</button>
+
+  </div>
+  
+          </div>
+          
+        </div>
+    </div>
+  </div>
