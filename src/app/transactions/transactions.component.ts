@@ -36,7 +36,8 @@ test1(){
 
 converttimestamp(ts){
 var d = new Date(ts);
- return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+return d.toLocaleString();
+// return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '--' + d.getHours() + ':' +d.getMinutes();
 
 }
 
