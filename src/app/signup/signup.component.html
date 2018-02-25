@@ -14,10 +14,10 @@
             <div class="card-body">
              
                 <form [formGroup]="SignUpForm">
-                    <div class="form-group">
+                    <div [hidden]="!referralid" class="form-group"  >
                         <label for="exampleInputEmail1">Referral
                             address</label>
-                        <input type="email"  formControlName="ReferralId" class="form-control"  >
+                        <input readonly type="email"  formControlName="ReferralId" class="form-control"  [(ngModel)]="referralid" >
                         <small id="emailHelp" class="form-text text-muted">Enter referral addresss </small>
                       </div>
                     <div class="form-group">
@@ -26,10 +26,13 @@
                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
-                      <label >Password</label>
+                      <label >Create a password</label>
                       <input type="password" formControlName="Password" class="form-control">
                     </div>
-                  
+                    <div class="form-group">
+                      <label >Confirm a password</label>
+                      <input type="password" formControlName="RetypePassword" class="form-control">
+                    </div>
                   </form>
 
 

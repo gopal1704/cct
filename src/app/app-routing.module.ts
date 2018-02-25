@@ -20,7 +20,9 @@ const routes: Routes = [
   {path : '', redirectTo: '/home', pathMatch: 'full' },
   { path : 'home',component : HomeComponent },
   {path: 'login', component :LoginComponent },
+{path :'signup/:id', component: SignupComponent},
 {path :'signup', component: SignupComponent},
+
  {path: 'dashboard', component :DashboardComponent,
 children :[
   {path : '', redirectTo: '/dashboard/accountsummary', pathMatch: 'full' },
