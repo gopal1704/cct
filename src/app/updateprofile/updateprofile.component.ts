@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Router } from '@angular/router';
 
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
+declare var Messenger: any;
 
 @Component({
   selector: 'app-updateprofile',
@@ -28,11 +30,11 @@ export class UpdateprofileComponent implements OnInit {
   Idproof: string = null;
   /******************/
 
-/***********************PROFILE OBJ */
-Profile : any;
-/************* */
+  /***********************PROFILE OBJ */
+  Profile: any;
+  /************* */
 
-  constructor(private fb: FormBuilder,private as : AuthenticationService,    private afs: AngularFirestore,
+  constructor(private fb: FormBuilder, private router: Router,private as: AuthenticationService, private afs: AngularFirestore,
     private storage: AngularFireStorage) {
 
 
@@ -62,7 +64,7 @@ Profile : any;
     console.log(formdata);
     this.Profile = formdata;
 
-    this.uploadIdProof('aaa',this.file);
+    this.uploadIdProof('aaa', this.file);
   }
 
   handleFileInput(files: FileList) {
@@ -74,31 +76,49 @@ Profile : any;
 
 
   }
-uploadIdProof(path , file){
+  uploadIdProof(path, file) {
 
-const idproof = file.item(0);
-this.fileuploadtask =this.storage.upload('abc',idproof);
-this.downloadURL = this.fileuploadtask.downloadURL();
+    const idproof = file.item(0);
+    this.fileuploadtask = this.storage.upload('abc', idproof);
+    this.downloadURL = this.fileuploadtask.downloadURL();
 
-this.downloadURL.subscribe((v)=>{
-console.log(v);
-//profileupdated
-this.Profile.proofurl = v;
-this.Profile.profileupdated = true;
-this.as.userAccountSummary.subscribe((v)=>{
+    this.downloadURL.subscribe((v) => {
+      console.log(v);
+      //profileupdated
+      this.Profile.proofurl = v;
+      this.Profile.profileupdated = true;
+      this.as.userAccountSummary.subscribe((v) => {
 
-//profileref
+        //profileref
+        var uid = v.uid;
+        const userprofileref: AngularFirestoreDocument<any> = this.afs.doc(`users/${v.uid}`); //get the refrence for updating initial user data
 
-const userprofileref: AngularFirestoreDocument<any> = this.afs.doc(`users/${v.uid}`); //get the refrence for updating initial user data
-
-userprofileref.update(this.Profile).then((v)=>{
-console.log(v);
-});
-})
-
+        userprofileref.update(this.Profile).then((v) => {
+          console.log(v);
+          const usersummaryref: AngularFirestoreDocument<any> = this.afs.doc(`accountsummary/${uid}`); //get the refrence for updating initial user data
 
 
-});
-}//upload id proof
+          usersummaryref.update({name: this.Profile.displayname}).then((v) => {
+            if (!v) {
+
+
+              Messenger().post({
+                message: 'Profile accepted successfull!',
+                type: 'success',
+                showCloseButton: true
+              });
+              this.router.navigate(['/dashboard']);
+
+
+
+            }
+          });
+        });
+      })
+
+
+
+    });
+  }//upload id proof
 
 }
