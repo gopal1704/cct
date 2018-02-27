@@ -38,13 +38,13 @@ Profile : any;
 
 
     this.UpdateProfileForm = fb.group({
-      'Name': '',
-      'Dateofbirth': '',
-      'Gender': '',
-      'Mobile': '',
-      'Address': '',
-      'City': '',
-      'Country': '',
+      'displayname': '',
+      'dob': '',
+      'gender': '',
+      'mobile': '',
+      'address': '',
+      'city': '',
+      'country': '',
 
 
     });
@@ -58,10 +58,11 @@ Profile : any;
 
     var t = formdata.Dateofbirth;
     var time = new Date(t).getTime();
-    formdata.Dateofbirth = time;
+    formdata.dob = time;
     console.log(formdata);
+    this.Profile = formdata;
+
     this.uploadIdProof('aaa',this.file);
-  this.Profile = formdata;
   }
 
   handleFileInput(files: FileList) {
@@ -83,18 +84,21 @@ this.downloadURL.subscribe((v)=>{
 console.log(v);
 //profileupdated
 this.Profile.proofurl = v;
+this.Profile.profileupdated = true;
 this.as.userAccountSummary.subscribe((v)=>{
 
 //profileref
 
 const userprofileref: AngularFirestoreDocument<any> = this.afs.doc(`users/${v.uid}`); //get the refrence for updating initial user data
 
-
+userprofileref.update(this.Profile).then((v)=>{
+console.log(v);
+});
 })
 
 
 
 });
-}
+}//upload id proof
 
 }
