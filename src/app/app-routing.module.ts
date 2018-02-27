@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { InvestmentschemesComponent } from './investmentschemes/investmentschemes.component';
 import { PaymentmethodComponent } from './paymentmethod/paymentmethod.component';
 import { PaywithbitcoinComponent } from './paywithbitcoin/paywithbitcoin.component';
+import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 
 // path: '', redirectTo: '/heroes', pathMatch: 'full'
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
   {path: 'login', component :LoginComponent },
 {path :'signup/:id', component: SignupComponent},
 {path :'signup', component: SignupComponent},
-
+{path : 'updateprofile' ,  component :UpdateprofileComponent },
  {path: 'dashboard', component :DashboardComponent,
 children :[
   {path : '', redirectTo: '/dashboard/accountsummary', pathMatch: 'full' },

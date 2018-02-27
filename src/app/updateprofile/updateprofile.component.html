@@ -1,3 +1,105 @@
-<p>
-  updateprofile works!
-</p>
+
+<div class="row h-100 signup">
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+<div class="col-8 mx-auto my-auto" style="width: 200px;">
+  <div>
+  
+    
+      <div class="card">
+          <div class="card-header">
+            <h4>Update your profile Information</h4>
+          </div>
+          <div class="card-body">
+           
+            <form>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Full name</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputEmail3">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Date of birth</label>
+                <div class="col-sm-3">
+                  <input type="date" class="form-control" id="inputPassword3" placeholder="Password">
+                </div>
+              </div>
+              <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                      <label class="form-check-label" for="gridRadios1">
+                        Male
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                      <label class="form-check-label" for="gridRadios2">
+Female                      </label>
+                    </div>
+                    
+                  </div>
+                </div>
+              </fieldset>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Mobile</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="inputEmail3">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm-10">
+                  <textarea  class="form-control" id="inputEmail3"  rows="3">
+                    </textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">City</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail3">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Country</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputEmail3">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Upload Id proof.</label>
+                      <div class="col-sm-10">
+                        <input type="file" class="form-control" id="inputEmail3">
+                      </div>
+                    </div>
+
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+              </div>
+            </form>
+
+
+
+
+            <button  (click)="Signup(SignUpForm.value)" class="btn btn-primary">CREATE ACCOUNT</button>
+
+          </div>
+          <div class="card-footer text-muted">
+            <a href="">Sign up</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="">Forgot Password?</a>
+          </div>
+        </div>
+</div>
+</div>
+</div>
+
+
