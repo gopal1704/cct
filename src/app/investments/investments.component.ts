@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-investments',
@@ -7,12 +8,28 @@ import { DataService } from '../data.service';
   styleUrls: ['./investments.component.css']
 })
 export class InvestmentsComponent implements OnInit {
-
-  constructor( private ds: DataService) { }
+  Investments: any;
+  constructor(private ds: DataService, private authservice: AuthenticationService) { }
 
   ngOnInit() {
 
- //this.ds.create_investment("sco1",1000)   ;
+    this.authservice.userAccountSummary.subscribe(
+      (summarydata) => {
+
+        if (summarydata) {
+          var uid = summarydata.uid;
+
+
+          this.ds.get_investments(uid).subscribe((v) => {
+            this.Investments = v;
+            console.log(v)
+          });
+
+
+        }
+      }
+    );
+
   }
 
 }

@@ -123,7 +123,10 @@ export class DataService {
 
   get_investments(uid) {
 
-
+    var investmentscollection = this.afs.collection('investments', ref => {
+      return ref.where('uid', '==', uid);
+    });
+    return investmentscollection.valueChanges();
   }
   /******************* */
 
@@ -132,6 +135,15 @@ export class DataService {
 
   /*******************/
   get_referrals(uid) {
+
+    var accountsummarycollection = this.afs.collection('accountsummary', ref => {
+      return ref.where('referralid', '==', uid);
+    });
+    return accountsummarycollection.valueChanges();
+
+   
+
+
 
 
   }

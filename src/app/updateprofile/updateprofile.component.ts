@@ -58,7 +58,7 @@ export class UpdateprofileComponent implements OnInit {
 
   UpdateProfile(formdata) {
 
-    var t = formdata.Dateofbirth;
+    var t = formdata.dob;
     var time = new Date(t).getTime();
     formdata.dob = time;
     console.log(formdata);

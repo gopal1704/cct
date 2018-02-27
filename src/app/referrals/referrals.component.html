@@ -13,46 +13,20 @@
         <th>Name</th>
         <th>Joining Date</th>
         <th>Account Id</th>
-        <th>Email</th>
         <th>Total Investment</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Gopal</td>
-        <td>01-01-2018</td>
-        <td>gopal@gmail.com</td>
-        <td>$1000</td>
-        <td>$90</td>
+      <tr  *ngFor="let r of Referrals">
+        <td>{{r.name}}</td>
+        <td>{{converttimestamp(r.joiningdate)}}</td>
+        <td>{{r.uid}}</td>
+        <td>{{r.totalinvestment}}</td>
       </tr>
-      <tr>
-          <td>Gopal</td>
-          <td>01-01-2018</td>
-          <td>gopal@gmail.com</td>
-          <td>$1000</td>
-          <td>$90</td>
-        </tr>
-        <tr>
-            <td>Gopal</td>
-            <td>01-01-2018</td>
-            <td>gopal@gmail.com</td>
-            <td>$1000</td>
-            <td>$90</td>
-          </tr>
-          <tr>
-              <td>Gopal</td>
-              <td>01-01-2018</td>
-              <td>gopal@gmail.com</td>
-              <td>$1000</td>
-              <td>$90</td>
-            </tr>
-            <tr>
-                <td>Gopal</td>
-                <td>01-01-2018</td>
-                <td>gopal@gmail.com</td>
-                <td>$1000</td>
-                <td>$90</td>
-              </tr>
+     
+       
+         
+         
       
     </tbody>
   </table>
