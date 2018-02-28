@@ -118,7 +118,7 @@ export class DataService {
   }
 
 
-  /******************** */
+  /*********************/
 
   /***********GET INVESTMENTS*************/
 
@@ -160,9 +160,51 @@ export class DataService {
 
   /***********WALLET TRANSFER*************** */
   transfer_to_wallet(amount, to_wallet) {
-
-
     
+    var reftrans = this.afs.collection('/transactions');
+    const toaccountsummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${to_wallet}`);
+    const fromaccountsummaryref :AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`);
+
+    var transaction_to: Transaction = {
+      timestamp: Date.now(),
+      uid: this.currentUserSummary.referralid,
+      type: 'CWT',
+      status: 'success',
+      from: this.currentUserSummary.uid,
+      to: this.currentUserSummary.referralid,
+      amount: 0,
+      debit: 0,
+      credit: amount,
+      narration: "Credit Wallet Transfer"
+    };         
+
+    var transaction_from: Transaction = {
+      timestamp: Date.now(),
+      uid: this.currentUserSummary.referralid,
+      type: 'CWT',
+      status: 'success',
+      from: this.currentUserSummary.uid,
+      to: this.currentUserSummary.referralid,
+      amount: 0,
+      debit: amount,
+      credit: 0,
+      narration: "Credit 3 percent monthly returns  "
+    };         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   }
   /********************* */
@@ -171,6 +213,9 @@ export class DataService {
   /*******************WITHDRAWAL REQUEST******************** */
 
   withdrawal_request(amount, uid) {
+
+
+
 
   }
   /********************************/
@@ -198,7 +243,7 @@ export class DataService {
       debit: 0,
       credit: 1000 * 0.03,
       narration: "Credit 3 percent monthly returns  "
-    }
+    };
     var reftrans = this.afs.collection('/transactions');
     const referralsummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.referralid}`);
 
