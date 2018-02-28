@@ -14,27 +14,31 @@
   
           <div class="card-body">
   
-              <form [formGroup]="SignUpForm">
+              <form [formGroup]="WithdrawalForm">
                   <div class="form-group">
                       <label for="exampleInputEmail1">
                           Amount </label>
-                      <input type="email"  formControlName="ReferralId" class="form-control"  >
+                      <input type="number"  formControlName="amount" class="form-control"  >
                       <small id="emailHelp" class="form-text text-muted">Enter amount to transfer. </small>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Example multiple select</label>
+                        <select  formControlName="accounttype" class="form-control" id="exampleFormControlSelect2">
+                          <option value="bank">Bank</option>
+                          <option value="paypal">Paypal</option>
+                          <option value="moneypolo">Moneypolo</option>
+                          
+                        </select>
+                      </div>
                   <div class="form-group">
-                    <label >Account Id</label>
-                    <input type="email"  formControlName="UserName" class="form-control"  >
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                  </div>
-                  <div class="form-group">
-                    <label >Otp</label>
-                    <input type="password" formControlName="Password" class="form-control">
+                    <label >Account Details</label>
+                    <textarea  formControlName="accountdetails" class="form-control" row="3"></textarea>
                   </div>
                 
                 </form>
   
   <div class="text-center">
-      <button (click)="setInvestmentScheme(InvestmentSchemesForm.value)" class="btn btn-primary">Transfer now</button>
+      <button (click)="sendrequest(WithdrawalForm.value)" class="btn btn-primary">Send request</button>
 
   </div>
   

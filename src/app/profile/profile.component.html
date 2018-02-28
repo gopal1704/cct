@@ -11,9 +11,47 @@
               
   
   <div class="text-center">
-      <button  class="btn btn-primary">Edit Profile</button>
+      <!-- <button  class="btn btn-primary">Edit Profile</button> -->
 
   </div>
+
+
+  <div class="row">
+      <div class="col-4">
+          <h5 > Name  </h5>
+          <h5> Gender</h5>
+          <h5> Date of Birth </h5> 
+          <h5> Date of Joining </h5>
+           <h5> Email </h5>
+           <h5> Mobile </h5>
+           <h5> Referral Id</h5>
+           <h5>Address</h5>
+           <h5>City</h5>
+           <h5>Country</h5>
+
+      </div>
+      <div class="col-8">
+          <h5>{{(Profile| async)?.displayname}}</h5>
+          <h5>{{(Profile| async)?.gender}}</h5>
+          <h5>{{converttimestamp((Profile| async)?.dob)}}</h5>
+
+          <h5>{{(converttimestamp(Profile| async)?.dateofjoining)}}</h5>
+
+          <h5>{{(Profile| async)?.email}}</h5>
+
+          <h5>{{(Profile| async)?.mobile}}</h5>
+          <h5>{{(Profile| async)?.referralid}}</h5>
+
+          <h5>{{(Profile| async)?.address}}</h5>
+
+          <h5>{{(Profile| async)?.city}}</h5>
+          <h5>{{(Profile| async)?.country}}</h5>
+
+
+      </div>
+  
+</div> 
+
   
           </div>
           

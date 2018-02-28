@@ -257,8 +257,11 @@ fromaccountsummaryref.update({
 
   /***********GET PROFILE INFO*********/
   get_profile_info() {
+    var itemdoc = this.afs.doc<any>(`users/${this.currentUserSummary.uid}`);
+    return itemdoc;
 
-  }
+    
+    }
   /************************ */
 
 
