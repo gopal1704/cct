@@ -198,13 +198,13 @@ export class DataService {
 this.afs.doc<AccountSymmaryData>(`accountsummary/${to_wallet}`).valueChanges().take(1).subscribe((v) => {
 
   toaccountsummaryref.update({
-    walletbalance: v.walletbalance + amount
+    walletbalance: v.walletbalance + parseInt(amount)
   }).then(()=>{
 
     this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.uid}`).valueChanges().take(1).subscribe((v)=>{
 
 fromaccountsummaryref.update({
-      walletbalance: v.walletbalance - amount
+      walletbalance: v.walletbalance - parseInt(amount)
 
     });
     });
