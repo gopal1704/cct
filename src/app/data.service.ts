@@ -247,7 +247,15 @@ fromaccountsummaryref.update({
 
   /*******************WITHDRAWAL REQUEST******************** */
 
-  withdrawal_request(amount, uid) {
+  withdrawal_request(amount,accounttype,accountdetails) {
+    var ref = this.afs.collection('/withdrawalrequest');
+    ref.add({
+      uid : this.currentUserSummary.uid,
+      amount : amount,
+      accounttype: accounttype,
+      accountdetails : accountdetails
+    })
+    ;
 
 
 

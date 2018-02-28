@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-withdraw',
@@ -12,7 +13,7 @@ export class WithdrawComponent implements OnInit {
   UserName: string;
   Password: string;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder,private ds :DataService) { 
     this.WithdrawalForm = fb.group({
       'amount': '',
       'accounttype': '',
@@ -26,6 +27,11 @@ export class WithdrawComponent implements OnInit {
 
 
 
+  }
+  sendrequest(formdata){
+console.log(formdata);
+
+this.ds.withdrawal_request(formdata.amount,formdata.accounttype,formdata.accountdetails);
   }
 
 }

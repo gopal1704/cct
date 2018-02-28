@@ -19,11 +19,18 @@ export class ProfileComponent implements OnInit {
   //  var item = itemdoc.valueChanges().subscribe((v)=>{console.log(v);
   //   return v;
   }
-  converttimestamp(ts){
+  converttimestampdob(ts){
     var d = new Date(ts);
-    return d.toLocaleString();
-    // return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '--' + d.getHours() + ':' +d.getMinutes();
+   // return d.toLocaleString();
+     return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
     
     }
+    converttimestamp(ts){
+      var d = new Date(ts);
+      return d.toLocaleString();
+      // return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '--' + d.getHours() + ':' +d.getMinutes();
+      
+      }
+
 
 }

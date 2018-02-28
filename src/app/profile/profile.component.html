@@ -33,7 +33,7 @@
       <div class="col-8">
           <h5>{{(Profile| async)?.displayname}}</h5>
           <h5>{{(Profile| async)?.gender}}</h5>
-          <h5>{{converttimestamp((Profile| async)?.dob)}}</h5>
+          <h5>{{converttimestampdob((Profile| async)?.dob)}}</h5>
 
           <h5>{{(converttimestamp(Profile| async)?.dateofjoining)}}</h5>
 
