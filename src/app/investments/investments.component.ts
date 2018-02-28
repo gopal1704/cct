@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { AuthenticationService } from '../authentication.service';
+import { start } from 'repl';
 
 @Component({
   selector: 'app-investments',
@@ -31,5 +32,34 @@ export class InvestmentsComponent implements OnInit {
     );
 
   }
+  converttimestamp(ts){
+    var d = new Date(ts);
+    return d.toLocaleString();
+    // return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '--' + d.getHours() + ':' +d.getMinutes();
+    
+    }
+ calculateenddate(ts,days){
+var d = new Date(ts);
+d.setDate(d.getDate()+ parseInt(days));
+return this.converttimestamp(d);
+ }
+
+ calculatew(startdatets,duration){
+var sdts = startdatets;
+var sd = new Date(startdatets);
+var ed = sd.getDate()+parseInt(duration);
+
+console.log(sd,ed);
+  
+  console.log(duration);
+return '50%';
+ }
+ gettime(){
+  var d =  new Date();
+  return this.converttimestamp(d.getTime());
+
+
+ }
+
 
 }

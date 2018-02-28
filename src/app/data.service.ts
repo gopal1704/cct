@@ -62,6 +62,7 @@ interface Investment {
   referralid: string;
   interest_rate: number;
   status: string;
+  duration : number
 
 }
 ///////////////////////////////////
@@ -160,6 +161,9 @@ export class DataService {
   /***********WALLET TRANSFER*************** */
   transfer_to_wallet(amount, to_wallet) {
 
+
+    
+
   }
   /********************* */
 
@@ -255,7 +259,8 @@ export class DataService {
       amount: amount,
       interest_rate: 9,
       timestamp: Date.now(),
-      status: 'active'
+      status: 'active',
+      duration :90
     }
     ////////////////////////////////////// Transaction Data
 
@@ -270,7 +275,7 @@ export class DataService {
       debit: 0,
       credit: 0,
       narration: `Investment - SCO1 - Bitcoin Payment Amount : ${amount}  BTC : ${btc}`
-
+      
 
     }
     var transaction_referral: Transaction = {
