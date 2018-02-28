@@ -167,11 +167,11 @@ export class DataService {
 
     var transaction_to: Transaction = {
       timestamp: Date.now(),
-      uid: this.currentUserSummary.referralid,
+      uid: to_wallet,
       type: 'CWT',
       status: 'success',
       from: this.currentUserSummary.uid,
-      to: this.currentUserSummary.referralid,
+      to: to_wallet,
       amount: 0,
       debit: 0,
       credit: amount,
@@ -180,18 +180,53 @@ export class DataService {
 
     var transaction_from: Transaction = {
       timestamp: Date.now(),
-      uid: this.currentUserSummary.referralid,
+      uid: this.currentUserSummary.uid,
       type: 'CWT',
       status: 'success',
       from: this.currentUserSummary.uid,
-      to: this.currentUserSummary.referralid,
+      to: to_wallet,
       amount: 0,
       debit: amount,
       credit: 0,
-      narration: "Credit 3 percent monthly returns  "
+      narration: "Debit Wallet Transfer"
     };         
 
+    reftrans.add(transaction_from).then(()=>{
+      reftrans.add(transaction_to).then(()=>{
+        
+//UPDATE SUMMARY DATA
+this.afs.doc<AccountSymmaryData>(`accountsummary/${to_wallet}`).valueChanges().take(1).subscribe((v) => {
 
+  toaccountsummaryref.update({
+    walletbalance: v.walletbalance + amount
+  }).then(()=>{
+
+    this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.uid}`).valueChanges().take(1).subscribe((v)=>{
+
+fromaccountsummaryref.update({
+      walletbalance: v.walletbalance - amount
+
+    });
+    });
+
+    // fromaccountsummaryref.update({
+    //   walletbalance: v.walletbalance - amount
+
+    // });
+
+
+
+
+
+  });
+
+});
+
+
+
+
+      });
+    });
 
 
 
