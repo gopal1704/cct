@@ -13,7 +13,7 @@ declare var Chart: any;
 export class AccountSummaryComponent implements OnInit {
     public loading = false;
 
-    public  summary ={};
+    public  summary: any;
     constructor(private as: AuthenticationService, private ds: DataService,    private router: Router) {
 
 
