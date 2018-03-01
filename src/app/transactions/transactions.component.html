@@ -29,8 +29,8 @@
 <td>{{converttimestamp(t.timestamp)
 }}</td>
   <td>{{t.narration}}</td>     
-     <td> <span *ngIf="t.debit > 0">{{t.debit}}</span> </td>    
-     <td><span *ngIf="t.credit > 0">{{t.credit}}</span></td>
+     <td> <span class="red" *ngIf="t.debit > 0">{{t.debit}}</span> </td>    
+     <td><span  class="green" *ngIf="t.credit > 0">{{t.credit}}</span></td>
      <td><span class="badge badge-success">{{t.status}}</span></td>
     </tr>  
 
