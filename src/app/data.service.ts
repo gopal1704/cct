@@ -152,7 +152,7 @@ export class DataService {
   get_transactions(uid) {
 
     var transactionscollection = this.afs.collection('transactions', ref => {
-      return ref.where('uid', '==', uid);
+      return ref.where('uid', '==', uid).orderBy('timestamp','desc');
     });
     return transactionscollection.valueChanges();
   }
@@ -175,7 +175,7 @@ export class DataService {
       amount: 0,
       debit: 0,
       credit: amount,
-      narration: "Credit Wallet Transfer"
+      narration: `Credit Wallet Transfer  from : ${this.currentUserSummary.name} ${this.currentUserSummary.uid}`
     };         
 
     var transaction_from: Transaction = {
@@ -188,7 +188,7 @@ export class DataService {
       amount: 0,
       debit: amount,
       credit: 0,
-      narration: "Debit Wallet Transfer"
+      narration: `Debit Wallet Transfer to : ${to_wallet}`
     };         
 
     reftrans.add(transaction_from).then(()=>{

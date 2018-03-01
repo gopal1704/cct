@@ -74,7 +74,12 @@ export class AccountSummaryComponent implements OnInit {
         ////////////////////////*************chart logic ends */
 
     }
-
+    cc(ts){
+        var d = new Date(ts);
+       // return d.toLocaleString();
+         return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+        
+        }
 
 
 }
