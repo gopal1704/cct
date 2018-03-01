@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 declare var Chart: any;
 
@@ -10,15 +11,29 @@ declare var Chart: any;
     styleUrls: ['./account-summary.component.css']
 })
 export class AccountSummaryComponent implements OnInit {
+    public loading = false;
+
     public  summary ={};
-    constructor(private as: AuthenticationService, private ds: DataService) {
+    constructor(private as: AuthenticationService, private ds: DataService,    private router: Router) {
 
 
      }
 
     ngOnInit() {
+        this.loading = true;
         this.ds.initalize();
+           this.as.userProfile.subscribe((v)=>{
+console.log(v);
+if(v.profileupdated== true){
+    this.loading = false;
+    this.router.navigate(['/dashboard']);
 
+}
+else{
+    this.loading= false;
+    this.router.navigate(['/updateprofile']);
+}
+           });
 
 
 
