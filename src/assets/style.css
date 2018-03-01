@@ -1,8 +1,5 @@
 body,html{
-  background: #b9cfda;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ddebf8, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #e3e4e6, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+ background: #22252a;
   font-family: 'Abel', sans-serif;
     margin-bottom: 40px;
     font-weight: 100;
@@ -20,7 +17,7 @@ body,html{
   display: inline-block;
 }
 .side-nav{
-  background-color: #373737;
+  background-color: #2d3035;
     padding-right: 0px;
 }
 h1,h2,h3,h4,h5,h6{
@@ -38,11 +35,11 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .nl>a:hover {
-  background-image: linear-gradient(-180deg, #18347b 0%, #2a4bae 100%);
+  background-image: linear-gradient(-180deg, #019214 0%, #44d600 100%);
 
 }
 .nla{
-  background-image: linear-gradient(-180deg, #18347b 0%, #2a4bae 100%);
+  background-image: linear-gradient(-180deg, #026d10 0%, #44d600 100%);
 
 }
 .trans{
@@ -118,23 +115,14 @@ color:  #1ADA00;
 }
 .card{
     
- border: 1px solid rgba(20, 226, 88, 0.72) !important;
-
-    border-radius :0px !important;
+ 
 }
 
 .c {
-  padding: 15px;
-  background: #fff;
-  border-radius: 2px;
-  /* height: 175px; */
-  margin: 1rem;
-  position: relative;
+ 
 }
 .card-1 {
-  margin-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+ 
 }
 
 /* .card-1:hover {

@@ -1,7 +1,12 @@
 .wrapper{
     background-color:white !important;
 }
-
+.mc{
+  /* background-color: #0d58f942; */
+}
+nav.navbar{
+  background-color: #ffffff00 !important;
+}
 .btn-outline {
     color: #fff;
     border: 1px solid;
@@ -17,15 +22,18 @@
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+.home-header{
+  background-color: #0d58f942;
+}
 .masthead{
 
 
- background:  url(../../assets/bg-pattern.png),  linear-gradient(-180deg, #18347b 0%, #2a4bae 100%);
+ background:  url(../../assets/img2.jpg),  linear-gradient(-180deg, #18347b 0%, #2a4bae 100%);
 
 }
 
 header.masthead {
-  color: #FFFFFF;
+  color: #FFD700;
     height: 100vh;
     min-height: 775px;
     padding-top: 0;
