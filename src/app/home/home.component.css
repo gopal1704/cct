@@ -13,6 +13,26 @@
   background-size: cover;
 
 }
+.b2{
+  background:  url(../../assets/b2.jpg);
+  background-size: cover;
+
+}
+.b3{
+  background:  url(../../assets/b3.jpg);
+  background-size: cover;
+
+}
+.b4{
+  background:  url(../../assets/b4.jpg);
+  background-size: cover;
+
+}
+.b5{
+  background:  url(../../assets/b5.jpg);
+  background-size: cover;
+
+}
 .bitcoin-pay{
   background:  url(../../assets/img3.jpg);
 height: 400px;
