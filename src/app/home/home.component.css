@@ -7,6 +7,24 @@
 .mc{
   /* background-color: #0d58f942; */
 }
+
+.b1{
+  background:  url(../../assets/b1.jpg);
+  background-size: cover;
+
+}
+.bitcoin-pay{
+  background:  url(../../assets/img3.jpg);
+height: 400px;
+background-size: cover;
+
+}
+.wallet{
+height: 400px;
+background-size: cover;
+
+}
+
 nav.navbar{
   background-color: #0e0e0a82 !important;
 }
