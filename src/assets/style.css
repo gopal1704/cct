@@ -31,15 +31,15 @@ h1,h2,h3,h4,h5,h6{
   padding-left: 25px;
   padding-top: 16px;
   padding-bottom: 16px;
-  color: #eceeee;
+  color: #ffffff;
 
 }
 .nl>a:hover {
-  background-image: linear-gradient(-180deg, #019214 0%, #44d600 100%);
+  background-image: linear-gradient(-180deg, #FFD700 0%, #FFD700 100%);
 
 }
 .nla{
-  background-image: linear-gradient(-180deg, #026d10 0%, #44d600 100%);
+  background-image: linear-gradient(-180deg, #FFD700 0%, #FFD700 100%);
 
 }
 .trans{

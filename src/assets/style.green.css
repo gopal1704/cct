@@ -1005,6 +1005,8 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 */
 /* Scans Block */
 .stats-2-block .stats-2 {
+
+
   width: 50%;
   color: #8a8d93;
   position: relative;
@@ -1674,7 +1676,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 }
 
 .form-control-label {
-  color: #777;
+  color: #FFD700;
 }
 
 button,
@@ -1718,7 +1720,7 @@ input[type='submit'] {
 
 form label {
   font-size: 1rem;
-  color: #8a8d93;
+  color: FFD700;
 }
 
 .checkbox-template,
@@ -2624,11 +2626,11 @@ STYLE SWITCHER FOR DEMO
  */
 body {
   font-family: "Muli", sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #8a8d93;
-  background-color: #fff;
+  color: #FFD700;
+  background-color: #FFD700;
 }
 
 a {
@@ -2657,7 +2659,7 @@ h6,
   font-family: inherit;
   font-weight: 700;
   line-height: 1.2;
-  color: inherit;
+  color: #FFD700;
 }
 
 h1,

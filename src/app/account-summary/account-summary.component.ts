@@ -4,6 +4,19 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 
 declare var Chart: any;
+interface AccountSymmaryData {
+    uid: string;
+    referralid: string;
+    joiningdate: any;
+    name: string;
+    referal_link: string;
+    walletbalance: number;
+    walletpendingbalance: number;
+    totalspotearnings: number;
+    totalreferralearnings: number;
+    totalinvestment: number;
+  }
+
 
 @Component({
     selector: 'app-account-summary',
@@ -13,7 +26,18 @@ declare var Chart: any;
 export class AccountSummaryComponent implements OnInit {
     public loading = false;
 
-    public  summary: any;
+    public  summary: AccountSymmaryData ={
+        uid: '',
+    referralid: '',
+    joiningdate: '', 
+    name: '',
+    referal_link: '',
+    walletbalance: 0,
+    walletpendingbalance:0,
+    totalspotearnings: 0,
+    totalreferralearnings:0,
+    totalinvestment: 0
+    };
     constructor(private as: AuthenticationService, private ds: DataService,    private router: Router) {
 
 
