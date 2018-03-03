@@ -27,37 +27,50 @@
 
 
 <div class="row row-eq-height" >
-  <div class="col">
+  <div class="col-4 ">
 
-<div class="card">
     <canvas id="myChart" ></canvas>
 
 </div>
-</div>
-  <div class="col">
-   <div class="card h-100" style="padding:15px">
-      <div class="row"> <div class="col-4">          <h5 > Name  </h5>
-      </div> <div class="col-8">          <h5> {{summary.name}} </h5>
-      </div></div>
-      <hr style="background:rgb(95, 255, 156)">
-    
-    
-      <div class="row"> <div class="col-4">          <h5 > Account Id   </h5>
-      </div> <div class="col-8">          <h5> {{summary.uid}} </h5>
-      </div></div>
-      <hr style="background:rgb(95, 255, 156)">
+  <div class="col-8">
+   <div class="" style="padding:15px">
 
 
-      <div class="row"> <div class="col-4">          <h5 >Joining Date  </h5>
-      </div> <div class="col-8">          <h5> {{cc(summary.joiningdate)}} </h5>
-      </div></div>
-      <hr style="background:rgb(95, 255, 156)">
 
 
-      <div class="row"> <div class="col-4">          <h5 >Referral Link   </h5>
-      </div> <div class="col-8">          <h5> {{summary.referal_link}} </h5>
-      </div></div>
-      <hr style="background:rgb(95, 255, 156)">
+
+
+      <div class="table-responsive">
+          <table class="table table-bordered">
+              <tbody>
+                  <tr>
+                    <th scope="row">Name</th>
+                    <td>{{summary.name}}</td>
+                  </tr>
+
+                  <tr>
+                      <th scope="row">Account Id</th>
+                      <td>{{summary.uid}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Joining  Date</th>
+                        <td>{{cc(summary.joiningdate)}}</td>
+                      </tr>
+
+                      <tr>
+                          <th scope="row">Referral Link</th>
+                          <td><a href="{{summary.referal_link}}">{{summary.referal_link}}</a></td>
+                        </tr>
+                      
+              </tbody>
+          </table>
+        </div>
+
+
+
+
+
 
 
 
