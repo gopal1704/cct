@@ -1,133 +1,130 @@
-body,html{
- background: #22252a;
-  font-family: 'Abel', sans-serif;
-    margin-bottom: 40px;
-    font-weight: 100;
-    height: 100%;
+body{
+  background: #ffffff
+}
 
-
+.navbar {
+  background-color: #f9cd48;
 }
-.dtxt{
-  text-decoration-style: dotted;
-}
-.block {
-  display: block;
-}
-.inline{
-  display: inline-block;
-}
-.side-nav{
-  background-color: #2d3035;
-    padding-right: 0px;
-}
-h1,h2,h3,h4,h5,h6{
-  font-weight: 500;
-}
-.nl-col{
-  height: 100%;
-}
-.nl>a{
-  
-  padding-left: 25px;
-  padding-top: 16px;
-  padding-bottom: 16px;
+.navbar .navbar-brand {
   color: #ffffff;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar .navbar-text {
+  color: #ffffff;
+}
+.navbar .navbar-text a {
+  color: #ffffff;
+}
+.navbar .navbar-text a:hover,
+.navbar .navbar-text a:focus {
+  color: #ffffff; 
+}
+.navbar .navbar-nav .nav-link {
+  color: #ffffff;
+  border-radius: .25rem;
+  margin: 0 0.25em;
+}
+.navbar .navbar-nav .nav-link:not(.disabled):hover,
+.navbar .navbar-nav .nav-link:not(.disabled):focus {
+  color: #ffffff;
+}
+.navbar .navbar-nav .nav-item.active .nav-link,
+.navbar .navbar-nav .nav-item.active .nav-link:hover,
+.navbar .navbar-nav .nav-item.active .nav-link:focus,
+.navbar .navbar-nav .nav-item.show .nav-link,
+.navbar .navbar-nav .nav-item.show .nav-link:hover,
+.navbar .navbar-nav .nav-item.show .nav-link:focus {
+  color: #ffffff;
+  background-color: #f9cd48;
+}
+.navbar .navbar-toggle {
+  border-color: #f9cd48;
+}
+.navbar .navbar-toggle:hover,
+.navbar .navbar-toggle:focus {
+  background-color: #f9cd48;
+}
+.navbar .navbar-toggle .navbar-toggler-icon {
+  color: #ffffff;
+}
+.navbar .navbar-collapse,
+.navbar .navbar-form {
+  border-color: #ffffff;
+}
+.navbar .navbar-link {
+  color: #ffffff;
+}
+.navbar .navbar-link:hover {
+  color: #ffffff;
+}
 
-}
-.nl>a:hover {
-  background-image: linear-gradient(-180deg, #FFD700 0%, #FFD700 100%);
-
-}
-.nla{
-  background-image: linear-gradient(-180deg, #FFD700 0%, #FFD700 100%);
-
-}
-.trans{
- 
-    
-
-}
-.inv-card-gap {
-  height: 20px;
-}
-.currency-card{
-    padding-top: 10px;
-}
-.main-card{
-    margin-bottom: 50px;
-}
-/*****************/
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    position: relative;
+@media (max-width: 575px) {
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ffffff;
   }
-  .main-header{
-      margin-top: 10px;
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffffff;
   }
-  body {
-    /* Margin bottom by footer height */
-    height: 100%;
-    margin-bottom: 40px;
-    
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffffff;
+    background-color: #f9cd48;
   }
-  .footer {
- /* border-top : 1px solid rgba(153, 177, 255, 0.72) !important; */
- position: fixed;   
- bottom: 0;  
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 40px;
-    line-height: 40px; /* Vertically center the text there */
-  }
-  
-  
-  /* Custom page CSS
-  -------------------------------------------------- */
-  /* Not required for template or sticky footer method. */
-  
-  body > .container {
-    padding: 60px 15px 0;
-  }
-  
-  .footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-  .gb{
-    background-color: #ecf0f1 !important;
-  }
-  code {
-    font-size: 80%;
-  }
-  
-
-/*******************/
-.red{
-color: #F93106;
-}
-.green{
-color:  #1ADA00;
-}
-.yellow{
-  color: #F8F000;
-}
-.card{
-    
- 
 }
 
-.c {
- 
+@media (max-width: 767px) {
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ffffff;
+  }
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffffff;
+  }
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffffff;
+    background-color: #f9cd48;
+  }
 }
-.card-1 {
- 
+
+@media (max-width: 991px) {
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ffffff;
+  }
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffffff;
+  }
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffffff;
+    background-color: #f9cd48;
+  }
 }
 
-/* .card-1:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-} */
-/********************/
+@media (max-width: 1199px) {
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ffffff;
+  }
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffffff;
+  }
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffffff;
+    background-color: #f9cd48;
+  }
+}
 
-
-/*********************/
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+  color: #ffffff;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+  color: #ffffff;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+  color: #ffffff;
+  background-color: #f9cd48;
+}
