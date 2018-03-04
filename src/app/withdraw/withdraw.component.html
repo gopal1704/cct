@@ -21,18 +21,76 @@
                       <small id="emailHelp" class="form-text text-muted">Enter amount to transfer. </small>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlSelect2">Example multiple select</label>
-                        <select  formControlName="accounttype" class="form-control" id="exampleFormControlSelect2">
+                        <label for="exampleFormControlSelect2">Select withdrawal method.</label>
+                        <select (change) ="onwithdrawmethodselect($event.target.value)" formControlName="accounttype" class="form-control" id="exampleFormControlSelect2">
                           <option value="bank">Bank</option>
                           <option value="paypal">Paypal</option>
                           <option value="moneypolo">Moneypolo</option>
-                          
+                          <option value="bitcoin">Bitcoin</option>
+
                         </select>
                       </div>
-                  <div class="form-group">
-                    <label >Account Details</label>
-                    <textarea  formControlName="accountdetails" class="form-control" row="3"></textarea>
-                  </div>
+                 
+                  <!-- bank -->
+                  <div  *ngIf="withdrawalmethod === 'bank'" class="form-group">
+                      <label for="exampleInputEmail1">
+                          Bank name </label>
+                      <input type="text"   class="form-control"  >
+                      <small id="emailHelp" class="form-text text-muted"> </small>
+                    </div>
+                  
+
+                  <div *ngIf="withdrawalmethod === 'bank'" class="form-group">
+                      <label for="exampleInputEmail1">
+                         Ifsc</label>
+                      <input type="text"   class="form-control"  >
+                      <small id="emailHelp" class="form-text text-muted"> </small>
+                    </div>
+                  
+                    
+                  <div *ngIf="withdrawalmethod === 'bank'" class="form-group">
+                      <label for="exampleInputEmail1">
+                          Account number </label>
+                      <input type="text"   class="form-control"  >
+                      <small id="emailHelp" class="form-text text-muted">Enter amount to transfer. </small>
+                    </div>
+<!-- bank end -->
+
+<!-- moneypolo  -->
+<div *ngIf="withdrawalmethod === 'moneypolo'" class="form-group">
+    <label for="exampleInputEmail1">
+        Moneypolo Email or Account Number </label>
+    <input type="text"   class="form-control"  >
+    <small id="emailHelp" class="form-text text-muted"> </small>
+  </div>
+
+<!-- money polo ends -->
+<!-- paypal -->
+<div *ngIf="withdrawalmethod === 'paypal'" class="form-group">
+    <label for="exampleInputEmail1">
+        Paypal Email  </label>
+    <input type="text"   class="form-control"  >
+    <small id="emailHelp" class="form-text text-muted">Enter Paypal Email. </small>
+  </div>
+<!-- paypal ends -->
+
+
+<!-- bitcoin -->
+<div *ngIf="withdrawalmethod === 'bitcoin'" class="form-group">
+    <label for="exampleInputEmail1">
+        Bitcoin Wallet Address  </label>
+    <input type="text"   class="form-control"  >
+    <small id="emailHelp" class="form-text text-muted"> Enter bitcoin wallet address. </small>
+  </div>
+<!-- bitcoin ends -->
+
+
+
+
+
+
+
+
                 
                 </form>
   

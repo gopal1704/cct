@@ -12,7 +12,7 @@ export class WithdrawComponent implements OnInit {
   WithdrawalForm: FormGroup;  // From Group Instance
   UserName: string;
   Password: string;
-
+  public withdrawalmethod : string;
   constructor(private fb: FormBuilder,private ds :DataService) { 
     this.WithdrawalForm = fb.group({
       'amount': '',
@@ -33,5 +33,26 @@ console.log(formdata);
 
 this.ds.withdrawal_request(formdata.amount,formdata.accounttype,formdata.accountdetails);
   }
+
+onwithdrawmethodselect(type){
+
+if(type==='bank'){
+  this.withdrawalmethod= 'bank';
+  console.log(type);
+}
+else if(type === 'paypal'){    this.withdrawalmethod= 'paypal';
+console.log(type);
+
+}
+else if (type==='moneypolo'){   this.withdrawalmethod= 'moneypolo';
+console.log(type);
+
+}
+else if (type === 'bitcoin'){  this.withdrawalmethod= 'bitcoin';
+console.log(type);
+
+}
+
+}
 
 }
