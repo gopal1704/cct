@@ -4,7 +4,24 @@ body{
 .sidenavigation{
 border-right: 1px solid #f5f5f5;
 }
+.green{
+  color: #28a745;
+}
+.yellow{
+  color: brown;
 
+}
+
+.tdgreen{
+ background-color:  #28a745;
+ color: #ffffff;
+ font-weight: bold;
+}
+.tdred{
+  background-color:  #ff0606;
+ color: #ffffff;
+ font-weight: bold;
+}
 .navbar {
   background-color: #f9cd48;
 }

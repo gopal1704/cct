@@ -1,34 +1,97 @@
 <div class="row h-100">
 <div class="col">
-            <a  style=""  class ="btn btn-primary " routerLink="/dashboard/investmentschemes"  > New Investment </a>
 
 
- <hr>
+  <div class="row">
+    <div class="col">
+      <a  style=""  class ="btn btn-primary " routerLink="/dashboard/investmentschemes"  > New Investment </a>
+
+
+      <hr>
+  </div>
+</div>
+  <div class="row">
+
+    <div class="col">
+
+        <table class="table  table-bordered table-hover">
+            <thead>
+                <tr>
+                  <th>Scheme</th>
+                  <th>Date</th>
+                  <th>Maturity Date</th>
+                  <th>Invested Amount</th>
+                  <th>Maturity Value </th>
+                  <th>Duration</th>
+                  <th>Trading Growth</th>
+                  <th>Status</th>
+
+                </tr>
+              </thead>
+<tbody>
+    <tr  *ngFor="let i of Investments">
+        <td>{{i.scheme}}</td>
+        <td>{{converttimestamp(i.timestamp)}}</td>
+        <td>{{calculateenddate(i.timestamp,i.duration)}}</td>
+        <td class="tdgreen">${{i.amount}}</td>
+        <td class="tdgreen">${{i.amount+(i.amount*(i.interest_rate/100))}}</td>
+        <td>{{i.duration}}</td>
+        <td>{{i.interest_rate}}%</td>
+        <td>{{i.status}}</td>
+      </tr>
+</tbody>
+
+</table>
+
+
+
+    </div>
+  </div>
+
+
+
+           
+
+
+
+
+
+
+<!--  
     <div class=" c card-1"  *ngFor="let i of Investments ">
         <div class="row">
-          <div class="col"><h5 class="inline">Scheme : {{i.scheme}}</h5> &nbsp; &nbsp;&nbsp;&nbsp;  <h5 class="inline text-center" >Status : {{i.status}}</h5>&nbsp; &nbsp;&nbsp;&nbsp; <span class="badge badge-primary ">Investment Date {{converttimestamp(i.timestamp)}}</span>            &nbsp; &nbsp;&nbsp;&nbsp;      <span class="badge .align-middle badge-primary text-center">Maturity Date {{calculateenddate(i.timestamp,i.duration)}}</span>
+          <div class="col"><h5 class="inline">Scheme : </h5> &nbsp; &nbsp;&nbsp;&nbsp;  <h5 class="inline text-center" >Status : </h5>&nbsp; &nbsp;&nbsp;&nbsp; <span class="badge badge-primary ">Investment Date </span>            &nbsp; &nbsp;&nbsp;&nbsp;      <span class="badge .align-middle badge-primary text-center">Maturity Date </span>
           </div>
           
         </div>
         <div class="row">
             
-            <div class="col"><div class="card currency-card">   <h6 class="text-center">Invested Amount</h6> <h5 class="text-center">${{i.amount}}</h5>
+            <div class="col"><div class="card currency-card">   <h6 class="text-center">Invested Amount</h6> <h5 class="text-center"></h5>
           </div></div>
-          <div class="col"><div class="card currency-card">   <h6 class="text-center">Maturity Value</h6> <h5 class="text-center">${{i.amount+(i.amount*(i.interest_rate/100))}}</h5>
+          <div class="col"><div class="card currency-card">   <h6 class="text-center">Maturity Value</h6> <h5 class="text-center"></h5>
           </div></div>
-          <div class="col"><div class="card currency-card">   <h6 class="text-center">Duration</h6> <h5 class="text-center">{{i.duration}} Days</h5>
+          <div class="col"><div class="card currency-card">   <h6 class="text-center">Duration</h6> <h5 class="text-center"> Days</h5>
           </div></div>
-          <div class="col"><div class="card currency-card">   <h6 class="text-center">Trading Growth</h6> <h5 class="text-center">{{i.interest_rate}}%</h5>
+          <div class="col"><div class="card currency-card">   <h6 class="text-center">Trading Growth</h6> <h5 class="text-center"></h5>
           </div></div>
         
         
         </div>
  <hr>
-      </div>
+      </div> -->
+
+
+
+
+
+
+
+
+
       
 
 </div>
-
-
-
 </div>
+
+
+

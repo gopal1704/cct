@@ -17,38 +17,53 @@
 
 
   <div class="row">
-      <div class="col-4">
-          <h5 > Name  </h5>
-          <h5> Gender</h5>
-          <h5> Date of Birth </h5> 
-          <h5> Date of Joining </h5>
-           <h5> Email </h5>
-           <h5> Mobile </h5>
-           <h5> Referral Id</h5>
-           <h5>Address</h5>
-           <h5>City</h5>
-           <h5>Country</h5>
+<div class="col">
 
-      </div>
-      <div class="col-8">
-          <h5>{{(Profile| async)?.displayname}}</h5>
-          <h5>{{(Profile| async)?.gender}}</h5>
-          <h5>{{converttimestampdob((Profile| async)?.dob)}}</h5>
+<table class="table table-bordered table-hover">
+<tbody>
+<tr>
+    <th>Name</th>
+    <td>{{(Profile| async)?.displayname}}</td>
+</tr>
+<tr>
+<th>Gender</th>
+<td>{{(Profile| async)?.gender}}</td>
+</tr>
+<tr>
+<th>Date of Birth</th>
+<td>{{converttimestampdob((Profile| async)?.dob)}}</td>
+</tr>
 
-          <h5>{{converttimestampdob((Profile| async)?.dateofjoining)}}</h5>
+<tr>
+<th> Date of Joining </th>
+<td>{{converttimestampdob((Profile| async)?.dateofjoining)}}</td></tr>
+<tr>
+<th>Email</th>
+<td>{{(Profile| async)?.email}}</td></tr>
+<tr>
+<th>Mobile</th>
+<td>{{(Profile| async)?.mobile}}</td></tr>
 
-          <h5>{{(Profile| async)?.email}}</h5>
+<tr>
+<th> Referral Id</th>
+<td>{{(Profile| async)?.referralid}}</td></tr>
+<tr>
+<th>Address</th>
+<td>{{(Profile| async)?.address}}</td></tr>
+<tr>
+<th>City</th>
+<td>          {{(Profile| async)?.city}}
+</td></tr>
+<tr>
+<th>Country</th>
+<td>{{(Profile| async)?.country}}</td>
+</tr>
+</tbody>
 
-          <h5>{{(Profile| async)?.mobile}}</h5>
-          <h5>{{(Profile| async)?.referralid}}</h5>
+</table>
 
-          <h5>{{(Profile| async)?.address}}</h5>
-
-          <h5>{{(Profile| async)?.city}}</h5>
-          <h5>{{(Profile| async)?.country}}</h5>
-
-
-      </div>
+</div>
+      
   
 </div> 
 
