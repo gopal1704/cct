@@ -33,4 +33,10 @@ console.log(formdata);
 this.ds.transfer_to_wallet(formdata.amount,formdata.toaccount);
   }
 
+  confirmwallettransfer(formdata){
+this.ds.WalletTransferData = formdata;
+this.router.navigate(['/dashboard/wallettransferotp']);
+
+  }
+
 }

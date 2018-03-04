@@ -90,7 +90,6 @@ this.CountryCodes.subscribe((v)=>{
   }
   onchangecountry(value){
 console.log(value);
-this.isdcode = value;
 
 for(var i=0;i<this.CountryCodesList.length;i++){
   

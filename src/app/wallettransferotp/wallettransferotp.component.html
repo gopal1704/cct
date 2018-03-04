@@ -1,3 +1,32 @@
-<p>
-  wallettransferotp works!
-</p>
+<div class="row h-100">
+
+
+  <div class="col-4 mx-auto my-auto">
+
+
+      <div class="card text-center">
+          <div class="card-header">
+            <h4>Enter otp</h4>
+          </div>
+          <div class="card-body">
+           
+              <form >
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Enter otp</label>
+                    <input type="email" formControlName="UserName" class="form-control" >
+                    <small id="emailHelp" class="form-text text-muted">Enter otp sent to your email.</small>
+                  </div>
+                 
+                
+                </form>
+
+
+            <button (click)="Login(LoginForm.value)"
+            class="btn btn-primary">Transfer</button>
+          </div>
+        
+        </div>
+
+
+  </div>
+</div>

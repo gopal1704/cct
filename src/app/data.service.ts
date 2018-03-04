@@ -89,7 +89,7 @@ interface Transaction {
 export class DataService {
   public current_user = "gopal";
   public NewInvestmentProcessData: InvestmentProcessData;
-
+  public WalletTransferData : any;
   public currentUserSummary;
 
 
@@ -106,6 +106,10 @@ export class DataService {
       investment_scheme: ''
 
     };
+
+    this.WalletTransferData ={
+      
+    }
   }
 
   /*********** ACCOUNT SUMMARY*************/
