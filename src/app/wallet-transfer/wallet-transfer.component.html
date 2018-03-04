@@ -1,4 +1,4 @@
-<div class="row h-100 signup ">
+<div class="row h-100  ">
 
   
     <div class="col-6 mx-auto  " style="margin-top: 5%">
@@ -25,15 +25,12 @@
                     <input type="email"  formControlName="toaccount" class="form-control"  >
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
-                  <div class="form-group">
-                    <label >Otp</label>
-                    <input type="password"  class="form-control">
-                  </div>
+             
                 
                 </form>
-  
+                <!-- (click)="transfer(WalletTransferForm.value)" -->
   <div class="text-center">
-      <button (click)="transfer(WalletTransferForm.value)" class="btn btn-primary">Transfer now</button>
+      <button data-target="#confirm"  data-toggle="modal"  class="btn btn-primary">Transfer now</button>
 
   </div>
   
@@ -42,3 +39,23 @@
         </div>
     </div>
   </div>
+
+  <div class="modal" tabindex="-1" role="dialog" id="confirm">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Confirm Wallel transfer</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">No</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -44,7 +44,7 @@ export class UpdateprofileComponent implements OnInit {
 
     this.UpdateProfileForm = fb.group({
       'displayname': '',
-      
+      'title' : '',
       'lastname': '',
       'dob': '',
       'gender': '',

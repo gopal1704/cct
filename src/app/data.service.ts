@@ -25,8 +25,10 @@ interface InvestmentProcessData {
 //////////////////////////////////
 
 interface ProfileData {
-
+  title : string;
+  isdcode : string;
   displayname: string;
+  lastname: string;
   uid: string;
   email: string;
   profileupdated: boolean;
