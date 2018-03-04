@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
 import { AuthenticationService } from '../authentication.service';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
@@ -13,7 +14,8 @@ declare var Messenger: any;
   styleUrls: ['./updateprofile.component.css']
 })
 export class UpdateprofileComponent implements OnInit {
-
+   CountryCodes : any;
+   CountryCodesList : any;
   fileuploadtask: AngularFireUploadTask;
   downloadURL: any;
   file: any;
@@ -28,25 +30,30 @@ export class UpdateprofileComponent implements OnInit {
   City: string;
   Country: string;
   Idproof: string = null;
+  isdcode : string ;
   /******************/
 
   /***********************PROFILE OBJ */
   Profile: any;
   /************* */
 
-  constructor(private fb: FormBuilder, private router: Router,private as: AuthenticationService, private afs: AngularFirestore,
+  constructor(private http: HttpClient,private fb: FormBuilder, private router: Router,private as: AuthenticationService, private afs: AngularFirestore,
     private storage: AngularFireStorage) {
 
 
 
     this.UpdateProfileForm = fb.group({
       'displayname': '',
+      
+      'lastname': '',
       'dob': '',
       'gender': '',
       'mobile': '',
       'address': '',
       'city': '',
       'country': '',
+      'isdcode':''
+
 
 
     });
@@ -54,6 +61,11 @@ export class UpdateprofileComponent implements OnInit {
 
   ngOnInit() {
 
+this.CountryCodes = this.http.get('../../assets/CC.json');
+
+this.CountryCodes.subscribe((v)=>{
+  this.CountryCodesList = v;
+  console.log(v)});
   }
 
   UpdateProfile(formdata) {
@@ -75,6 +87,20 @@ export class UpdateprofileComponent implements OnInit {
 
 
 
+  }
+  onchangecountry(value){
+console.log(value);
+this.isdcode = value;
+
+for(var i=0;i<this.CountryCodesList.length;i++){
+  
+if(this.CountryCodesList[i].name === value){
+  console.log(this.CountryCodesList[i].dial_code);
+  this.isdcode = this.CountryCodesList[i].dial_code;
+}
+
+
+}
   }
   uploadIdProof(path, file) {
 
