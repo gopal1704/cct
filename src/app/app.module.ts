@@ -30,6 +30,7 @@ import { PaywithbitcoinComponent } from './paywithbitcoin/paywithbitcoin.compone
 import { PaymentmethodComponent } from './paymentmethod/paymentmethod.component';
 import {HttpClientModule} from '@angular/common/http';
 import { WallettransferotpComponent } from './wallettransferotp/wallettransferotp.component';
+import { InvestfromwalletComponent } from './investfromwallet/investfromwallet.component';
 var config = {
   apiKey: "AIzaSyDZctYRBSTRhuIjDsPP-j7ide7LrlHjf4o",
   authDomain: "investment-3327a.firebaseapp.com",
@@ -59,7 +60,8 @@ var config = {
     InvestmentschemesComponent,
     PaywithbitcoinComponent,
     PaymentmethodComponent,
-    WallettransferotpComponent
+    WallettransferotpComponent,
+    InvestfromwalletComponent
   ],
   imports: [
     BrowserModule,

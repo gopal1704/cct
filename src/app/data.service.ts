@@ -451,6 +451,122 @@ fromaccountsummaryref.update({
 
 
   }
+
+
+
+
+  ////////////////////////////////from wallet////////////
+
+
+  create_investmentwallet(scheme: string, amount: number, btc: number) {
+    var summary;
+
+
+    ///////////////////// Investment Data 
+    var investment: Investment = {
+      uid: this.currentUserSummary.uid,
+      referralid: this.currentUserSummary.referralid,
+      scheme: scheme,
+      amount: amount,
+      interest_rate: 24,
+      timestamp: Date.now(),
+      status: 'active',
+      duration :90
+    }
+    ////////////////////////////////////// Transaction Data
+
+    var transaction_user: Transaction = {
+      timestamp: Date.now(),
+      uid: this.currentUserSummary.uid,
+      type: 'DI',
+      status: 'success',
+      from: '',
+      to: '',
+      amount: amount,
+      debit: 0,
+      credit: 0,
+      narration: `Investment - SCO1 - Wallet Payment Amount : ${amount}`
+      
+
+    }
+    var transaction_referral: Transaction = {
+      timestamp: Date.now(),
+      uid: this.currentUserSummary.referralid,
+      type: 'CSC',
+      status: 'success',
+      from: '',
+      to: '',
+      amount: 0,
+      debit: 0,
+      credit: amount * 0.05,
+      narration: "Credit referral comission 5 perc.  "
+    }
+
+
+
+    var Investment: AngularFirestoreCollection<Investment>;
+    var ref = this.afs.collection('/investments');
+    var reftrans = this.afs.collection('/transactions');
+
+    console.log(ref);
+    ref.add(investment).then((v) => {
+
+      const usersummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`); //get the refrence for updating initial user data
+      const referralsummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.referralid}`);
+
+
+
+      usersummaryref.update({
+
+        totalinvestment: this.currentUserSummary.totalinvestment + amount,
+        walletbalance : this.currentUserSummary.walletbalance - amount
+      }).then(
+        (v) => {
+          console.log("success");
+
+          reftrans.add(transaction_user).then((a) => {
+            reftrans.add(transaction_referral).then((v) => {
+              this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges().take(1).subscribe((v) => {
+                var pendingwalbal = v.walletpendingbalance + amount * 0.05;
+                var _totalstopearnings = v.totalspotearnings + amount *0.05;
+                referralsummaryref.update({
+                  walletpendingbalance: pendingwalbal,
+                  totalspotearnings : _totalstopearnings
+                });
+
+              });
+
+
+            });
+
+          }
+          );
+
+
+        }
+
+        );
+
+
+
+    });
+
+    //////
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+  ////////////////////
   send_spotcomission() {
 
   }

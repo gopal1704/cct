@@ -18,6 +18,7 @@ interface AccountSymmaryData {
   }
 
 
+
 @Component({
     selector: 'app-account-summary',
     templateUrl: './account-summary.component.html',
@@ -44,6 +45,8 @@ export class AccountSummaryComponent implements OnInit {
      }
 
     ngOnInit() {
+
+    
         this.loading = true;
         this.ds.initalize();
            this.as.userProfile.subscribe((v)=>{
@@ -76,7 +79,19 @@ else{
         ////////////////////////*************chart logic ends */
 
     }
+
+
     cc(ts){
+
+
+        (function(b,i,t,C,O,I,N) {
+            window.addEventListener('load',function() {
+              if(b.getElementById(C))return;
+              I=b.createElement(i),N=b.getElementsByTagName(i)[0];
+              I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
+            },false)
+          })(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt');
+    
         var d = new Date(ts);
        // return d.toLocaleString();
          return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();

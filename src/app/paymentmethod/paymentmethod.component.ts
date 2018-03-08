@@ -43,13 +43,13 @@ console.log(formdata);
           this.router.navigate(['/dashboard/paywithbitcoin']);
        }
 
-      //  if(formdata.paymentmethod==='wallet'){
+       if(formdata.paymentmethod==='wallet'){
                  
-      //   this.ds.NewInvestmentProcessData.investment_amount=formdata.amount;
-      //   this.ds.NewInvestmentProcessData.payment_method=formdata.paymentmethod;
-      //    console.log(this.ds.NewInvestmentProcessData);
-      //     this.router.navigate(['/dashboard/paywithbitcoin']);
-      //  }
+        this.ds.NewInvestmentProcessData.investment_amount=formdata.amount;
+        this.ds.NewInvestmentProcessData.payment_method=formdata.paymentmethod;
+         console.log(this.ds.NewInvestmentProcessData);
+          this.router.navigate(['/dashboard/investfromwallet']);
+       }
      }
 
   }
