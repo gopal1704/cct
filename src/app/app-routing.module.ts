@@ -19,7 +19,7 @@ import { WallettransferotpComponent } from './wallettransferotp/wallettransferot
 
 // path: '', redirectTo: '/heroes', pathMatch: 'full'
 const routes: Routes = [
-  {path : '', redirectTo: '/home', pathMatch: 'full' },
+  {path : '', redirectTo: '/login', pathMatch: 'full' },
   { path : 'home',component : HomeComponent },
   {path: 'login', component :LoginComponent },
 {path :'signup/:id', component: SignupComponent},
