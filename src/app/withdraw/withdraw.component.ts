@@ -7,6 +7,9 @@ import { DataService } from '../data.service';
   templateUrl: './withdraw.component.html',
   styleUrls: ['./withdraw.component.css']
 })
+
+
+//name
 export class WithdrawComponent implements OnInit {
 
   WithdrawalForm: FormGroup;  // From Group Instance
@@ -18,6 +21,12 @@ export class WithdrawComponent implements OnInit {
       'amount': '',
       'accounttype': '',
       'accountdetails': '',
+'bankname' : '',
+'accountnumber' : '',
+'ifsc' : '',
+'moneypolo' : '',
+'pappal' : '',
+'bitcoin' : ''
 
     });
 
@@ -31,7 +40,7 @@ export class WithdrawComponent implements OnInit {
   sendrequest(formdata){
 console.log(formdata);
 
-this.ds.withdrawal_request(formdata.amount,formdata.accounttype,formdata.accountdetails);
+this.ds.withdrawal_request(formdata);
   }
 
 onwithdrawmethodselect(type){
