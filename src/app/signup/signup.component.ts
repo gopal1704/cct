@@ -69,6 +69,7 @@ export class SignupComponent implements OnInit {
           console.log('signup error');
         }
         else {
+          
           Messenger().post({
             message: 'Signup successful!',
             type: 'error',

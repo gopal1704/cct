@@ -16,6 +16,24 @@ import { FirebaseApp } from 'angularfire2';
 import { take } from 'rxjs/operator/take';
 
 
+/*
+firebase collections
+accountsummary
+
+investments
+
+
+transactions
+
+users
+
+
+withdrawalrequest
+
+
+
+*/
+
 
 interface InvestmentProcessData {
   payment_method: string;

@@ -99,7 +99,12 @@ this.userProfile =  this.afAuth.authState.switchMap(
 
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
       user => {
-        return this.setUserProfileandSummary(user, referralid);
+        user.sendEmailVerification().then(function() {
+console.log('verification email sent!');
+        }).catch(function(error) {
+console.log('error sending verification email');
+        });
+                return this.setUserProfileandSummary(user, referralid);
       }
     ).catch(error => {
       console.log(error)
