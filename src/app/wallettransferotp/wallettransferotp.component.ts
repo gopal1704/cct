@@ -17,9 +17,13 @@ export class WallettransferotpComponent implements OnInit {
 
   WalletTransferOtp : FormGroup;  // From Group Instance
   otp : any;
-  
+
 
   ngOnInit() {
+    this.WalletTransferOtp = this.fb.group({
+      'otp': ''
+
+    });
   }
 
 }
