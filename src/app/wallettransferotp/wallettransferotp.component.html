@@ -13,7 +13,7 @@
               <form   [formGroup]="WalletTransferOtp">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Enter otp</label>
-                    <input type="text" formControlName="otp" class="form-control" >
+                    <input type="number" formControlName="otp" class="form-control" >
                     <small id="emailHelp" class="form-text text-muted">Enter otp sent to your email.</small>
                   </div>
                  
@@ -21,7 +21,7 @@
                 </form>
 
 
-            <button class="btn btn-primary" >Transfer</button>
+            <button class="btn btn-primary" (click)="verifyOtp(WalletTransferOtp.value)">Transfer</button>
           </div>
         
         </div>

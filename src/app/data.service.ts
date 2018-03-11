@@ -40,6 +40,11 @@ interface InvestmentProcessData {
   investment_amount: number;
   investment_scheme: string;
 }
+interface WalletTransferData{
+amount : number;
+to_account : string;
+to_name : string;
+}
 //////////////////////////////////
 
 interface ProfileData {

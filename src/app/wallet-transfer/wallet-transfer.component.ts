@@ -47,6 +47,8 @@ name.subscribe((v)=>{
   if(v){
   this.Accountname = 'Transfer to : '+ v.name;
  this.accountstatus = true;
+ this.ds.WalletTransferData.to_account = value;
+ this.ds.WalletTransferData.to_name = v.name;
   if(this.amountstatus == true && this.accountstatus == true ){
   this.proceed = true;
 }
@@ -66,9 +68,15 @@ name.subscribe((v)=>{
   onAmountChange(value : number){
 if(value >= this.amountlimit){
 this.amountstatus = true;
+this.ds.WalletTransferData.amount = value;
+
 if(this.amountstatus == true && this.accountstatus == true ){
+  this.ds.WalletTransferData.amount = value;
   this.proceed = true;
+
+
 }
+
 }
 else{
   this.amountstatus = false;
@@ -85,7 +93,6 @@ this.ds.transfer_to_wallet(formdata.amount,formdata.toaccount);
   }
 
   confirmwallettransfer(formdata){
-this.ds.WalletTransferData = formdata;
 
 this.router.navigate(['/dashboard/wallettransferotp']);
 
