@@ -1,4 +1,4 @@
-<div class="row h-100  ">
+<div class="row h-100">
 
   
     <div class="col-6 mx-auto  " style="margin-top: 5%">
@@ -17,20 +17,22 @@
                   <div class="form-group">
                       <label for="exampleInputEmail1">
                           Amount </label>
-                      <input type="number"  formControlName="amount" class="form-control"  >
+                          <input class="form-control" type="number" formControlName="amount" (input)="onAmountChange($event.target.value)">
+
+                      <!-- <input type="number"  formControlName="amount" class="form-control"  > -->
                       <small id="emailHelp" class="form-text text-muted">Enter amount to transfer. </small>
                     </div>
                   <div class="form-group">
                     <label >Account Id</label>
                     <input type="email"  formControlName="toaccount" class="form-control" (input)="onSearchChange($event.target.value)" >
-                    <small id="emailHelp" class="form-text text-muted">  {{Accountname}}</small>
+                    <small id="emailHelp" class="form-text text-muted"> <b>{{Accountname}}</b>  </small>
                   </div>
              
                 
                 </form>
                 <!-- (click)="transfer(WalletTransferForm.value)" -->
   <div class="text-center">
-      <button data-target="#confirm"  data-toggle="modal"  class="btn btn-primary">Transfer now</button>
+      <button data-target="#confirm" [attr.disabled] = "proceed === false ? 'disabled' : null" data-toggle="modal"  class="btn btn-primary">Transfer now</button>
 
   </div>
   
