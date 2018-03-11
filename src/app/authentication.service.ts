@@ -54,15 +54,18 @@ export class AuthenticationService {
   userAccountSummary: Observable<AccountSymmaryData>;
  userProfile : Observable<any>;
   currentUserId: string;
-
+currentUser : any;
   constructor(private afAuth: AngularFireAuth, private router: Router,
     private afs: AngularFirestore
   ) {
+    
     this.userAccountSummary = this.afAuth.authState.switchMap(
       user => {
         if (user) {
+          this.currentUser = user;
           this.currentUserId = user.uid;
           this.userLoggedIn = true;
+
           return this.afs.doc<AccountSymmaryData>(`accountsummary/${user.uid}`).valueChanges();
 
         }

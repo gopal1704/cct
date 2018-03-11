@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
@@ -15,7 +16,9 @@ export class WalletTransferComponent implements OnInit {
   WalletTransferForm: FormGroup;  // From Group Instance
   
   /******************/
-  constructor(private ds :DataService ,private fb: FormBuilder, private as: AuthenticationService, private router: Router,) {
+  Accountname : any;
+  constructor(private ds :DataService ,    private afs: AngularFirestore,
+    private fb: FormBuilder, private as: AuthenticationService, private router: Router,) {
     this.WalletTransferForm = fb.group({
       'amount': '',
       'toaccount': '',
@@ -24,9 +27,23 @@ export class WalletTransferComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    
     
   }
 
+  onSearchChange(value : string){
+
+    //get name 
+    var name =this.afs.doc<any>(`accountsummary/${value}`).valueChanges();
+      
+name.subscribe((v)=>{
+  this.Accountname = 'Transfer to : '+ v.name;
+}),err=>{
+  this.Accountname = 'Account does not exist';
+}
+  }
+  
   transfer(formdata){
 console.log(formdata);
 
@@ -35,6 +52,7 @@ this.ds.transfer_to_wallet(formdata.amount,formdata.toaccount);
 
   confirmwallettransfer(formdata){
 this.ds.WalletTransferData = formdata;
+
 this.router.navigate(['/dashboard/wallettransferotp']);
 
   }

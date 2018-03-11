@@ -6,7 +6,7 @@ import { AngularFireAuth, AngularFireAuthProvider } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 declare var Messenger: any;
-
+declare var $ : any;
 
 
 @Component({
@@ -50,14 +50,22 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signInWithEmailAndPassword(Credentials.UserName, Credentials.Password)
       .then(value => {
 
-
+       
+console.log(value);
+if(value.emailVerified==true){
         console.log("user logged in");
         this.as.userLoggedIn = true;
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard']);}
+        else{
+          this.loading = false;
+
+          $('#emailnotverified').modal({show:true});
+
+        }
 
       })
       .catch(err => {
-
+console.log(err);
         this.loading = false;
         Messenger().post({
           message: 'Error loggin in : Incorrect Email or Password',
