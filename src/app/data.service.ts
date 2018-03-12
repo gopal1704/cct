@@ -63,7 +63,8 @@ interface ProfileData {
   mobile: string;
   dateofjoining: any;
   gender: string;
-
+  proofurl : string;
+  
 }
 interface AccountSymmaryData {
   uid: string;
@@ -377,7 +378,7 @@ fromaccountsummaryref.update({
       referralid: this.currentUserSummary.referralid,
       scheme: scheme,
       amount: amount,
-      interest_rate: 9,
+      interest_rate: 24,
       timestamp: Date.now(),
       status: 'active',
       duration :90

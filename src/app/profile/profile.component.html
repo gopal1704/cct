@@ -23,7 +23,7 @@
 <tbody>
 <tr>
     <th>Name</th>
-    <td>{{(Profile| async)?.displayname}}</td>
+    <td>{{(Profile| async)?.title}} {{(Profile| async)?.displayname}}  {{(Profile| async)?.lastname}}</td>
 </tr>
 <tr>
 <th>Gender</th>
@@ -42,7 +42,7 @@
 <td>{{(Profile| async)?.email}}</td></tr>
 <tr>
 <th>Mobile</th>
-<td>{{(Profile| async)?.mobile}}</td></tr>
+<td>{{(Profile| async)?.isdcode}}  {{(Profile| async)?.mobile}}</td></tr>
 
 <tr>
 <th> Referral Id</th>

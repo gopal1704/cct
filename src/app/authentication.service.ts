@@ -43,6 +43,8 @@ interface AccountSymmaryData {
   totalspotearnings: number;
   totalreferralearnings: number;
   totalinvestment: number;
+  approvalstatus : string;
+  transaction : boolean;
 
 }
 @Injectable()
@@ -156,7 +158,9 @@ console.log('error sending verification email');
       walletpendingbalance: 0,
       totalspotearnings: 0,
       totalreferralearnings: 0,
-      totalinvestment: 0
+      totalinvestment: 0,
+      approvalstatus : "pending",
+      transaction : false
 
     };
     return userref.set(ProfileData).then(() => {

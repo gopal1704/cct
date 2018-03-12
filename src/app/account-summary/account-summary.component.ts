@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 declare var Chart: any;
 interface AccountSymmaryData {
@@ -26,7 +27,7 @@ interface AccountSymmaryData {
 })
 export class AccountSummaryComponent implements OnInit {
     public loading = false;
-
+public ip : any ;
     public  summary: AccountSymmaryData ={
         uid: '',
     referralid: '',
@@ -39,7 +40,7 @@ export class AccountSummaryComponent implements OnInit {
     totalreferralearnings:0,
     totalinvestment: 0
     };
-    constructor(private as: AuthenticationService, private ds: DataService,    private router: Router) {
+    constructor(private http: HttpClient,private as: AuthenticationService, private ds: DataService,    private router: Router) {
 
 
      }
@@ -53,6 +54,12 @@ export class AccountSummaryComponent implements OnInit {
 console.log(v);
 if(v.profileupdated== true){
     this.loading = false;
+     var result = this.http.get(`http://18.219.116.22:3000/getip`);
+    result.subscribe((v)=>{
+  this.ip=v;
+      console.log(v);
+    });
+
     this.router.navigate(['/dashboard']);
 
 }

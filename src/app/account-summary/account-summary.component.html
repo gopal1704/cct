@@ -67,8 +67,13 @@
                   <tr>
                       <th scope="row">Account Id</th>
                       <td>{{summary.uid}}</td>
-                    </tr>
+                      
 
+                    </tr>
+<tr>
+  <th scope="row">Approval</th>
+                      <td>{{summary.approvalstatus}}</td>
+</tr>
                     <tr>
                         <th scope="row">Joining  Date</th>
                         <td>{{cc(summary.joiningdate)}}</td>
@@ -78,7 +83,10 @@
                           <th scope="row">Referral Link</th>
                           <td><a href="{{summary.referal_link}}">{{summary.referal_link}}</a></td>
                         </tr>
-                      
+                        <tr>
+                          <th scope="row">IP Address</th>
+                          <td>{{ip.ip}}</td>
+                        </tr>
               </tbody>
           </table>
         </div>
