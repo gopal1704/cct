@@ -389,7 +389,7 @@ fromaccountsummaryref.update({
       timestamp: Date.now(),
       uid: this.currentUserSummary.uid,
       type: 'DI',
-      status: 'awaiting confirmation',
+      status: 'confirmed',
       from: '',
       to: '',
       amount: amount,
@@ -409,7 +409,7 @@ fromaccountsummaryref.update({
       amount: 0,
       debit: 0,
       credit: amount * 0.05,
-      narration: "Credit referral comission 5 perc.  "
+      narration: "Credit referral comission 5%.  "
     }
 
 
@@ -523,7 +523,7 @@ fromaccountsummaryref.update({
       amount: 0,
       debit: 0,
       credit: amount * 0.05,
-      narration: "Credit referral comission 5 perc.  "
+      narration: "Credit referral comission 5%.  "
     }
 
 

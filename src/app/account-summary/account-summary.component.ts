@@ -16,6 +16,7 @@ interface AccountSymmaryData {
     totalspotearnings: number;
     totalreferralearnings: number;
     totalinvestment: number;
+    approvalstatus : string;
   }
 
 
@@ -38,15 +39,18 @@ public ip : any ;
     walletpendingbalance:0,
     totalspotearnings: 0,
     totalreferralearnings:0,
-    totalinvestment: 0
-    };
+    totalinvestment: 0,
+    approvalstatus : ''
+};
     constructor(private http: HttpClient,private as: AuthenticationService, private ds: DataService,    private router: Router) {
 
 
      }
 
     ngOnInit() {
-
+this.ip = {
+    ip : ""
+}
     
         this.loading = true;
         this.ds.initalize();

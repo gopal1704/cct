@@ -7,6 +7,11 @@ import { HttpClient } from '@angular/common/http';
 declare var QRCode: any;
 declare var $: any;
 declare var Messenger: any;
+interface btc{
+  address : string;
+  index : number;
+  callback : string;
+}
 
 @Component({
   selector: 'app-paywithbitcoin',
@@ -16,62 +21,84 @@ declare var Messenger: any;
 
 
 export class PaywithbitcoinComponent implements OnInit {
+  
   public InvestmentDetails: any;
   public btcpayment: string = '';
   public paymentstate = false;
-  public paymentaddress = "122YXXvEHjUTs67fXc3fFACx9PUkreXQfH";
+  public paymentaddress : string;
   public paymentreceived: any;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private ds: DataService, private router: Router) { }
 
   ngOnInit() {
 this.ds.initalize();
-   
+this.paymentaddress = "";   
 
 
     this.InvestmentDetails = this.ds.NewInvestmentProcessData;
     // https://blockchain.info/tobtc?currency=USD&value=25
+// /http%3A%2F%2F18.219.116.22%3A3000%2Fcallback
+    var url =   "https://api.blockchain.info/v2/receive?xpub=xpub6CEpb79zVLj9qdVcwKmsrKPmiafn3KChzaSqxumSLaiwekzGhaMKt8bLraMSdkupKaUCR9zvJMkipMXAx3dnR86LPYmoKu6k3zFGEznzAkq&&callback=http%3A%2F%2F18.219.116.22%3A3000%2Fcallback&key=d06ca415-9e77-4705-855f-7881c25f1a38"    
+    
 
-    var MonitorTransaction = new WebSocket('wss://ws.blockchain.info/inv');
+    var bitcoinadd = this.http.get<btc>(url);
+bitcoinadd.subscribe(
+  (v)=>{
+    console.log(v);
+  this.paymentaddress = v.address;
+  this.convertusdtobitcoin(this.ds.NewInvestmentProcessData.investment_amount);
 
-    MonitorTransaction.onopen = function () {
-      console.log("websocket connection open");
-      MonitorTransaction.send(JSON.stringify({
-        "op": "addr_sub", "addr": "122YXXvEHjUTs67fXc3fFACx9PUkreXQfH"
+/////
+var MonitorTransaction = new WebSocket('wss://ws.blockchain.info/inv');
 
-
-      }));
-    };
-
-    MonitorTransaction.onmessage = (onmsg) => {
-      MonitorTransaction.close();
-      var response = JSON.parse(onmsg.data);
-      console.log(response);
-      var transactionOutput = response.x.out;
-      var transactionOutputLength = transactionOutput.length;
-
-      for (var i = 0; i < transactionOutputLength; i++) {
-        if (response.x.out[i].addr === this.paymentaddress) {
-          this.paymentstate = true;
+MonitorTransaction.onopen =  () => {
+  console.log("websocket connection open");
+  MonitorTransaction.send(JSON.stringify({
+    "op": "addr_sub", "addr": this.paymentaddress
 
 
+  }));
+};
 
-          console.log('address match!');
-          var amount = response.x.out[i].value;
-          this.paymentreceived = amount / 100000000;
-          Messenger().post({
-            message: 'Payment Successful!',
-            type: 'success',
-            showCloseButton: true
-          });
-          this.ds.create_investment("SCO1",this.InvestmentDetails.investment_amount,amount/100000000);
+MonitorTransaction.onmessage = (onmsg) => {
+  MonitorTransaction.close();
+  var response = JSON.parse(onmsg.data);
+  console.log(response);
+  var transactionOutput = response.x.out;
+  var transactionOutputLength = transactionOutput.length;
 
-          break;
-        }
-      }
+  for (var i = 0; i < transactionOutputLength; i++) {
+    if (response.x.out[i].addr === this.paymentaddress) {
+      this.paymentstate = true;
+
+
+
+      console.log('address match!');
+      var amount = response.x.out[i].value;
+      this.paymentreceived = amount / 100000000;
+      Messenger().post({
+        message: 'Payment Successful!',
+        type: 'success',
+        showCloseButton: true
+      });
+      this.ds.create_investment("SCO1",this.InvestmentDetails.investment_amount,amount/100000000);
+
+      break;
     }
+  }
+}
 
-    this.convertusdtobitcoin(this.ds.NewInvestmentProcessData.investment_amount);
+////
+
+
+
+
+
+
+  }
+);
+    
+
   }
 
 
@@ -83,8 +110,7 @@ this.ds.initalize();
       console.log(v)
 
       this.btcpayment = v.toString();
-      var qrstr = `bitcoin:122YXXvEHjUTs67fXc3fFACx9PUkreXQfH?amount=${this.btcpayment}`;
-      console.log(`122YXXvEHjUTs67fXc3fFACx9PUkreXQfH?amount=${this.btcpayment}`);
+      var qrstr = `bitcoin:${this.paymentaddress}?amount=${this.btcpayment}`;
       new QRCode(document.getElementById("qrcode"), qrstr);
 
 

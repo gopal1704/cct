@@ -17,6 +17,8 @@ import { PaywithbitcoinComponent } from './paywithbitcoin/paywithbitcoin.compone
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 import { WallettransferotpComponent } from './wallettransferotp/wallettransferotp.component';
 import { InvestfromwalletComponent } from './investfromwallet/investfromwallet.component';
+import { AdminwithdrawalComponent } from './adminwithdrawal/adminwithdrawal.component';
+
 
 // path: '', redirectTo: '/heroes', pathMatch: 'full'
 const routes: Routes = [
@@ -41,7 +43,8 @@ children :[
    {path : 'paymentmethod' , component : PaymentmethodComponent},
    {path : 'paywithbitcoin', component : PaywithbitcoinComponent},
    {path: 'wallettransferotp' , component : WallettransferotpComponent},
-   {path: 'investfromwallet' , component : InvestfromwalletComponent}
+   {path: 'investfromwallet' , component : InvestfromwalletComponent},
+   {path: 'adminwithdraw' , component : AdminwithdrawalComponent}
 
 ]
 
