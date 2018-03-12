@@ -293,7 +293,41 @@ fromaccountsummaryref.update({
 
   }
   /********************************/
+approve_withdrawal_request(id,uid,amount,details){
 
+  var transaction_referral: Transaction = {
+    timestamp: Date.now(),
+    uid: uid,
+    type: 'WD',
+    status: 'success',
+    from: '',
+    to: '',
+    amount: 0,
+    debit: amount,
+    credit: 0,
+    narration: `Withdrawal ${details}`
+  };
+  var reftrans = this.afs.collection('/transactions');
+  const withdrawalr :AngularFirestoreDocument<any> = this.afs.doc(`withdrawalrequest/${id}`);
+  const summaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${uid}`);
+
+  withdrawalr.update({status:'approved'}).then((v)=>{
+    reftrans.add(transaction_referral).then((v)=>{
+      this.afs.doc<AccountSymmaryData>(`accountsummary/${uid}`).valueChanges().take(1).subscribe((v) => {
+
+        summaryref.update({
+          walletbalance : v.walletbalance - amount,
+        }).then(()=>{
+          return true;
+        });
+
+      });
+
+
+    })
+  });
+
+}
   /***********GET PROFILE INFO*********/
   get_profile_info() {
     var itemdoc = this.afs.doc<any>(`users/${this.currentUserSummary.uid}`);

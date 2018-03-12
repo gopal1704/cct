@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
 import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
+
 declare var Messenger: any;
 
 @Component({
@@ -18,7 +20,7 @@ export class WithdrawComponent implements OnInit {
   UserName: string;
   Password: string;
   public withdrawalmethod : string;
-  constructor(private fb: FormBuilder,private ds :DataService,    private as: AuthenticationService,
+  constructor(private fb: FormBuilder,private ds :DataService,  private router: Router,   private as: AuthenticationService,
   ) { 
     this.WithdrawalForm = fb.group({
       'amount': '',
@@ -55,7 +57,7 @@ Messenger().post({
   type: 'success',
   showCloseButton: true
 });
-
+this.router.navigate(['/dashboard']);
   }
 }) ;
 
