@@ -594,6 +594,19 @@ fromaccountsummaryref.update({
   send_spotcomission() {
 
   }
+  get_admin_withdrawal(){
+    var adminw = this.afs.collection('withdrawalrequest');
+    var r = adminw.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() ;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+
+return r;
+     
+  }
   ////////////////////////////////////////////
 
 

@@ -25,7 +25,7 @@ export class WithdrawComponent implements OnInit {
 'accountnumber' : '',
 'ifsc' : '',
 'moneypolo' : '',
-'pappal' : '',
+'paypal' : '',
 'bitcoin' : ''
 
     });
@@ -39,8 +39,9 @@ export class WithdrawComponent implements OnInit {
   }
   sendrequest(formdata){
 console.log(formdata);
-
-this.ds.withdrawal_request(formdata);
+var d = formdata;
+d.timestamp = Date.now();
+this.ds.withdrawal_request(d);
   }
 
 onwithdrawmethodselect(type){

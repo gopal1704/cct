@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-adminwithdrawal',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminwithdrawalComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ds :DataService) { }
 
   ngOnInit() {
+   // console.log(this.ds.get_admin_withdrawal());
+
+    this.ds.get_admin_withdrawal().subscribe((v)=>{
+console.log(v)
+    })
   }
 
 }
