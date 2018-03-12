@@ -280,6 +280,7 @@ fromaccountsummaryref.update({
   withdrawal_request(data) {
     this.authservice.userAccountSummary.subscribe((v)=>{
       data.name = v.name;
+      data.status = 'pending';
       var ref = this.afs.collection('/withdrawalrequest');
       ref.add(data)
       ;

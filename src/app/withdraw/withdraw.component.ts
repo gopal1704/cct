@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
+import { AuthenticationService } from '../authentication.service';
+declare var Messenger: any;
 
 @Component({
   selector: 'app-withdraw',
@@ -12,11 +14,12 @@ import { DataService } from '../data.service';
 //name
 export class WithdrawComponent implements OnInit {
 
-  WithdrawalForm: FormGroup;  // From Group Instance
+  WithdrawalForm: FormGroup;  
   UserName: string;
   Password: string;
   public withdrawalmethod : string;
-  constructor(private fb: FormBuilder,private ds :DataService) { 
+  constructor(private fb: FormBuilder,private ds :DataService,    private as: AuthenticationService,
+  ) { 
     this.WithdrawalForm = fb.group({
       'amount': '',
       'accounttype': '',
@@ -41,7 +44,23 @@ export class WithdrawComponent implements OnInit {
 console.log(formdata);
 var d = formdata;
 d.timestamp = Date.now();
+
+this.as.userAccountSummary.subscribe((summary) => {
+
+  if (summary) {
+d.uid = summary.uid;
 this.ds.withdrawal_request(d);
+Messenger().post({
+  message: 'Withdrawal request sent!',
+  type: 'success',
+  showCloseButton: true
+});
+
+  }
+}) ;
+
+
+
   }
 
 onwithdrawmethodselect(type){
