@@ -16,6 +16,8 @@ export class PaymentmethodComponent implements OnInit {
   amount: number;
   paymentmethod: string;
   /******************/
+  proceed : boolean = false;
+
 
 
   constructor(private fb: FormBuilder, private ds: DataService, private router: Router) {
@@ -29,6 +31,14 @@ export class PaymentmethodComponent implements OnInit {
 
   ngOnInit() {
      
+  }
+  onAmountChange(value){
+if(value>=500){
+this.proceed = true;
+}
+else{
+  this.proceed = false;
+}
   }
 
   gotopayment(formdata){

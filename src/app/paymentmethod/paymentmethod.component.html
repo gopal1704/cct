@@ -15,8 +15,8 @@
             <form [formGroup]="PaymentMethodForm">
 
                 <div class="form-group">
-                    <label for="amount"><h5 class="inline">Enter amount </h5></label>
-                    <input id="amount" type="number"  formControlName="amount" class="form-control" >
+                    <label for="amount"><h5 class="inline">Enter amount - minimum $500 </h5></label>
+                    <input id="amount"  (input)="onAmountChange($event.target.value)" type="number"  formControlName="amount" class="form-control" >
                   </div>
                 <br/>
 
@@ -38,7 +38,7 @@
             </form>
   
   <div class="text-center">
-            <button (click)="gotopayment(PaymentMethodForm.value)" class="btn btn-primary">Proceed to Payment</button>
+            <button (click)="gotopayment(PaymentMethodForm.value)" [attr.disabled] = "proceed === false ? 'disabled' : null" class="btn btn-primary">Proceed to Payment</button>
           </div>
           </div>
           

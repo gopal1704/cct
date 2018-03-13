@@ -153,7 +153,7 @@ console.log('error sending verification email');
       referralid: referralid,
       joiningdate: Date.now(),
       name: '',
-      referal_link: 'http://catcotrade.com/signup/' + user.uid,
+      referal_link: 'http://dashboard.catcotrade.info/signup/' + user.uid,
       walletbalance: 0,
       walletpendingbalance: 0,
       totalspotearnings: 0,
