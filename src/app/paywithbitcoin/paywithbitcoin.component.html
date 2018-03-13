@@ -39,11 +39,13 @@
       <h6>{{paymentaddress}}</h6>
       <br/>
 <h6></h6>
-<div id="loadingicon"  [hidden]="paymentstate" class="loader mx-auto"></div>
-<div id="paymenttext"  [hidden]="paymentstate"> <h4 style="color:#ff0e00">Waiting for payment!</h4> </div>
+<div id="loadingicon"  [hidden]="paymenticon" class="loader mx-auto"></div>
+<div id="paymenttext"  [hidden]="paymenticon"> <h4 style="color:#ff0e00">Waiting for payment!</h4> </div>
 <div [hidden]="!paymentstate"> <h4 style="color:#06b10f">Payment Successful - awaiting Confirmation!</h4> </div>
+<div [hidden]="!paymenterror"> <h6 style="color:#ff0e00"><span class="badge badge-danger">Payment received is lesser than actual payment</span></h6> </div>
 
 <div [hidden]="!paymentstate"> <h4 style="color:#06b10f"><span class="badge badge-success">{{paymentreceived}} BTC</span></h4> </div>
+<div [hidden]="!paymenterror"> <h4 style="color:#ff0037"><span class="badge badge-success">{{paymentreceived}} BTC</span></h4> </div>
 
     </div>
 </div>

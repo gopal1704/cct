@@ -60,6 +60,36 @@ export class WithdrawComponent implements OnInit {
     }
   }
   sendrequest(formdata){
+// 
+var validate = false;
+if(formdata.accounttype=='bank'){
+
+  if(!(formdata.bankname=="")&&!(formdata.ifsc=="")&&!(formdata.accountnumber=="")){
+    validate = true;
+  }
+}
+if(formdata.accounttype=='paypal'){
+
+  if(!(formdata.paypal=="")){
+    validate = true;
+  }
+}
+if(formdata.accounttype=='moneypolo'){
+
+  if(!(formdata.moneypolo=="")){
+    validate = true;
+  }
+}
+if(formdata.accounttype=='bitcoin'){
+
+  if(!(formdata.bitcoin=="")){
+    validate = true;
+  }
+}
+//
+////
+if(validate==true){
+
 console.log(formdata);
 var d = formdata;
 d.timestamp = Date.now();
@@ -77,9 +107,16 @@ Messenger().post({
 this.router.navigate(['/dashboard']);
   }
 }) ;
+}
+else{
+  Messenger().post({
+    message: 'Please enter all necessary details',
+    type: 'error',
+    showCloseButton: true
+  });
+}
 
-
-
+////
   }
 
 onwithdrawmethodselect(type){
