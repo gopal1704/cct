@@ -39,17 +39,21 @@ Amount : number;
 
 
   createinvestment(){
-if(this.Amount<=this.WalletBal){
+if(this.Amount<=this.WalletBal && this.Amount>=500){
     this.ds.create_investmentwallet('SCO1', this.Amount, 0);
     Messenger().post({
       message: 'Payment Success!',
       type: 'success',
       showCloseButton: true
     });
+    this.router.navigate(['/dashboard']);
+
+
+
   }
   else{
     Messenger().post({
-      message: 'Insufficient funds',
+      message: 'Error please make sure there is sufficient funds in your wallet!',
       type: 'error',
       showCloseButton: true
     });

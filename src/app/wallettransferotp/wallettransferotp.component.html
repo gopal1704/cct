@@ -21,7 +21,7 @@
                 </form>
 
 
-            <button class="btn btn-primary" (click)="verifyOtp(WalletTransferOtp.value)">Transfer</button>
+            <button class="btn btn-primary" [attr.disabled] = "proceed === false ? 'disabled' : null" (click)="verifyOtp(WalletTransferOtp.value)">Transfer</button>
           </div>
         
         </div>

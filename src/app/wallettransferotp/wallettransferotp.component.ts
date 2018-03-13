@@ -20,6 +20,8 @@ export class WallettransferotpComponent implements OnInit {
   otp : any;
   emailData : any;
  URL = 'http://18.219.116.22:3000/sendotp';
+ proceed : boolean = true;
+
 
   ngOnInit() {
 
@@ -68,6 +70,8 @@ this.http.post(this.URL,this.emailData).subscribe(res =>{
 
   verifyOtp(value){
     if(value.otp===this.emailData.otp){
+      this.proceed  = false;
+
       console.log('otp verified');
       this.ds.transfer_to_wallet(this.emailData.amount,this.emailData.toaccount);
       Messenger().post({
@@ -75,6 +79,8 @@ this.http.post(this.URL,this.emailData).subscribe(res =>{
         type: 'success',
         showCloseButton: true
       });
+      this.router.navigate(['/dashboard']);
+
 
     }
     else{
