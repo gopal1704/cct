@@ -439,12 +439,12 @@ approve_withdrawal_request(id,uid,amount,details){
       uid: this.currentUserSummary.referralid,
       type: 'CSC',
       status: 'success',
-      from: '',
+      from: this.currentUserSummary.uid,
       to: '',
       amount: 0,
       debit: 0,
       credit: amount * 0.05,
-      narration: "Credit referral comission 5%.  "
+      narration: `Credit referral comission 5%. from ${this.currentUserSummary.name} -- account ${this.currentUserSummary.uid} `
     }
 
 
@@ -553,12 +553,12 @@ approve_withdrawal_request(id,uid,amount,details){
       uid: this.currentUserSummary.referralid,
       type: 'CSC',
       status: 'success',
-      from: '',
+      from: this.currentUserSummary.uid,
       to: '',
       amount: 0,
       debit: 0,
       credit: amount * 0.05,
-      narration: "Credit referral comission 5%.  "
+      narration: `Credit referral comission 5%. from ${this.currentUserSummary.name} -- account ${this.currentUserSummary.uid} `
     }
 
 
