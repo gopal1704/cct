@@ -15,10 +15,12 @@ declare var Messenger: any;
 
 //name
 export class WithdrawComponent implements OnInit {
+  proceed : boolean = false;
 
   WithdrawalForm: FormGroup;  
   UserName: string;
   Password: string;
+  WalletBal : number = 0;
   public withdrawalmethod : string;
   constructor(private fb: FormBuilder,private ds :DataService,  private router: Router,   private as: AuthenticationService,
   ) { 
@@ -39,8 +41,23 @@ export class WithdrawComponent implements OnInit {
 
   ngOnInit() {
 
+    this.as.userAccountSummary.subscribe((summary) => {
 
+      if (summary) {
+          this.WalletBal =summary.walletbalance;
+          console.log("this summary");
 
+      }
+  }) ;
+
+  }
+  onAmountChange(value){
+    if(value<=this.WalletBal){
+      this.proceed=true;
+    }
+    else{
+      this.proceed = false;
+    }
   }
   sendrequest(formdata){
 console.log(formdata);

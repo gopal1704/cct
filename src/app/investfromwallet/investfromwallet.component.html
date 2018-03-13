@@ -17,7 +17,7 @@
             <h4 class="text-center" style="margin-bottom: 5%">Wallet Payment : &nbsp; {{Amount}}</h4>
 
 <div class="text-center">
-          <button (click)="createinvestment()" class="btn btn-primary"> Pay Now</button>
+          <button (click)="createinvestment()" [attr.disabled] = "proceed === false ? 'disabled' : null" class="btn btn-primary"> Pay Now</button>
         </div>
         </div>
         

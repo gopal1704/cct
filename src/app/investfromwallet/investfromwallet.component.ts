@@ -17,6 +17,8 @@ WalletBalance : any;
 InvestmentDetails : any;
 WalletBal : number;
 Amount : number;
+proceed : boolean = true;
+
   constructor(private as: AuthenticationService,private http: HttpClient, private fb: FormBuilder, private ds: DataService, private router: Router) {
     this.InvestmentDetails = this.ds.NewInvestmentProcessData;
     this.Amount = this.InvestmentDetails.investment_amount;
@@ -40,6 +42,7 @@ Amount : number;
 
   createinvestment(){
 if(this.Amount<=this.WalletBal && this.Amount>=500){
+  this.proceed=false;
     this.ds.create_investmentwallet('SCO1', this.Amount, 0);
     Messenger().post({
       message: 'Payment Success!',
@@ -52,6 +55,7 @@ if(this.Amount<=this.WalletBal && this.Amount>=500){
 
   }
   else{
+    this.proceed = false;
     Messenger().post({
       message: 'Error please make sure there is sufficient funds in your wallet!',
       type: 'error',
