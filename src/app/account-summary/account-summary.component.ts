@@ -58,7 +58,7 @@ this.ip = {
 console.log(v);
 if(v.profileupdated== true){
     this.loading = false;
-     var result = this.http.get(`http://18.219.116.22:3000/getip`);
+     var result = this.http.get(`https://18.219.116.22:3000/getip`);
     result.subscribe((v)=>{
   this.ip=v;
       console.log(v);

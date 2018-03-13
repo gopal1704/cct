@@ -16,7 +16,7 @@ export class WalletTransferComponent implements OnInit {
   /***FORM DECLARATIONS */
   WalletTransferForm: FormGroup;  // From Group Instance
   amountlimit:number =  1;
-
+  walletbalance : number = 0;
   proceed : boolean = false;
   amount : number = 0;
   accountstatus : boolean  = false;
@@ -35,11 +35,15 @@ export class WalletTransferComponent implements OnInit {
   ngOnInit() {
 
     
+    this.as.userAccountSummary.subscribe((v)=>{
+      this.walletbalance = v.walletbalance;
+    })
+
     
   }
 
   onSearchChange(value : string){
-
+if(value && value!=""){
     //get name 
     var name =this.afs.doc<any>(`accountsummary/${value}`).valueChanges();
       
@@ -49,7 +53,8 @@ name.subscribe((v)=>{
  this.accountstatus = true;
  this.ds.WalletTransferData.to_account = value;
  this.ds.WalletTransferData.to_name = v.name;
-  if(this.amountstatus == true && this.accountstatus == true ){
+ console.log()
+  if(this.amountstatus == true && this.accountstatus && this.ds.WalletTransferData.amount <=this.walletbalance ){
   this.proceed = true;
 }
 }
@@ -59,6 +64,13 @@ name.subscribe((v)=>{
 }
 }),err=>{
   this.Accountname = 'Account does not exist';
+}
+
+
+
+}
+else{
+  this.proceed = false;
 }
   }
 
@@ -70,10 +82,10 @@ if(value >= this.amountlimit){
 this.amountstatus = true;
 this.ds.WalletTransferData.amount = value;
 
-if(this.amountstatus == true && this.accountstatus == true ){
+if(this.amountstatus == true && this.accountstatus == true  ){
   this.ds.WalletTransferData.amount = value;
   this.proceed = true;
-
+console.log(this.walletbalance);
 
 }
 
@@ -81,7 +93,14 @@ if(this.amountstatus == true && this.accountstatus == true ){
 else{
   this.amountstatus = false;
   this.proceed = false;
-
+  
+}
+if(value<=this.walletbalance && value>=this.amountlimit){
+this.proceed = true;
+console.log('lesser');
+}else{
+  console.log('grater');
+  this.proceed = false;
 }
   }
   /////

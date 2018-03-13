@@ -15,8 +15,8 @@ declare var Messenger: any;
 export class InvestfromwalletComponent implements OnInit {
 WalletBalance : any;
 InvestmentDetails : any;
-WalletBal : any;
-Amount : any;
+WalletBal : number;
+Amount : number;
   constructor(private as: AuthenticationService,private http: HttpClient, private fb: FormBuilder, private ds: DataService, private router: Router) {
     this.InvestmentDetails = this.ds.NewInvestmentProcessData;
     this.Amount = this.InvestmentDetails.investment_amount;
@@ -39,12 +39,21 @@ Amount : any;
 
 
   createinvestment(){
-    this.ds.create_investmentwallet('SCO1', parseInt(this.Amount), 0);
+if(this.Amount<=this.WalletBal){
+    this.ds.create_investmentwallet('SCO1', this.Amount, 0);
     Messenger().post({
       message: 'Payment Success!',
       type: 'success',
       showCloseButton: true
     });
   }
+  else{
+    Messenger().post({
+      message: 'Insufficient funds',
+      type: 'error',
+      showCloseButton: true
+    });
+  }
+}
 
 }
