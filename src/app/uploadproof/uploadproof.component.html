@@ -1,4 +1,5 @@
 <div class="row h-100 signup ">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 
   
     <div class="col-6 mx-auto my-auto " style="margin-top: 5%">
@@ -10,6 +11,11 @@
     Choose file. <input type="file" hidden  (change)="handleFileInput($event.target.files)" onchange="$('#upload-file-info').html(this.files[0].name)">
 </label><br>
 <span class='label label-info' id="upload-file-info"></span>
+
+</div>
+<br>
+<div class="text-center">
+    <button data-target="#confirm" [attr.disabled] = "proceed === false ? 'disabled' : null" data-toggle="modal"  class="btn btn-primary">Transfer now</button>
 
 </div>
 

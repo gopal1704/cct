@@ -15,9 +15,11 @@ file : any;
 Profile :any;
 fileuploadtask: AngularFireUploadTask;
   downloadURL: any;
+  proceed : boolean;
 constructor(private storage: AngularFireStorage,private ds : DataService) { }
 
   ngOnInit() {
+    this.proceed = false;
   }
 
   handleFileInput(files: FileList) {
@@ -26,18 +28,28 @@ constructor(private storage: AngularFireStorage,private ds : DataService) { }
     this.file = files;
     console.log(files);
 
-
+if(files.item(0)){
+  this.proceed=true;
+}
+else{
+  this.proceed=false;
+}
 
   }
 
   uploadIdProof() {
     if(this.file){
-    const idproof = this.file.item(0);
-    this.Profile= this.ds.get_profile_info().valueChanges();
 
-    this.fileuploadtask = this.storage.upload('abc', idproof);
+    const idproof = this.file.item(0);
+    this.Profile= this.ds.get_profile_info().valueChanges().subscribe((v)=>{
+    
+      this.fileuploadtask = this.storage.upload('abc', idproof);
     
     this.downloadURL = this.fileuploadtask.downloadURL();
+
+    });
+
+    
 
     }
 
