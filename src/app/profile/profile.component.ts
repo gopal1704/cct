@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,7 @@ import { DataService } from '../data.service';
 })
 export class ProfileComponent implements OnInit {
   Profile : any;
-  constructor(private ds : DataService) { 
+  constructor(private ds : DataService,private router: Router) { 
 
   }
 
@@ -29,6 +30,9 @@ export class ProfileComponent implements OnInit {
       return d.toLocaleString();
       // return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '--' + d.getHours() + ':' +d.getMinutes();
       
+      }
+      gotoupload(){
+
       }
 
 

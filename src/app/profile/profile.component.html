@@ -63,7 +63,8 @@
 </tr>
 <tr>
   <th>Id Proof </th>
-  <td><a href="{{(Profile| async)?.proofurl}}">view proof</a>   </td>
+  <td><a class="btn btn-primary" href="{{(Profile| async)?.proofurl}}"    [attr.disabled] = "(Profile| async)?.proofurl === '' ? 'disabled' : null">view proof</a> <span>||</span> <a  routerLink="/dashboard/uploadproof" class="btn btn-primary">Upload Proof</a>
+  </td>
 
 </tr>
 </tbody>
