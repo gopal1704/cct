@@ -158,7 +158,8 @@ export class DataService {
   get_investments(uid) {
 
     var investmentscollection = this.afs.collection('investments', ref => {
-      return ref.where('uid', '==', uid);
+      return ref.where('uid', '==', uid).orderBy('timestamp','desc');
+
     });
     return investmentscollection.valueChanges();
   }

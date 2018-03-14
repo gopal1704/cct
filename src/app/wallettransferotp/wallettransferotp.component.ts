@@ -19,7 +19,7 @@ export class WallettransferotpComponent implements OnInit {
   WalletTransferOtp : FormGroup;  // From Group Instance
   otp : any;
   emailData : any;
- URL = 'https://catcotrade.info/sendotp';
+ URL = 'https://catcotrade.com/sendotp';
  proceed : boolean = true;
 
 
