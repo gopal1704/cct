@@ -77,6 +77,9 @@ interface AccountSymmaryData {
   totalspotearnings: number;
   totalreferralearnings: number;
   totalinvestment: number;
+  approvalstatus : string;
+  transaction : boolean;
+
 }
 ////////////////////////////////////
 

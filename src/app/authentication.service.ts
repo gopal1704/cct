@@ -30,7 +30,7 @@ interface ProfileData {
   mobile: string;
   dateofjoining: any;
   gender: string;
-
+  proofurl :string;
 }
 interface AccountSymmaryData {
   uid: string;
@@ -146,7 +146,8 @@ console.log('error sending verification email');
       country: '',
       mobile: '',
       dateofjoining: Date.now(),
-      gender: ''
+      gender: '',
+      proofurl  : ''
     };
     const AccountSymmaryData = {
       uid: user.uid,

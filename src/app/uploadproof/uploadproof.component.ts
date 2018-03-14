@@ -11,12 +11,12 @@ declare var Messenger: any;
   styleUrls: ['./uploadproof.component.css']
 })
 export class UploadproofComponent implements OnInit {
-file : any;
-Profile :any;
-fileuploadtask: AngularFireUploadTask;
+  file: any;
+  Profile: any;
+  fileuploadtask: AngularFireUploadTask;
   downloadURL: any;
-  proceed : boolean;
-constructor(private storage: AngularFireStorage,private ds : DataService) { }
+  proceed: boolean;
+  constructor(private storage: AngularFireStorage, private ds: DataService) { }
 
   ngOnInit() {
     this.proceed = false;
@@ -28,28 +28,28 @@ constructor(private storage: AngularFireStorage,private ds : DataService) { }
     this.file = files;
     console.log(files);
 
-if(files.item(0)){
-  this.proceed=true;
-}
-else{
-  this.proceed=false;
-}
+    if (files.item(0)) {
+      this.proceed = true;
+    }
+    else {
+      this.proceed = false;
+    }
 
   }
 
   uploadIdProof() {
-    if(this.file){
+    if (this.file) {
 
-    const idproof = this.file.item(0);
-    this.Profile= this.ds.get_profile_info().valueChanges().subscribe((v)=>{
-    
-      this.fileuploadtask = this.storage.upload('abc', idproof);
-    
-    this.downloadURL = this.fileuploadtask.downloadURL();
+      const idproof = this.file.item(0);
+      this.Profile = this.ds.get_profile_info().valueChanges().subscribe((v) => {
 
-    });
+        this.fileuploadtask = this.storage.upload(v.email, idproof);
 
-    
+        this.downloadURL = this.fileuploadtask.downloadURL();
+
+      });
+
+
 
     }
 
