@@ -84,7 +84,7 @@ interface AccountSymmaryData {
 ////////////////////////////////////
 
 interface Investment {
-  timestamp: number;
+  timestamp: any;
   amount: number;
   uid: string;
   scheme: string;
@@ -417,7 +417,7 @@ approve_withdrawal_request(id,uid,amount,details){
       scheme: scheme,
       amount: amount,
       interest_rate: 24,
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       status: 'active',
       duration :90
     }
@@ -531,7 +531,7 @@ approve_withdrawal_request(id,uid,amount,details){
       scheme: scheme,
       amount: amount,
       interest_rate: 24,
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       status: 'active',
       duration :90
     }

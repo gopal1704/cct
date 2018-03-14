@@ -3,6 +3,7 @@ import { AuthenticationService } from '../authentication.service';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import * as firebase from 'firebase';
 
 declare var Chart: any;
 interface AccountSymmaryData {
@@ -48,6 +49,8 @@ public ip : any ;
      }
 
     ngOnInit() {
+        var y = firebase.firestore.FieldValue.serverTimestamp();
+console.log(y);
 this.ip = {
     ip : ""
 }
