@@ -13,7 +13,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-  console.log(this.ds.get_profile_info());
    this.Profile= this.ds.get_profile_info().valueChanges();
    console.log(this.Profile);
   //  var item = itemdoc.valueChanges().subscribe((v)=>{console.log(v);

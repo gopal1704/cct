@@ -20,18 +20,21 @@
 <div class="col">
 
 <table class="table table-bordered table-hover">
+ 
 <tbody>
 <tr>
     <th>Name</th>
     <td>{{(Profile| async)?.title}} {{(Profile| async)?.displayname}}  {{(Profile| async)?.lastname}}</td>
+    
 </tr>
-<tr>
-<th>Gender</th>
+<tr><th>Date of Birth</th>
+  <td>{{converttimestampdob((Profile| async)?.dob)}}</td></tr>
+  <tr>
+  <th>Gender</th>
 <td>{{(Profile| async)?.gender}}</td>
-</tr>
-<tr>
-<th>Date of Birth</th>
-<td>{{converttimestampdob((Profile| async)?.dob)}}</td>
+
+
+
 </tr>
 
 <tr>
@@ -57,6 +60,10 @@
 <tr>
 <th>Country</th>
 <td>{{(Profile| async)?.country}}</td>
+</tr>
+<tr>
+  <th>Id Proof </th>
+  <td>  </td>
 </tr>
 </tbody>
 

@@ -1,3 +1,18 @@
-<p>
-  uploadproof works!
-</p>
+<div class="row h-100 signup ">
+
+  
+    <div class="col-6 mx-auto my-auto " style="margin-top: 5%">
+  <h2 class="text-center" style="margin-bottom: 5%">Upload Id Proof</h2>
+ 
+
+<div class="text-center">
+<label class="btn btn-danger ">
+    Choose file. <input type="file" hidden  (change)="handleFileInput($event.target.files)" onchange="$('#upload-file-info').html(this.files[0].name)">
+</label><br>
+<span class='label label-info' id="upload-file-info"></span>
+
+</div>
+
+
+</div>
+</div>
