@@ -28,6 +28,10 @@ interface AccountSymmaryData {
     styleUrls: ['./account-summary.component.css']
 })
 export class AccountSummaryComponent implements OnInit {
+
+    
+
+
     public loading = false;
 public ip : any ;
     public  summary: AccountSymmaryData ={
@@ -49,6 +53,7 @@ public ip : any ;
      }
 
     ngOnInit() {
+      
         var baseUrl = "https://widgets.cryptocompare.com/";
         var scripts = document.getElementsByTagName("script");
         var embedder = scripts[ scripts.length - 1 ];
@@ -62,7 +67,14 @@ public ip : any ;
         s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
         embedder.parentNode.appendChild(s);
         })();
-        
+        (function(b,i,t,C,O,I,N) {
+            window.addEventListener('load',function() {
+              if(b.getElementById(C))return;
+              I=b.createElement(i),N=b.getElementsByTagName(i)[0];
+              I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
+            },false)
+          })(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt');
+    
 
 
         var y = firebase.firestore.FieldValue.serverTimestamp();
@@ -113,15 +125,7 @@ else{
 
     cc(ts){
 
-
-        (function(b,i,t,C,O,I,N) {
-            window.addEventListener('load',function() {
-              if(b.getElementById(C))return;
-              I=b.createElement(i),N=b.getElementsByTagName(i)[0];
-              I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
-            },false)
-          })(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt');
-    
+        
         var d = new Date(ts);
        // return d.toLocaleString();
          return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
