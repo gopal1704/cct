@@ -92,12 +92,13 @@ interface Investment {
   interest_rate: number;
   status: string;
   duration : number
-
+  name : string,
+  refname : string
 }
 ///////////////////////////////////
 
 interface Transaction {
-  timestamp: number;
+  timestamp: any;
   uid: string;
   type: string;
   status: string;
@@ -200,7 +201,7 @@ export class DataService {
     const fromaccountsummaryref :AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`);
 
     var transaction_to: Transaction = {
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       uid: to_wallet,
       type: 'CWT',
       status: 'success',
@@ -213,9 +214,9 @@ export class DataService {
     };         
 
     var transaction_from: Transaction = {
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       uid: this.currentUserSummary.uid,
-      type: 'CWT',
+      type: 'DWT',
       status: 'success',
       from: this.currentUserSummary.uid,
       to: to_wallet,
@@ -300,7 +301,7 @@ fromaccountsummaryref.update({
 approve_withdrawal_request(id,uid,amount,details){
 
   var transaction_referral: Transaction = {
-    timestamp: Date.now(),
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     uid: uid,
     type: 'WD',
     status: 'success',
@@ -348,7 +349,7 @@ approve_withdrawal_request(id,uid,amount,details){
     //0dSTEjOfLwNmGh8OOaIT
 
     var transaction_referral: Transaction = {
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       uid: this.currentUserSummary.referralid,
       type: 'CSC',
       status: 'success',
@@ -412,20 +413,11 @@ approve_withdrawal_request(id,uid,amount,details){
 
 
     ///////////////////// Investment Data 
-    var investment: Investment = {
-      uid: this.currentUserSummary.uid,
-      referralid: this.currentUserSummary.referralid,
-      scheme: scheme,
-      amount: amount,
-      interest_rate: 24,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      status: 'active',
-      duration :90
-    }
+    
     ////////////////////////////////////// Transaction Data
 
     var transaction_user: Transaction = {
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       uid: this.currentUserSummary.uid,
       type: 'DI',
       status: 'confirmed',
@@ -439,7 +431,7 @@ approve_withdrawal_request(id,uid,amount,details){
 
     }
     var transaction_referral: Transaction = {
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       uid: this.currentUserSummary.referralid,
       type: 'CSC',
       status: 'success',
@@ -447,7 +439,7 @@ approve_withdrawal_request(id,uid,amount,details){
       to: '',
       amount: 0,
       debit: 0,
-      credit: amount * 0.05,
+      credit: Math.round(   amount * 0.05),
       narration: `Credit referral comission 5%. from ${this.currentUserSummary.name} -- account ${this.currentUserSummary.uid} `
     }
 
@@ -458,6 +450,24 @@ approve_withdrawal_request(id,uid,amount,details){
     var reftrans = this.afs.collection('/transactions');
 
     console.log(ref);
+
+    var name =this.afs.doc<any>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges();
+    console.log(this.currentUserSummary);
+
+    ////
+    name.take(1).subscribe(v=>{
+      var investment: Investment = {
+        uid: this.currentUserSummary.uid,
+        referralid: this.currentUserSummary.referralid,
+        scheme: scheme,
+        amount: amount,
+        interest_rate: 24,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        status: 'active',
+        duration :90,
+        name : this.currentUserSummary.name,
+        refname : v.name
+      }
     ref.add(investment).then((v) => {
 
       const usersummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`); //get the refrence for updating initial user data
@@ -500,8 +510,8 @@ approve_withdrawal_request(id,uid,amount,details){
 
     });
 
-    //////
-
+    //////eeee
+    });
 
 
 
@@ -526,20 +536,11 @@ approve_withdrawal_request(id,uid,amount,details){
 
 
     ///////////////////// Investment Data 
-    var investment: Investment = {
-      uid: this.currentUserSummary.uid,
-      referralid: this.currentUserSummary.referralid,
-      scheme: scheme,
-      amount: amount,
-      interest_rate: 24,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      status: 'active',
-      duration :90
-    }
+    
     ////////////////////////////////////// Transaction Data
 
     var transaction_user: Transaction = {
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       uid: this.currentUserSummary.uid,
       type: 'DI',
       status: 'success',
@@ -553,7 +554,7 @@ approve_withdrawal_request(id,uid,amount,details){
 
     }
     var transaction_referral: Transaction = {
-      timestamp: Date.now(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       uid: this.currentUserSummary.referralid,
       type: 'CSC',
       status: 'success',
@@ -561,7 +562,7 @@ approve_withdrawal_request(id,uid,amount,details){
       to: '',
       amount: 0,
       debit: 0,
-      credit: amount * 0.05,
+      credit: Math.round(amount * 0.05),
       narration: `Credit referral comission 5%. from ${this.currentUserSummary.name} -- account ${this.currentUserSummary.uid} `
     }
 
@@ -572,49 +573,72 @@ approve_withdrawal_request(id,uid,amount,details){
     var reftrans = this.afs.collection('/transactions');
 
     console.log(ref);
-    ref.add(investment).then((v) => {
+  
+    var name =this.afs.doc<any>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges();
+console.log(this.currentUserSummary);
+    ////
+    name.take(1).subscribe(v=>{
+      console.log(v)
+      var investment: Investment = {
+        uid: this.currentUserSummary.uid,
+        referralid: this.currentUserSummary.referralid,
+        scheme: scheme,
+        amount: amount,
+        interest_rate: 24,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        status: 'active',
+        duration :90,
+        name : this.currentUserSummary.name,
+        refname : v.name
+  
+      }
 
-      const usersummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`); //get the refrence for updating initial user data
-      const referralsummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.referralid}`);
+      ref.add(investment).then((v) => {
 
-
-
-      usersummaryref.update({
-
-        totalinvestment: this.currentUserSummary.totalinvestment + amount,
-        walletbalance : this.currentUserSummary.walletbalance - amount
-      }).then(
-        (v) => {
-          console.log("success");
-
-          reftrans.add(transaction_user).then((a) => {
-            reftrans.add(transaction_referral).then((v) => {
-              this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges().take(1).subscribe((v) => {
-                var pendingwalbal = v.walletpendingbalance + amount * 0.05;
-                var _totalstopearnings = v.totalspotearnings + amount *0.05;
-                referralsummaryref.update({
-                  walletpendingbalance: pendingwalbal,
-                  totalspotearnings : _totalstopearnings
+        const usersummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`); //get the refrence for updating initial user data
+        const referralsummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.referralid}`);
+  
+  
+  
+        usersummaryref.update({
+  
+          totalinvestment: this.currentUserSummary.totalinvestment + amount,
+          walletbalance : this.currentUserSummary.walletbalance - amount
+        }).then(
+          (v) => {
+            console.log("success");
+  
+            reftrans.add(transaction_user).then((a) => {
+              reftrans.add(transaction_referral).then((v) => {
+                this.afs.doc<AccountSymmaryData>(`accountsummary/${this.currentUserSummary.referralid}`).valueChanges().take(1).subscribe((v) => {
+                  var pendingwalbal = Math.round(  v.walletpendingbalance + amount * 0.05);
+                  var _totalstopearnings =Math.round(   v.totalspotearnings + amount *0.05);
+                  referralsummaryref.update({
+                    walletpendingbalance: pendingwalbal,
+                    totalspotearnings : _totalstopearnings
+                  });
+  
                 });
-
+  
+  
               });
-
-
-            });
-
+  
+            }
+            );
+  
+  
           }
+  
           );
+  
+  
+  
+      });
+  
 
-
-        }
-
-        );
-
-
-
-    });
-
-    //////
+    })
+    
+    //////ee
 
 
 

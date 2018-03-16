@@ -110,7 +110,7 @@ export class PaywithbitcoinComponent implements OnInit {
             console.log('address match!');
             var amount = response.x.out[i].value;
             this.paymentreceived = amount / 100000000;
-           
+            //
             if (this.paymentreceived === this.btcpayment) {
               this.paymentstate = true;
 
