@@ -23,8 +23,8 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect2">Select withdrawal method.</label>
                         <select (change) ="onwithdrawmethodselect($event.target.value)" formControlName="accounttype" class="form-control" id="exampleFormControlSelect2">
-                          <option value="bank">Bank</option>
-                          <option value="paypal">Paypal</option>
+                          <option  [attr.disabled] = "country === false ? 'disabled' : null" value="bank">Bank</option>
+                          <option   value="paypal">Paypal</option>
                           <option value="moneypolo">Moneypolo</option>
                           <option value="bitcoin">Bitcoin</option>
 

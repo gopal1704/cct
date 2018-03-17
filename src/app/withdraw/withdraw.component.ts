@@ -16,7 +16,7 @@ declare var Messenger: any;
 //name
 export class WithdrawComponent implements OnInit {
   proceed : boolean = false;
-
+  country : boolean = false;
   WithdrawalForm: FormGroup;  
   UserName: string;
   Password: string;
@@ -40,6 +40,13 @@ export class WithdrawComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.as.userProfile.subscribe(v=>{
+      if(v.country=="India"){
+     this.country ==true;
+
+      }
+    })
 
     this.as.userAccountSummary.subscribe((summary) => {
 
