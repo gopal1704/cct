@@ -31,7 +31,7 @@ export class AccountSummaryComponent implements OnInit {
 
     
 
-
+public currentdatetime : any = new Date().toLocaleString();
     public loading = false;
 public ip : any ;
     public  summary: AccountSymmaryData ={

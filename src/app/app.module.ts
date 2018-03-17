@@ -33,6 +33,7 @@ import { WallettransferotpComponent } from './wallettransferotp/wallettransferot
 import { InvestfromwalletComponent } from './investfromwallet/investfromwallet.component';
 import { AdminwithdrawalComponent } from './adminwithdrawal/adminwithdrawal.component';
 import { UploadproofComponent } from './uploadproof/uploadproof.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 var config = {
   apiKey: "AIzaSyDZctYRBSTRhuIjDsPP-j7ide7LrlHjf4o",
   authDomain: "investment-3327a.firebaseapp.com",
@@ -65,7 +66,8 @@ var config = {
     WallettransferotpComponent,
     InvestfromwalletComponent,
     AdminwithdrawalComponent,
-    UploadproofComponent
+    UploadproofComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,
