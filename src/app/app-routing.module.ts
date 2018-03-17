@@ -19,6 +19,7 @@ import { WallettransferotpComponent } from './wallettransferotp/wallettransferot
 import { InvestfromwalletComponent } from './investfromwallet/investfromwallet.component';
 import { AdminwithdrawalComponent } from './adminwithdrawal/adminwithdrawal.component';
 import { UploadproofComponent } from './uploadproof/uploadproof.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 
 // path: '', redirectTo: '/heroes', pathMatch: 'full'
@@ -46,8 +47,8 @@ children :[
    {path: 'wallettransferotp' , component : WallettransferotpComponent},
    {path: 'investfromwallet' , component : InvestfromwalletComponent},
    {path: 'adminwithdraw' , component : AdminwithdrawalComponent},
-   {path:'uploadproof',component : UploadproofComponent}
-
+   {path:'uploadproof',component : UploadproofComponent},
+{path : 'editprofile' , component : EditprofileComponent}
 ]
 
 }
