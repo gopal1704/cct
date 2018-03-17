@@ -19,7 +19,7 @@
  <div class="col-sm-2">
                   <label for="inputEmail3" class="">Title</label>
 
-                  <select disabled class="form-control">
+                  <select value="{{(Profile| async)?.title}}" disabled class="form-control">
                     <option value="Mr">Mr</option>
   
                   <option value="Ms" >Ms</option>
@@ -29,13 +29,13 @@
               <div class="col-sm-4">
                   <label for="inputEmail3"  class="">First name <span class="req">*</span></label>
 
-                  <input  required="true"disabled type="text"  class="form-control" id="inputEmail3">
+                  <input  required="true"disabled type="text" value="{{(Profile| async)?.displayname}}" class="form-control" id="inputEmail3">
                 </div>
 
                 <div class="col-sm-3">
-                    <label for="inputEmail3" disabled class="">Last name <span class="req">*</span></label>
+                    <label for="inputEmail3"  disabled class="">Last name <span class="req">*</span></label>
 
-                    <input disabled type="text"  class="form-control" >
+                    <input disabled type="text"  value="{{(Profile| async)?.lastname}}" class="form-control" >
                   </div>
                   <div class="col-sm-3">
                       <label for="inputEmail3" class="">Date of birth <span class="req">*</span></label>
@@ -51,13 +51,13 @@
                   <legend class="col-form-label col-sm-2 pt-0">Gender <span class="req">*</span></legend>
                   <div class="col-sm-10">
                     <div class="form-check">
-                      <input [(ngModel)]="gender" class="form-check-input"   type="radio" name="gender" id="gridRadios1" value="male" checked>
+                      <input [(ngModel)]="gender" ng-control="options" class="form-check-input"   type="radio" name="gender" id="gridRadios1" value="male" >
                       <label class="form-check-label" for="gridRadios1">
                         Male
                       </label>
                     </div>
                     <div class="form-check">
-                      <input  [(ngModel)]="gender" class="form-check-input"   type="radio" name="gender" id="gridRadios2" value="female">
+                      <input  [(ngModel)]="gender" ng-control="options" class="form-check-input"   type="radio" name="gender" id="gridRadios2" value="female">
                       <label class="form-check-label" for="gridRadios2">
 Female                      </label>
                     </div>
@@ -74,7 +74,7 @@ Female                      </label>
               <select [(ngModel)]="country"  (change)="onchangecountry($event.target.value)"   class="form-control" id="exampleFormControlSelect1">
                   <option  value="">select country</option>
 
-                <option *ngFor="let c of CountryCodesList" >{{c.name}}</option>
+                <option *ngFor="let c of CountryCodesList"  [ngValue]="c.name">{{c.name}}</option>
 </select>
 
               </div>
@@ -86,13 +86,13 @@ Female                      </label>
                     <input  class="form-control" type="input"  [(ngModel)]="isdcode">
 </div>
                 <div class="col-sm-8">
-                  <input type="number" [(ngModel)]="mobile" class="form-control" id="inputEmail3">
+                  <input type="number" [(ngModel)]="mobile"  class="form-control">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail3"  class="col-sm-2 col-form-label">Address <span class="req">*</span></label>
                 <div class="col-sm-10">
-                  <textarea [(ngModel)]="address" class="form-control"   id="inputEmail3"  rows="3">
+                  <textarea [(ngModel)]="address"  class="form-control"   id="inputEmail3"  rows="3">
                     </textarea>
                 </div>
               </div>
@@ -100,7 +100,7 @@ Female                      </label>
               <div class="form-group row">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">City <span class="req">*</span></label>
                   <div class="col-sm-10">
-                    <input type="text" [(ngModel)]="city"  class="form-control" id="inputEmail3">
+                    <input type="text"   [(ngModel)]="city"  class="form-control" id="inputEmail3">
                   </div>
                 </div>
 
