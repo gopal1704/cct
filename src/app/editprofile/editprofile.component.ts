@@ -17,7 +17,7 @@ export class EditprofileComponent implements OnInit {
   CountryCodes : any;
   CountryCodesList : any;
   Profile : any;
-  //
+  public loading : boolean = false;
   dob : any;
   gender : any;
   country : any;
@@ -76,12 +76,12 @@ return moment(d).format('YYYY-MM-DD');
     }
       }
       UpdateProfile(){
+        this.loading = true;
         console.log(this.gender);
         console.log(this.country);
         console.log(this.dob);
         const userprofileref: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.uid}`); //get the refrence for updating initial user data
         userprofileref.update({
-          
         
           dob: this.dob,
           gender : this.gender, 
@@ -93,7 +93,7 @@ return moment(d).format('YYYY-MM-DD');
           city: this.city
 
         }).then(()=>{
-
+this.loading = false;
           Messenger().post({
             message: 'Profile updated successfull!',
             type: 'success',
@@ -101,6 +101,7 @@ return moment(d).format('YYYY-MM-DD');
           });
         }).catch(e=>{
 console.log(e);
+this.loading = false;
           Messenger().post({
             message: 'error updating profile',
             type: 'success',

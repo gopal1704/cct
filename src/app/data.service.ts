@@ -164,6 +164,14 @@ export class DataService {
     });
     return investmentscollection.valueChanges();
   }
+  get_investments_s(uid) {
+
+    var investmentscollection = this.afs.collection('investments', ref => {
+      return ref.where('uid', '==', uid).orderBy('timestamp','desc').limit(5);
+
+    });
+    return investmentscollection.valueChanges();
+  }
   /******************* */
 
 

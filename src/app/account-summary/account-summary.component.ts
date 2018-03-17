@@ -29,7 +29,7 @@ interface AccountSymmaryData {
 })
 export class AccountSummaryComponent implements OnInit {
 
-    
+   public Investments : any;
 
 public currentdatetime : any = new Date().toLocaleString();
     public loading = false;
@@ -54,6 +54,27 @@ public ip : any ;
 
     ngOnInit() {
       
+
+        //invs
+        this.as.userAccountSummary.subscribe(
+            (summarydata) => {
+      
+              if (summarydata) {
+                var uid = summarydata.uid;
+      
+      
+                this.ds.get_investments_s(uid).subscribe((v) => {
+                  this.Investments = v;
+                  console.log(v)
+                });
+      
+      
+              }
+            }
+          );
+
+
+        //
 
         var y = firebase.firestore.FieldValue.serverTimestamp();
 console.log(y);
@@ -100,7 +121,17 @@ else{
 
     }
 
-
+    converttimestamp(ts){
+        var d = new Date(ts);
+        return d.toLocaleString();
+        // return  d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '--' + d.getHours() + ':' +d.getMinutes();
+        
+        }
+        calculateenddate(ts,days){
+            var d = new Date(ts);
+            d.setDate(d.getDate()+ parseInt(days));
+            return this.converttimestamp(d);
+             }
     cc(ts){
 
         

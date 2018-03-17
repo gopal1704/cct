@@ -119,11 +119,7 @@ Messenger().post({
   type: 'success',
   showCloseButton: true
 });
-Messenger().post({
-  message: 'Withdrawal request sent.',
-  type: 'error',
-  showCloseButton: true
-});
+
 this.router.navigate(['/dashboard']);
   }
 }) ;

@@ -123,7 +123,8 @@ console.log('error sending verification email');
   logout() {
     this.afAuth.auth.signOut();
     this.userLoggedIn = false;
-    this.router.navigate(['']);
+   // this.router.navigate(['']);
+   window.location.href='https://catcotrade.info/';
 
   }
   private setUserProfileandSummary(user, referralid) {
