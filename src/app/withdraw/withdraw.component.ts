@@ -88,6 +88,7 @@ if(formdata.accounttype=='bitcoin'){
 }
 //
 ////
+
 if(validate==true){
 
 console.log(formdata);

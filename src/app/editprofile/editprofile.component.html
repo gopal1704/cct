@@ -13,7 +13,7 @@
           </div>
           <div class="card-body">
            
-            <form  >
+            <div  >
 
             <div class="form-group row">
  <div class="col-sm-2">
@@ -40,7 +40,7 @@
                   <div class="col-sm-3">
                       <label for="inputEmail3" class="">Date of birth <span class="req">*</span></label>
 
-                      <input   type="date" class="form-control" id="inputPassword3">
+                      <input  [(ngModel)]="dob" type="date" class="form-control" id="inputPassword3">
                     </div>
 
 
@@ -51,13 +51,13 @@
                   <legend class="col-form-label col-sm-2 pt-0">Gender <span class="req">*</span></legend>
                   <div class="col-sm-10">
                     <div class="form-check">
-                      <input class="form-check-input"   type="radio" name="gender" id="gridRadios1" value="male" checked>
+                      <input [(ngModel)]="gender" class="form-check-input"   type="radio" name="gender" id="gridRadios1" value="male" checked>
                       <label class="form-check-label" for="gridRadios1">
                         Male
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input"   type="radio" name="gender" id="gridRadios2" value="female">
+                      <input  [(ngModel)]="gender" class="form-check-input"   type="radio" name="gender" id="gridRadios2" value="female">
                       <label class="form-check-label" for="gridRadios2">
 Female                      </label>
                     </div>
@@ -71,7 +71,7 @@ Female                      </label>
 
               <div class="col-sm-10">
 
-              <select (change)="onchangecountry($event.target.value)"   class="form-control" id="exampleFormControlSelect1">
+              <select [(ngModel)]="country"  (change)="onchangecountry($event.target.value)"   class="form-control" id="exampleFormControlSelect1">
                   <option  value="">select country</option>
 
                 <option *ngFor="let c of CountryCodesList" >{{c.name}}</option>
@@ -83,17 +83,16 @@ Female                      </label>
               <div class="form-group row">
                 <label for="inputEmail3"  class="col-sm-2 col-form-label">Mobile <span class="req">*</span></label>
                 <div class="col-sm-2">
-                    <input style="display:none"  >
-                    <input class="form-control" type="input"  [(ngModel)]="isdcode" [ngModelOptions]="{standalone: true}">
+                    <input  class="form-control" type="input"  [(ngModel)]="isdcode">
 </div>
                 <div class="col-sm-8">
-                  <input type="number" class="form-control" id="inputEmail3">
+                  <input type="number" [(ngModel)]="mobile" class="form-control" id="inputEmail3">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail3"  class="col-sm-2 col-form-label">Address <span class="req">*</span></label>
                 <div class="col-sm-10">
-                  <textarea  class="form-control"   id="inputEmail3"  rows="3">
+                  <textarea [(ngModel)]="address" class="form-control"   id="inputEmail3"  rows="3">
                     </textarea>
                 </div>
               </div>
@@ -101,21 +100,17 @@ Female                      </label>
               <div class="form-group row">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">City <span class="req">*</span></label>
                   <div class="col-sm-10">
-                    <input type="text"   class="form-control" id="inputEmail3">
+                    <input type="text" [(ngModel)]="city"  class="form-control" id="inputEmail3">
                   </div>
                 </div>
 
-              
-
-                 
-
-              
-            </form>
+     
+              </div>
 
 
 
 <div class="text-center">
-            <button  type="submit" (click)="UpdateProfile(UpdateProfileForm.value)" class="btn btn-primary">UPDATE</button>
+            <button  type="submit" (click)="UpdateProfile()" class="btn btn-primary">UPDATE</button>
           </div>
           </div>
           
