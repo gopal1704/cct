@@ -283,15 +283,24 @@ fromaccountsummaryref.update({
   /*******************WITHDRAWAL REQUEST******************** */
 
   withdrawal_request(data) {
-    this.authservice.userAccountSummary.subscribe((v)=>{
-      data.name = v.name;
-      data.status = 'pending';
-      var ref = this.afs.collection('/withdrawalrequest');
-      ref.add(data)
-      ;
 
-    })
-    
+    const usersummaryref: AngularFirestoreDocument<AccountSymmaryData> = this.afs.doc(`accountsummary/${this.currentUserSummary.uid}`); //get the refrence for updating initial user data
+     usersummaryref.update({
+       walletbalance : this.currentUserSummary.walletbalance - data.amount,
+      walletpendingbalance : this.currentUserSummary.walletpendingbalance + data.amount
+     }).then(v=>{
+      this.authservice.userAccountSummary.take(1).subscribe((v)=>{
+        data.name = v.name;
+        data.status = 'pending';
+        var ref = this.afs.collection('/withdrawalrequest');
+        ref.add(data)
+        ;
+  
+      })
+      
+
+     })    
+ 
 
 
 
@@ -321,7 +330,7 @@ approve_withdrawal_request(id,uid,amount,details){
       this.afs.doc<AccountSymmaryData>(`accountsummary/${uid}`).valueChanges().take(1).subscribe((v) => {
 
         summaryref.update({
-          walletbalance : v.walletbalance - amount,
+          walletpendingbalance : v.walletpendingbalance - amount,
         }).then(()=>{
           return true;
         });
@@ -477,7 +486,8 @@ approve_withdrawal_request(id,uid,amount,details){
 
       usersummaryref.update({
 
-        totalinvestment: this.currentUserSummary.totalinvestment + amount
+        totalinvestment: this.currentUserSummary.totalinvestment + amount,
+        transaction : true
 
       }).then(
         (v) => {
@@ -603,7 +613,9 @@ console.log(this.currentUserSummary);
         usersummaryref.update({
   
           totalinvestment: this.currentUserSummary.totalinvestment + amount,
-          walletbalance : this.currentUserSummary.walletbalance - amount
+          walletbalance : this.currentUserSummary.walletbalance - amount,
+          transaction : true
+
         }).then(
           (v) => {
             console.log("success");

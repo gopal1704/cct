@@ -21,7 +21,10 @@ export class WithdrawComponent implements OnInit {
   UserName: string;
   Password: string;
   WalletBal : number = 0;
+  trans : boolean = false;
+  status : any = "pending";
   public withdrawalmethod : string;
+  
   constructor(private fb: FormBuilder,private ds :DataService,  private router: Router,   private as: AuthenticationService,
   ) { 
     this.WithdrawalForm = fb.group({
@@ -43,7 +46,7 @@ export class WithdrawComponent implements OnInit {
 
     this.as.userProfile.subscribe(v=>{
       if(v.country=="India"){
-     this.country ==true;
+     this.country =true;
 
       }
     })
@@ -51,9 +54,11 @@ export class WithdrawComponent implements OnInit {
     this.as.userAccountSummary.subscribe((summary) => {
 
       if (summary) {
+        this
           this.WalletBal =summary.walletbalance;
           console.log("this summary");
-
+          this.trans = summary.transaction;
+this.status = summary.approvalstatus;
       }
   }) ;
 
@@ -98,11 +103,13 @@ if(formdata.accounttype=='bitcoin'){
 
 if(validate==true){
 
+if((this.trans == true) && (this.status!="pending"))
+{
 console.log(formdata);
 var d = formdata;
 d.timestamp = Date.now();
 
-this.as.userAccountSummary.subscribe((summary) => {
+this.as.userAccountSummary.take(1).subscribe((summary) => {
 
   if (summary) {
 d.uid = summary.uid;
@@ -112,9 +119,34 @@ Messenger().post({
   type: 'success',
   showCloseButton: true
 });
+Messenger().post({
+  message: 'Withdrawal request sent.',
+  type: 'error',
+  showCloseButton: true
+});
 this.router.navigate(['/dashboard']);
   }
 }) ;
+
+}
+else{
+
+  if(this.trans==false){
+  Messenger().post({
+    message: 'Kindly make initial investment to send withdrawal request',
+    type: 'error',
+    showCloseButton: true
+  });}
+  if(this.status=="pending"){
+    Messenger().post({
+      message: 'Approval status pending cannot send withdrawal request',
+      type: 'error',
+      showCloseButton: true
+    });
+  }
+
+}
+
 }
 else{
   Messenger().post({
