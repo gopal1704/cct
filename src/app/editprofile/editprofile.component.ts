@@ -81,6 +81,7 @@ return moment(d).format('YYYY-MM-DD');
         console.log(this.country);
         console.log(this.dob);
         const userprofileref: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.uid}`); //get the refrence for updating initial user data
+
         userprofileref.update({
         
           dob: this.dob,
@@ -93,6 +94,9 @@ return moment(d).format('YYYY-MM-DD');
           city: this.city
 
         }).then(()=>{
+
+        
+
 this.loading = false;
           Messenger().post({
             message: 'Profile updated successfull!',
