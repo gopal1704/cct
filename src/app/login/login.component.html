@@ -32,6 +32,8 @@
             </div>
             <div class="card-footer text-muted">
               <a href="https://dashboard.catcotrade.info/signup">Sign up</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a  href="" data-target="#passwordreset" data-toggle="modal" >Forgot password</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
             </div>
           </div>
   </div>
@@ -62,3 +64,33 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="passwordreset">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Password reset</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email"  [(ngModel)]="passwordresetemail" class="form-control" >
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="sendpasswordreset()" data-dismiss="modal">ok</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+

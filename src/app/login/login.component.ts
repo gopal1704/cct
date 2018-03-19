@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   Password: string;
   /******************/
 
+
+  passwordresetemail : string;
+
   constructor(private fb: FormBuilder, private afAuth: AngularFireAuth, private router: Router, private as: AuthenticationService) {
 
 
@@ -39,6 +42,21 @@ export class LoginComponent implements OnInit {
     this.loading = false;
     console.log("init called");
 
+  }
+  sendpasswordreset(){
+    this.afAuth.auth.sendPasswordResetEmail(this.passwordresetemail).then(()=>{
+      Messenger().post({
+        message: 'Password reset email sent',
+        type: 'error',
+        showCloseButton: true
+      });
+    }).catch(()=>{
+      Messenger().post({
+        message: 'Error sending password reset email',
+        type: 'error',
+        showCloseButton: true
+      });
+    });
   }
 
   Login(Credentials) {

@@ -120,9 +120,10 @@ console.log('error sending verification email');
 
 
 
-  logout() {
+  logout() {    window.location.href='https://catcotrade.info/';
+
     this.afAuth.auth.signOut();
-    window.location.href='https://catcotrade.info/';
+     this.router.navigate(['https://catcotrade.info/']);
 
     this.userLoggedIn = false;
 
