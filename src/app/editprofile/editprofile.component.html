@@ -74,7 +74,7 @@ Female                      </label>
               <select [(ngModel)]="country"  (change)="onchangecountry($event.target.value)"   class="form-control" id="exampleFormControlSelect1">
                   <option  value="">select country</option>
 
-                <option *ngFor="let c of CountryCodesList"  [ngValue]="c.name">{{c.name}}</option>
+                <option *ngFor="let c of CountryCodesList"  value="{{c.name}}">{{c.name}}</option>
 </select>
 
               </div>
