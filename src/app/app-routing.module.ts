@@ -21,6 +21,7 @@ import { AdminwithdrawalComponent } from './adminwithdrawal/adminwithdrawal.comp
 import { UploadproofComponent } from './uploadproof/uploadproof.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 
+import { PlanComponent } from './plan/plan.component';
 
 // path: '', redirectTo: '/heroes', pathMatch: 'full'
 const routes: Routes = [
@@ -48,7 +49,9 @@ children :[
    {path: 'investfromwallet' , component : InvestfromwalletComponent},
    {path: 'adminwithdraw' , component : AdminwithdrawalComponent},
    {path:'uploadproof',component : UploadproofComponent},
-{path : 'editprofile' , component : EditprofileComponent}
+{path : 'editprofile' , component : EditprofileComponent},
+{path : 'plan' , component : PlanComponent}
+
 ]
 
 }
