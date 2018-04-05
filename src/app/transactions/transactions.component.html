@@ -9,6 +9,39 @@
               <br>
               <h4 class="main-header">Transactions</h4> <hr> </div>
         </div>
+        <div class="row">
+
+          <div class="col">
+              <form   [formGroup]="usersearchForm" >
+                  <div class="form-row">
+                  
+                    
+                     
+                        <div class="col"><input type="date" class="form-control" formControlName="from"></div>
+                        <div class="col"> <input type="date" class="form-control" formControlName="to"></div>
+                        <div class="col">
+                            <select class="form-control"  formControlName="ttype" id="exampleFormControlSelect1">
+                              <option value="CWT">Credit wallet transfer</option>
+                              <option value="DWT">Debit Wallet transfer</option>
+                              <option value="WD">Withdrawal</option>
+                              <option value="CSC">Spot comission</option>
+                              <option value="CMR">Monthly ref. returns</option>
+                              <option value="DI">Investment</option>
+                              <option value="IR">Investment return</option>
+                            </select>
+                          </div>
+                      
+                        <div class="col">
+  
+                          <button type="button"  class="form-control" (click)="search(usersearchForm.value)" class="btn btn-primary"> search</button>
+                          </div>
+                  </div>
+                </form>
+                <br>
+          </div>
+        </div>
+
+
 <div class="row" >
 
   <div class="col" >

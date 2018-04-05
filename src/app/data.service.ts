@@ -181,9 +181,9 @@ export class DataService {
   get_referrals(uid) {
 
     var accountsummarycollection = this.afs.collection('accountsummary', ref => {
-      return ref.where('referralid', '==', uid);
+      return ref.where('referralid', '==', uid).limit(5);
     });
-    return accountsummarycollection.valueChanges();
+    return accountsummarycollection;
 
    
 
@@ -195,9 +195,21 @@ export class DataService {
   get_transactions(uid) {
 
     var transactionscollection = this.afs.collection('transactions', ref => {
-      return ref.where('uid', '==', uid).orderBy('timestamp','desc');
+      return ref.where('uid', '==', uid).orderBy('timestamp','desc').limit(10)
+    });
+return transactionscollection.valueChanges();
+
+
+
+    
+  }
+  get_trans_next(uid,last){
+    var transactionscollection = this.afs.collection('transactions', ref => {
+      return ref.where('uid', '==', uid).orderBy('timestamp','desc').limit(5).startAfter(last)
     });
     return transactionscollection.valueChanges();
+
+
   }
   /**************** */
 

@@ -10,6 +10,10 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class ReferralsComponent implements OnInit {
    public Referrals;
+   public length;
+   public startPointer;
+   public endPointer;
+
 
   constructor(private ds: DataService,    private authservice: AuthenticationService,
   ) { }
@@ -23,9 +27,19 @@ export class ReferralsComponent implements OnInit {
           var uid = summarydata.uid;
  
 
-          this.ds.get_referrals(uid).subscribe((v)=>{
+        var doc=  this.ds.get_referrals(uid)
+          doc.ref.get().then((documentSnapshots)=>{
+
+           this.length= documentSnapshots.docs.length;
+           console.log(length);
+          });
+            
+
+          /*
+          .subscribe((v)=>{
             this.Referrals = v;
             console.log(v)});
+          */
 
 
         }
