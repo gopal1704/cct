@@ -8,8 +8,28 @@
 <h4>My Holdings</h4>
 
       <hr>
-  </div>
+
+    </div>
 </div>
+<br>
+<div class="row">
+
+    <div class="col">
+        <form   [formGroup]="usersearchForm" >
+            <div class="form-row">
+        
+                  <div class="col"><input type="date" class="form-control" formControlName="from"></div>
+                  <div class="col"> <input type="date" class="form-control" formControlName="to"></div>
+                  <div class="col">
+
+                    <button type="button"  class="form-control" (click)="search(usersearchForm.value)" class="btn btn-primary"> search</button>
+                    </div>
+            </div>
+          </form>
+    </div>
+  </div>
+<br>
+
   <div class="row">
 
     <div class="col">

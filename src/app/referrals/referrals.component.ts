@@ -27,19 +27,10 @@ export class ReferralsComponent implements OnInit {
           var uid = summarydata.uid;
  
 
-        var doc=  this.ds.get_referrals(uid)
-          doc.ref.get().then((documentSnapshots)=>{
-
-           this.length= documentSnapshots.docs.length;
-           console.log(length);
-          });
-            
-
-          /*
-          .subscribe((v)=>{
+        var doc=  this.ds.get_referrals(uid).valueChanges().subscribe((v)=>{
             this.Referrals = v;
             console.log(v)});
-          */
+        
 
 
         }

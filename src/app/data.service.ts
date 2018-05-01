@@ -93,7 +93,10 @@ interface Investment {
   status: string;
   duration : number
   name : string,
-  refname : string
+  refname : string,
+  first_bonus: boolean,
+second_bonus: boolean,
+third_bonus: boolean
 }
 ///////////////////////////////////
 
@@ -495,7 +498,12 @@ approve_withdrawal_request(id,uid,amount,details){
         status: 'active',
         duration :90,
         name : this.currentUserSummary.name,
-        refname : v.name
+        refname : v.name,
+
+        first_bonus: false,
+second_bonus:false,
+third_bonus:false
+
       }
     ref.add(investment).then((v) => {
 
@@ -619,7 +627,10 @@ console.log(this.currentUserSummary);
         status: 'active',
         duration :90,
         name : this.currentUserSummary.name,
-        refname : v.name
+        refname : v.name,
+        first_bonus: false,
+        second_bonus:false,
+        third_bonus:false
   
       }
 

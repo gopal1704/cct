@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { AuthenticationService } from '../authentication.service';
 import { start } from 'repl';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+
 
 @Component({
   selector: 'app-investments',
@@ -10,16 +13,29 @@ import { start } from 'repl';
 })
 export class InvestmentsComponent implements OnInit {
   Investments: any;
-  constructor(private ds: DataService, private authservice: AuthenticationService) { }
+  usersearchForm : FormGroup;
+ public  uid ;
+
+  constructor(private ds: DataService, private authservice: AuthenticationService,private fb: FormBuilder,private afs: AngularFirestore) { }
 
   ngOnInit() {
+
+    this.usersearchForm = this.fb.group({
+      'search': '',
+      'type': '',
+      'from':'',
+      'to' : ''
+      
+
+    });
+
 
     this.authservice.userAccountSummary.subscribe(
       (summarydata) => {
 
         if (summarydata) {
           var uid = summarydata.uid;
-
+          this.uid = summarydata.uid; 
 
           this.ds.get_investments(uid).subscribe((v) => {
             this.Investments = v;
@@ -60,6 +76,16 @@ return '50%';
 
 
  }
+search(formdata){
+ 
+  var invest = this.afs.collection('investments', ref => {
+    return ref.where('uid' , '==' ,this.uid).where("timestamp", ">=", new Date(formdata.from)).where("timestamp", "<=", new Date(formdata.to));
+  });
+  
+  invest.valueChanges().subscribe((v)=>{
+  this.Investments = v;
+  });
+}
 
 
 }
