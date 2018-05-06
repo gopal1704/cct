@@ -15,28 +15,28 @@ declare var Messenger: any;
 
 //name
 export class WithdrawComponent implements OnInit {
-  proceed : boolean = false;
-  country : boolean = false;
-  WithdrawalForm: FormGroup;  
+  proceed: boolean = false;
+  country: boolean = false;
+  WithdrawalForm: FormGroup;
   UserName: string;
   Password: string;
-  WalletBal : number = 0;
-  trans : boolean = false;
-  status : any = "pending";
-  public withdrawalmethod : string;
-  
-  constructor(private fb: FormBuilder,private ds :DataService,  private router: Router,   private as: AuthenticationService,
-  ) { 
+  WalletBal: number = 0;
+  trans: boolean = false;
+  status: any = "pending";
+  public withdrawalmethod: string;
+
+  constructor(private fb: FormBuilder, private ds: DataService, private router: Router, private as: AuthenticationService,
+  ) {
     this.WithdrawalForm = fb.group({
       'amount': '',
       'accounttype': '',
       'accountdetails': '',
-'bankname' : '',
-'accountnumber' : '',
-'ifsc' : '',
-'moneypolo' : '',
-'paypal' : '',
-'bitcoin' : ''
+      'bankname': '',
+      'accountnumber': '',
+      'ifsc': '',
+      'moneypolo': '',
+      'paypal': '',
+      'bitcoin': ''
 
     });
 
@@ -44,9 +44,9 @@ export class WithdrawComponent implements OnInit {
 
   ngOnInit() {
 
-    this.as.userProfile.subscribe(v=>{
-      if(v.country=="India"){
-     this.country =true;
+    this.as.userProfile.subscribe(v => {
+      if (v.country == "India") {
+        this.country = true;
 
       }
     })
@@ -55,125 +55,128 @@ export class WithdrawComponent implements OnInit {
 
       if (summary) {
         this
-          this.WalletBal =summary.walletbalance;
-          console.log("this summary");
-          this.trans = summary.transaction;
-this.status = summary.approvalstatus;
+        this.WalletBal = summary.walletbalance;
+        console.log("this summary");
+        this.trans = summary.transaction;
+        this.status = summary.approvalstatus;
       }
-  }) ;
+    });
 
   }
-  onAmountChange(value){
-    if(value<=this.WalletBal){
-      this.proceed=true;
+  onAmountChange(value) {
+    if (value <= this.WalletBal) {
+      this.proceed = true;
     }
-    else{
+    else {
       this.proceed = false;
     }
   }
-  sendrequest(formdata){
-// 
-var validate = false;
-if(formdata.accounttype=='bank'){
+  sendrequest(formdata) {
+    // 
+    var validate = false;
+    if (formdata.accounttype == 'bank') {
 
-  if(!(formdata.bankname=="")&&!(formdata.ifsc=="")&&!(formdata.accountnumber=="")){
-    validate = true;
+      if (!(formdata.bankname == "") && !(formdata.ifsc == "") && !(formdata.accountnumber == "")) {
+        validate = true;
+      }
+    }
+    if (formdata.accounttype == 'paypal') {
+
+      if (!(formdata.paypal == "")) {
+        validate = true;
+      }
+    }
+    if (formdata.accounttype == 'moneypolo') {
+
+      if (!(formdata.moneypolo == "")) {
+        validate = true;
+      }
+    }
+    if (formdata.accounttype == 'bitcoin') {
+
+      if (!(formdata.bitcoin == "")) {
+        validate = true;
+      }
+    }
+    //
+    ////
+
+    if (validate == true) {
+
+      if ((this.trans == true) && (this.status != "pending")) {
+        console.log(formdata);
+        var d = formdata;
+        d.timestamp = Date.now();
+
+        this.as.userAccountSummary.take(1).subscribe((summary) => {
+
+          if (summary) {
+            d.uid = summary.uid;
+            this.ds.withdrawal_request(d);
+            Messenger().post({
+              message: 'Withdrawal request sent!',
+              type: 'success',
+              showCloseButton: true
+            });
+
+            this.router.navigate(['/dashboard']);
+          }
+        });
+
+      }
+      else {
+
+        if (this.trans == false) {
+          Messenger().post({
+            message: 'Kindly make initial investment to send withdrawal request',
+            type: 'error',
+            showCloseButton: true
+          });
+        }
+        if (this.status == "pending") {
+          Messenger().post({
+            message: 'Approval status pending cannot send withdrawal request',
+            type: 'error',
+            showCloseButton: true
+          });
+        }
+
+      }
+
+    }
+    else {
+      Messenger().post({
+        message: 'Please enter all necessary details',
+        type: 'error',
+        showCloseButton: true
+      });
+    }
+
+    ////
   }
-}
-if(formdata.accounttype=='paypal'){
 
-  if(!(formdata.paypal=="")){
-    validate = true;
+  onwithdrawmethodselect(type) {
+
+    if (type === 'bank') {
+      this.withdrawalmethod = 'bank';
+      console.log(type);
+    }
+    else if (type === 'paypal') {
+    this.withdrawalmethod = 'paypal';
+      console.log(type);
+
+    }
+    else if (type === 'moneypolo') {
+    this.withdrawalmethod = 'moneypolo';
+      console.log(type);
+
+    }
+    else if (type === 'bitcoin') {
+    this.withdrawalmethod = 'bitcoin';
+      console.log(type);
+
+    }
+
   }
-}
-if(formdata.accounttype=='moneypolo'){
-
-  if(!(formdata.moneypolo=="")){
-    validate = true;
-  }
-}
-if(formdata.accounttype=='bitcoin'){
-
-  if(!(formdata.bitcoin=="")){
-    validate = true;
-  }
-}
-//
-////
-
-if(validate==true){
-
-if((this.trans == true) && (this.status!="pending"))
-{
-console.log(formdata);
-var d = formdata;
-d.timestamp = Date.now();
-
-this.as.userAccountSummary.take(1).subscribe((summary) => {
-
-  if (summary) {
-d.uid = summary.uid;
-this.ds.withdrawal_request(d);
-Messenger().post({
-  message: 'Withdrawal request sent!',
-  type: 'success',
-  showCloseButton: true
-});
-
-this.router.navigate(['/dashboard']);
-  }
-}) ;
-
-}
-else{
-
-  if(this.trans==false){
-  Messenger().post({
-    message: 'Kindly make initial investment to send withdrawal request',
-    type: 'error',
-    showCloseButton: true
-  });}
-  if(this.status=="pending"){
-    Messenger().post({
-      message: 'Approval status pending cannot send withdrawal request',
-      type: 'error',
-      showCloseButton: true
-    });
-  }
-
-}
-
-}
-else{
-  Messenger().post({
-    message: 'Please enter all necessary details',
-    type: 'error',
-    showCloseButton: true
-  });
-}
-
-////
-  }
-
-onwithdrawmethodselect(type){
-
-if(type==='bank'){
-  this.withdrawalmethod= 'bank';
-  console.log(type);
-}
-else if(type === 'paypal'){    this.withdrawalmethod= 'paypal';
-console.log(type);
-
-}
-else if (type==='moneypolo'){   this.withdrawalmethod= 'moneypolo';
-console.log(type);
-
-}
-else if (type === 'bitcoin'){  this.withdrawalmethod= 'bitcoin';
-console.log(type);
-
-}
-
-}
 
 }
