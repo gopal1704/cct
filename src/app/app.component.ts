@@ -11,6 +11,7 @@ interface Post{
   title:string;
   content :string;
 }
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,15 +26,10 @@ export class AppComponent {
 
   }
 
-   p = function(data){
+p = function(data){
 console.log(data);
    }
 ngOnInit(){
-  //this.authService.login('vgopaooty@gmail.com','gopal3358');
-  // this.authService.user.subscribe(value => {
-  //   console.log(value.uid);
-  // });
-
 
 this.dataService.get_accountsummary("aa");
 

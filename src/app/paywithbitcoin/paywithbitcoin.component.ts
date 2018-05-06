@@ -56,16 +56,6 @@ export class PaywithbitcoinComponent implements OnInit {
         console.log(v);
         this.paymentaddress = v.address;
         this.convertusdtobitcoin(this.ds.NewInvestmentProcessData.investment_amount);
-
-        /////////
-       
-        ////
-
-
-
-
-
-
       }
     );
 
