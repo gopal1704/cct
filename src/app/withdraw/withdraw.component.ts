@@ -5,6 +5,7 @@ import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
 
 declare var Messenger: any;
+declare var $: any;
 
 @Component({
   selector: 'app-withdraw',
@@ -63,6 +64,11 @@ export class WithdrawComponent implements OnInit {
     });
 
   }
+
+  gotohomepage(){
+    this.router.navigate(['/dashboard']);
+  
+  }
   onAmountChange(value) {
     if (value <= this.WalletBal) {
       this.proceed = true;
@@ -113,13 +119,15 @@ export class WithdrawComponent implements OnInit {
           if (summary) {
             d.uid = summary.uid;
             this.ds.withdrawal_request(d);
+
+            $('#withdrawsuccess').modal('show');
+
             Messenger().post({
               message: 'Withdrawal request sent!',
               type: 'success',
               showCloseButton: true
             });
 
-            this.router.navigate(['/dashboard']);
           }
         });
 
@@ -130,6 +138,8 @@ export class WithdrawComponent implements OnInit {
           Messenger().post({
             message: 'Kindly make initial investment to send withdrawal request',
             type: 'error',
+            extraClasses: 'messenger-fixed  messenger-on-top',
+
             showCloseButton: true
           });
         }
@@ -137,7 +147,9 @@ export class WithdrawComponent implements OnInit {
           Messenger().post({
             message: 'Approval status pending cannot send withdrawal request',
             type: 'error',
-            showCloseButton: true
+            showCloseButton: true,
+            extraClasses: 'messenger-fixed  messenger-on-top',
+
           });
         }
 
