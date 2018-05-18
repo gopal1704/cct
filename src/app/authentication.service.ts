@@ -147,14 +147,14 @@ console.log('error sending verification email');
       city: '',
       country: '',
       mobile: '',
-      dateofjoining: Date.now(),
+      dateofjoining: firebase.firestore.FieldValue.serverTimestamp(),
       gender: '',
       proofurl  : ''
     };
     const AccountSymmaryData = {
       uid: user.uid,
       referralid: referralid,
-      joiningdate: Date.now(),
+      joiningdate: firebase.firestore.FieldValue.serverTimestamp(),
       name: '',
       referal_link: 'http://dashboard.catcotrade.info/signup/' + user.uid,
       walletbalance: 0,

@@ -184,7 +184,7 @@ export class DataService {
   get_referrals(uid) {
 
     var accountsummarycollection = this.afs.collection('accountsummary', ref => {
-      return ref.where('referralid', '==', uid).limit(5);
+      return ref.where('referralid', '==', uid).orderBy('joiningdate','desc');
     });
     return accountsummarycollection;
 
