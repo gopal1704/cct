@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
+declare var $: any;
 
 @Component({
   selector: 'app-paymentmethod',
@@ -42,6 +43,7 @@ else{
   }
 
   gotopayment(formdata){
+
       
 console.log(formdata);
      if(formdata.amount&&formdata.paymentmethod){

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../authentication.service';
 declare var Messenger: any;
+declare var $: any;
 
 @Component({
   selector: 'app-investfromwallet',
@@ -38,18 +39,26 @@ proceed : boolean = true;
 
 
   }
+gotodashboard(){
+  this.router.navigate(['/dashboard']);
+
+}
 
 
   createinvestment(){
 if(this.Amount<=this.WalletBal && this.Amount>=500){
   this.proceed=false;
     this.ds.create_investmentwallet('SCO1', this.Amount, 0);
+
+    //alert box
+    $('#paymentsuccess').modal('show');
+
+    //
     Messenger().post({
       message: 'Payment Success!',
       type: 'success',
       showCloseButton: true
     });
-    this.router.navigate(['/dashboard']);
 
 
 
