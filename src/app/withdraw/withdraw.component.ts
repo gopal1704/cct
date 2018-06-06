@@ -69,6 +69,7 @@ export class WithdrawComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   
   }
+  
   onAmountChange(value) {
     if (value <= this.WalletBal) {
       this.proceed = true;
